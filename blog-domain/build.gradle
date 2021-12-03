@@ -1,0 +1,35 @@
+plugins {
+    id 'kotlin'
+    id 'com.ewerk.gradle.plugins.querydsl'
+}
+
+dependencies {
+    api("com.querydsl:querydsl-jpa")
+    kapt("com.querydsl:querydsl-apt::jpa")
+
+    runtimeOnly 'com.h2database:h2'
+}
+
+def querydslSrcDir ='src/main/generated'
+
+querydsl {
+    library ="com.querydsl:querydsl-apt"
+    jpa =true
+    querydslSourcesDir = querydslSrcDir
+}
+
+compileQuerydsl{
+    options.annotationProcessorPath = configurations.querydsl
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/kotlin', querydslSrcDir]
+        }
+    }
+}
+
+configurations {
+    querydsl.extendsFrom compileClasspath
+}

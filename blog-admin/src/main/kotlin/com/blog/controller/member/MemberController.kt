@@ -1,0 +1,28 @@
+package com.blog.controller.member
+
+import com.blog.ApiResponse
+import com.blog.dto.member.CreateMemberRequest
+import com.blog.dto.member.LoginMemberRequest
+import com.blog.service.member.MemberService
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RestController
+import javax.validation.Valid
+
+@RestController
+class MemberController(
+    private val memberService: MemberService
+) {
+
+    @PostMapping("/api/v1/admin/member/signup")
+    fun memberSignUp(@RequestBody @Valid request: CreateMemberRequest): ApiResponse<String> {
+        memberService.createMember(request)
+        return ApiResponse.OK
+    }
+
+    @PostMapping("/api/v1/admin/member/login")
+    fun adminMemberLogin(@RequestBody @Valid request: LoginMemberRequest): ApiResponse<String> {
+        return ApiResponse.success(memberService.adminMemberLogin(request))
+    }
+
+}

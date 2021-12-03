@@ -1,0 +1,6 @@
+dependencies {
+    implementation project(':blog-domain')
+    implementation project(':blog-common')
+
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
+}
