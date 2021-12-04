@@ -3,6 +3,7 @@ package com.blog.controller.member
 import com.blog.ApiResponse
 import com.blog.config.argument.MemberId
 import com.blog.config.auth.Member
+import com.blog.dto.member.AdminInfoResponse
 import com.blog.dto.member.CreateMemberRequest
 import com.blog.dto.member.LoginMemberRequest
 import com.blog.service.member.MemberService
@@ -30,8 +31,8 @@ class MemberController(
 
     @Member
     @GetMapping("/api/v1/admin/member")
-    fun getMyInfo(@MemberId memberId: Long) {
-        println("memberId = ${memberId}")
+    fun getMyInfo(@MemberId memberId: Long): ApiResponse<AdminInfoResponse> {
+        return ApiResponse.success(memberService.getMyInfo(memberId))
     }
 
 }

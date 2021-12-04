@@ -16,4 +16,12 @@ class AdminRepositoryCustomImpl(
             .fetchOne()
     }
 
+    override fun findAdminById(memberId: Long): Admin? {
+        return queryFactory.selectFrom(admin)
+                .where(
+                        admin.id.eq(memberId)
+                )
+                .fetchOne()
+    }
+
 }

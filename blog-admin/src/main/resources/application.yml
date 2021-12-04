@@ -4,7 +4,8 @@ spring:
   config:
     activate:
       on-profile: local, dev
-
+    import:
+      - aws.yml
 
 logging:
   level:

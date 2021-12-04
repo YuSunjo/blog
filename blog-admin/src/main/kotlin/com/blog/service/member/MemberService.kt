@@ -3,6 +3,7 @@ package com.blog.service.member
 import com.blog.config.jwt.JwtTokenProvider
 import com.blog.domain.admin.Admin
 import com.blog.domain.admin.repository.AdminRepository
+import com.blog.dto.member.AdminInfoResponse
 import com.blog.dto.member.CreateMemberRequest
 import com.blog.dto.member.LoginMemberRequest
 import com.blog.exception.NotFoundException
@@ -28,6 +29,13 @@ class MemberService(
             ?: throw NotFoundException("존재하지 않는 멤버 ${request.email} 입니다."))
         MemberServiceUtils.validatePassword(passwordEncoder, admin.password, request.password)
         return jwtTokenProvider.createToken(admin.id.toString())
+    }
+
+    @Transactional
+    fun getMyInfo(memberId: Long): AdminInfoResponse {
+        val admin: Admin = adminRepository.findAdminById(memberId)
+                ?: throw NotFoundException("존재하지 않는 멤버 ${memberId} 입니다.")
+        return AdminInfoResponse.of(admin)
     }
 
 }
