@@ -1,0 +1,22 @@
+POST {{host_api}}/api/v1/admin/category
+Content-Type: application/json
+Authorization: {{ADMIN}}
+
+{
+  "categoryName": "코코틀린"
+}
+
+###
+PUT {{host_api}}/api/v1/admin/category
+Content-Type: application/json
+Authorization: {{ADMIN}}
+
+{
+  "id": 1,
+  "categoryName": "코틀린"
+}
+
+###
+GET {{host_api}}/api/v1/admin/category/list
+Content-Type: application/json
+Authorization: {{ADMIN}}
