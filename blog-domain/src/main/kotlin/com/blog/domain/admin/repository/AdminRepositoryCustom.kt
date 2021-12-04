@@ -6,4 +6,6 @@ interface AdminRepositoryCustom {
 
     fun findByEmail(email: String): Admin?
 
+    fun findAdminById(memberId: Long): Admin?
+
 }
