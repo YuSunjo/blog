@@ -1,7 +1,7 @@
 package com.blog.exception.errorCode
 
 open class CustomException(
-    private val errorCode: ErrorCode,
+    val errorCode: ErrorCode,
     override val message: String
 ) : RuntimeException() {
 }
