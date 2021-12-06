@@ -1,8 +1,10 @@
 package com.blog.exception.errorCode
 
+import lombok.Getter
+
 enum class ErrorCode(
-    private val code: Int,
-    private val message: String
+    val code: Int,
+    val message: String
 ) {
 
     NOT_FOUND_EXCEPTION(404, "존재하지 않습니다."),
