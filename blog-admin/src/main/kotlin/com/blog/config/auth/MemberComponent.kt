@@ -22,7 +22,7 @@ class MemberComponent(
 
         val memberId = jwtTokenProvider.getSubject(header)
         if (memberId != null) {
-            adminRepository.findById(memberId.toLong())
+            adminRepository.findAdminById(memberId.toLong())
                 ?: throw NotFoundException("존재하지 않는 멤버 아이디 ${memberId} 입니다")
         }
         if (memberId != null) {
