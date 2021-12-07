@@ -3,9 +3,9 @@ package com.blog.service.member
 import com.blog.config.jwt.JwtTokenProvider
 import com.blog.domain.admin.Admin
 import com.blog.domain.admin.repository.AdminRepository
-import com.blog.dto.member.AdminInfoResponse
-import com.blog.dto.member.CreateMemberRequest
-import com.blog.dto.member.LoginMemberRequest
+import com.blog.dto.adminMember.AdminInfoResponse
+import com.blog.dto.adminMember.CreateMemberRequest
+import com.blog.dto.adminMember.LoginMemberRequest
 import com.blog.exception.NotFoundException
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
