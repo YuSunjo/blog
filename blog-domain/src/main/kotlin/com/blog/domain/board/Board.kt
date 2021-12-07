@@ -1,10 +1,7 @@
 package com.blog.domain.board
 
 import com.blog.dto.board.UpdateBoardRequest
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
+import javax.persistence.*
 
 @Entity
 class Board(
@@ -13,7 +10,10 @@ class Board(
         var isPrivate: Boolean = false,
         var boardThumbnailUrl: String?,
         var categoryId: Long,
-        var memberId: Long = 0L
+        var memberId: Long = 0L,
+
+        @OneToMany(mappedBy = "board", cascade = [CascadeType.ALL], orphanRemoval = true)
+        private val boardLikeList: List<BoardLike>? = ArrayList()
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

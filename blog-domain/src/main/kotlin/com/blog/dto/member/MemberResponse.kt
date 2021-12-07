@@ -1,15 +1,15 @@
 package com.blog.dto.member
 
-import com.blog.domain.admin.Admin
+import com.blog.domain.member.Member
 
-data class AdminInfoResponse(
-        var id: Long,
-        var email: String,
-        var adminImage: String?
+data class MemberInfoResponse(
+    var id: Long,
+    var email: String,
+    var memberImage: String?,
 ) {
     companion object {
-        fun of(admin: Admin): AdminInfoResponse {
-            return AdminInfoResponse(admin.id, admin.email, admin.adminImage)
+        fun of(member: Member): MemberInfoResponse {
+            return MemberInfoResponse(member.id, member.email, member.memberImage)
         }
     }
 }
