@@ -1,4 +1,4 @@
-POST {{host_api}}/api/v1/board
+POST {{blog_admin}}/api/v1/board
 Content-Type: application/json
 Authorization: {{ADMIN}}
 
@@ -11,7 +11,7 @@ Authorization: {{ADMIN}}
 }
 
 ### 수정
-PUT {{host_api}}/api/v1/board
+PUT {{blog_admin}}/api/v1/board
 Content-Type: application/json
 Authorization: {{ADMIN}}
 
@@ -25,10 +25,10 @@ Authorization: {{ADMIN}}
 }
 
 ### 상세보기
-GET {{host_api}}/api/v1/board/1
+GET {{blog_admin}}/api/v1/board/1
 Content-Type: application/json
 Authorization: {{ADMIN}}
 
 ### 리스트
-GET {{host_api}}/api/v1/board/list?page=1&size=1
+GET {{blog_admin}}/api/v1/board/list?page=1&size=1
 Authorization: {{ADMIN}}

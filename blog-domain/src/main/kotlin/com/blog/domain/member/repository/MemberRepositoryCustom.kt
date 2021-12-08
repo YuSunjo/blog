@@ -6,4 +6,6 @@ interface MemberRepositoryCustom {
 
     fun findMemberByEmail(email: String): Member?
 
+    fun findMemberById(memberId: Long) : Member?
+
 }

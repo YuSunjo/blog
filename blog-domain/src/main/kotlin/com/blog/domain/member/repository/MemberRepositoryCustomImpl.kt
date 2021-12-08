@@ -16,4 +16,12 @@ class MemberRepositoryCustomImpl(
             .fetchOne()
     }
 
+    override fun findMemberById(memberId: Long): Member? {
+        return queryFactory.selectFrom(member)
+            .where(
+                member.id.eq(memberId)
+            )
+            .fetchOne()
+    }
+
 }
