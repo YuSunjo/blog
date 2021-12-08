@@ -12,6 +12,7 @@ class Member(
         var memberImage: String?,
 
         @Column(nullable = false)
+        @Enumerated(EnumType.STRING)
         var provider: Provider,
 
 ): BaseTimeEntity() {

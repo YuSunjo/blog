@@ -1,4 +1,4 @@
-POST {{host_api}}/api/v1/admin/member/signup
+POST {{blog_admin}}/api/v1/admin/member/signup
 Content-Type: application/json
 
 {
@@ -7,7 +7,7 @@ Content-Type: application/json
 }
 
 ###
-POST {{host_api}}/api/v1/admin/member/login
+POST {{blog_admin}}/api/v1/admin/member/login
 Content-Type: application/json
 
 {
@@ -20,5 +20,5 @@ client.log(client.global.get('ADMIN'));
  %}
 
 ###
-GET {{host_api}}/api/v1/admin/member
+GET {{blog_admin}}/api/v1/admin/member
 Authorization: {{ADMIN}}

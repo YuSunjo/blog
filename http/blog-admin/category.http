@@ -1,4 +1,4 @@
-POST {{host_api}}/api/v1/admin/category
+POST {{blog_admin}}/api/v1/admin/category
 Content-Type: application/json
 Authorization: {{ADMIN}}
 
@@ -7,7 +7,7 @@ Authorization: {{ADMIN}}
 }
 
 ###
-PUT {{host_api}}/api/v1/admin/category
+PUT {{blog_admin}}/api/v1/admin/category
 Content-Type: application/json
 Authorization: {{ADMIN}}
 
@@ -17,6 +17,6 @@ Authorization: {{ADMIN}}
 }
 
 ###
-GET {{host_api}}/api/v1/admin/category/list
+GET {{blog_admin}}/api/v1/admin/category/list
 Content-Type: application/json
 Authorization: {{ADMIN}}
