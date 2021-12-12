@@ -16,7 +16,7 @@ data class BoardInfoResponse(
     companion object {
         fun of(board: Board): BoardInfoResponse {
             return BoardInfoResponse(board.id, board.title, board.content, board.isPrivate, board.boardThumbnailUrl,
-                board.categoryId, board.memberId, board.getBoardHashTagList())
+                board.categoryId, board.memberId, board.getBoardHashTagInfoResponseList())
         }
     }
 }

@@ -4,7 +4,6 @@ import com.blog.dto.board.BoardHashTagInfoResponse
 import com.blog.dto.board.UpdateBoardRequest
 import com.blog.exception.ConflictException
 import com.blog.exception.NotFoundException
-import com.blog.exception.ValidationException
 import java.util.*
 import java.util.stream.Collectors
 import javax.persistence.*
@@ -19,16 +18,16 @@ class Board(
         var categoryId: Long,
         var memberId: Long = 0L,
 
-        @OneToMany(mappedBy = "board", cascade = [CascadeType.ALL], orphanRemoval = true)
-        private val boardLikeList: MutableList<BoardLike> = ArrayList(),
-
-        @OneToMany(mappedBy = "board", cascade = [CascadeType.ALL], orphanRemoval = true)
-        private val boardHashTagList: MutableList<BoardHashTag> = ArrayList()
-
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = 0L
+
+    @OneToMany(mappedBy = "board", cascade = [CascadeType.ALL], orphanRemoval = true)
+    val boardLikeList: MutableList<BoardLike> = ArrayList()
+
+    @OneToMany(mappedBy = "board", cascade = [CascadeType.ALL], orphanRemoval = true)
+    val boardHashTagList: MutableList<BoardHashTag> = ArrayList()
 
     fun updateBoard(request: UpdateBoardRequest) {
         this.title = request.title
@@ -68,7 +67,7 @@ class Board(
         this.boardHashTagList.addAll(boardHashTagList)
     }
 
-    fun getBoardHashTagList(): MutableList<BoardHashTagInfoResponse> {
+    fun getBoardHashTagInfoResponseList(): MutableList<BoardHashTagInfoResponse> {
         return this.boardHashTagList.stream().map {
             BoardHashTagInfoResponse.of(it)
         }.collect(Collectors.toList())
