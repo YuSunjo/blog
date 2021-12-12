@@ -42,3 +42,8 @@ data class RetrieveBoardRequest(
     var search: String?,
     var sort: String?
 )
+
+data class BoardIdRequest(
+    @field:NotNull
+    var boardId: Long
+)

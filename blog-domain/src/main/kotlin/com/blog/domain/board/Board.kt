@@ -1,7 +1,12 @@
 package com.blog.domain.board
 
 import com.blog.dto.board.UpdateBoardRequest
+import com.blog.exception.ConflictException
+import com.blog.exception.NotFoundException
+import com.blog.exception.ValidationException
+import java.util.*
 import javax.persistence.*
+import kotlin.collections.ArrayList
 
 @Entity
 class Board(
@@ -13,7 +18,7 @@ class Board(
         var memberId: Long = 0L,
 
         @OneToMany(mappedBy = "board", cascade = [CascadeType.ALL], orphanRemoval = true)
-        private val boardLikeList: List<BoardLike>? = ArrayList()
+        private val boardLikeList: MutableList<BoardLike> = ArrayList()
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +30,29 @@ class Board(
         this.isPrivate = request.isPrivate
         this.boardThumbnailUrl = request.boardThumbnailUrl
         this.categoryId = request.categoryId
+    }
+
+    fun boardAddLike(memberId: Long) {
+        this.findBoardLikeByMemberId(memberId)
+            .ifPresent {
+                throw ConflictException("이미 존재하는 멤버 ${memberId} 입니다.")
+            }
+        val boardLike = BoardLike.of(memberId, this)
+        this.boardLikeList.add(boardLike)
+    }
+
+    private fun findBoardLikeByMemberId(memberId: Long): Optional<BoardLike> {
+        return this.boardLikeList.stream().filter {
+            it.findBoardLikeByMemberId(memberId)
+        }.findFirst()
+    }
+
+    fun boardUnLike(memberId: Long) {
+        val boardLike = this.findBoardLikeByMemberId(memberId)
+            .orElseThrow {
+                throw NotFoundException("멤버 ${memberId}가 좋아요 한 게시글이 없습니다.")
+            }
+        this.boardLikeList.remove(boardLike)
     }
 
 }

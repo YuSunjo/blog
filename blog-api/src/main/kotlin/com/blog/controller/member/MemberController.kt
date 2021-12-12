@@ -15,7 +15,7 @@ import javax.validation.Valid
 
 @RestController
 class MemberController(
-    private val memberService: MemberService
+        private val memberService: MemberService
 ) {
     @PostMapping("/api/v1/member")
     fun memberSignUp(@RequestBody @Valid request: CreateMemberRequest): ApiResponse<MemberInfoResponse> {

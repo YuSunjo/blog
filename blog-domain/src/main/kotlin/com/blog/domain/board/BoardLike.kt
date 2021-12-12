@@ -10,8 +10,19 @@ class BoardLike(
     @JoinColumn(name = "board_id", nullable = false)
     var board: Board
 ) {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = 0L
+
+    fun findBoardLikeByMemberId(memberId: Long): Boolean {
+        return this.memberId == memberId
+    }
+
+    companion object {
+        fun of(memberId: Long, board: Board): BoardLike {
+            return BoardLike(memberId, board)
+        }
+    }
 
 }
