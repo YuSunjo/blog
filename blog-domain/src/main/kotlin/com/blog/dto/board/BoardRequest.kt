@@ -14,6 +14,8 @@ data class CreateBoardRequest(
     var boardThumbnailUrl: String?,
     @NotNull
     var categoryId: Long,
+
+    var hashTagList: MutableList<String>
 ) {
     fun toEntity(memberId: Long): Board {
         return Board(title, content, isPrivate, boardThumbnailUrl, categoryId, memberId)

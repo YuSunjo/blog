@@ -20,6 +20,7 @@ class BoardService(
     @Transactional
     fun createBoard(request: CreateBoardRequest, memberId: Long): BoardInfoResponse {
         val board: Board = boardRepository.save(request.toEntity(memberId))
+        board.addHashTag(request.hashTagList, memberId)
         return BoardInfoResponse.of(board)
     }
 

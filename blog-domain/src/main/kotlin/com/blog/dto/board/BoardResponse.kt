@@ -1,6 +1,7 @@
 package com.blog.dto.board
 
 import com.blog.domain.board.Board
+import com.blog.domain.board.BoardHashTag
 
 data class BoardInfoResponse(
     var id: Long = 0L,
@@ -9,11 +10,13 @@ data class BoardInfoResponse(
     var isPrivate: Boolean = false,
     var boardThumbnailUrl: String?,
     var categoryId: Long,
-    var memberId: Long = 0L
+    var memberId: Long = 0L,
+    var hashTagList: MutableList<BoardHashTagInfoResponse>
 ) {
     companion object {
         fun of(board: Board): BoardInfoResponse {
-            return BoardInfoResponse(board.id, board.title, board.content, board.isPrivate, board.boardThumbnailUrl, board.categoryId, board.memberId)
+            return BoardInfoResponse(board.id, board.title, board.content, board.isPrivate, board.boardThumbnailUrl,
+                board.categoryId, board.memberId, board.getBoardHashTagList())
         }
     }
 }
@@ -25,6 +28,16 @@ data class BoardInfoListResponse(
     companion object {
         fun of(boardList: List<BoardInfoResponse>, totalPage: Int): BoardInfoListResponse {
             return BoardInfoListResponse(boardList, totalPage)
+        }
+    }
+}
+
+data class BoardHashTagInfoResponse(
+    var hashTag: String,
+) {
+    companion object {
+        fun of(boardHashTag: BoardHashTag): BoardHashTagInfoResponse {
+            return BoardHashTagInfoResponse(boardHashTag.hashTag)
         }
     }
 }
