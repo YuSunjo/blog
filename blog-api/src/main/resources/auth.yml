@@ -1,0 +1,6 @@
+kakao:
+  auth:
+    client_key: 30a4cad268d798b749dbdf70c04229fb
+    grant_type: authorization_code
+    url: https://kauth.kakao.com/oauth/token
+    user_info_url: https://kapi.kakao.com/v2/user/me

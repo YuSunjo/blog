@@ -6,6 +6,7 @@ spring:
       on-profile: local, dev
     import:
       - aws.yml
+      - auth.yml
 
 logging:
   level:
