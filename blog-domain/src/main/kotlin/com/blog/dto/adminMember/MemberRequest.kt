@@ -5,10 +5,10 @@ import javax.validation.constraints.NotBlank
 
 data class CreateMemberRequest(
     @field:NotBlank
-    var email: String = "",
+    var email: String,
 
     @field:NotBlank
-    var password: String = ""
+    var password: String
 ) {
     fun toEntity(encodedPassword: String): Admin {
         return Admin(email, encodedPassword, null)

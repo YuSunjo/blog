@@ -68,6 +68,11 @@ subprojects {
         implementation("org.jetbrains.kotlin:kotlin-reflect")
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     }
+
+    tasks.test {
+        // Use the built-in JUnit support of Gradle.
+        useJUnitPlatform()
+    }
 }
 
 project(':blog-admin') {
@@ -90,8 +95,16 @@ project(':blog-domain') {
     apply plugin: 'io.spring.dependency-management'
 }
 
+project(':blog-common') {
+    bootJar.enabled = false
+    jar.enabled = true
+
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+}
+
 def testProjects = [
-        project(':blog-domain'),
+        project(':blog-api'),
         project(':blog-admin'),
 ]
 
