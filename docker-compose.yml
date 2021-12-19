@@ -1,0 +1,20 @@
+version: "3"
+services:
+  blog-api:
+    build:
+      context: .
+      dockerfile: Dockerfile_api
+    networks:
+      - blog-network
+    ports:
+      - "8080:8080"
+  blog-admin:
+    build:
+      context: .
+      dockerfile: Dockerfile_admin
+    networks:
+      - blog-network
+    ports:
+      - "9000:9000"
+networks:
+  blog-network:

@@ -1,0 +1,14 @@
+FROM adoptopenjdk/openjdk11
+
+WORKDIR /usr/blog/app
+
+COPY ./ ./
+
+RUN chmod +x gradlew
+RUN ./gradlew clean bootJar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "/usr/blog/app/blog-api/build/libs/blog-api-0.0.1-BLOG.jar", "--spring.profiles.active=local"]
+
+
