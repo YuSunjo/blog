@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component
 @Component
 @ConfigurationProperties(prefix = "kakao.auth")
 data class KakaoAuthComponent(
-    val clientKey: String,
-    val grant_type: String,
-    val url: String,
-    val userInfoUrl: String
+    var clientKey: String ="",
+    var grant_type: String = "",
+    var url: String = "",
+    var userInfoUrl: String = ""
 )
