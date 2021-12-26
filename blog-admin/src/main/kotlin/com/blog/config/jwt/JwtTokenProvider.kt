@@ -1,5 +1,6 @@
 package com.blog.config.jwt
 
+import com.blog.exception.JwtException
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
@@ -25,7 +26,11 @@ class JwtTokenProvider {
     }
 
     fun getSubject(token: String?): String? {
-        return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject()
+        try {
+            return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject()
+        } catch (exception: Exception) {
+            throw JwtException("올바르지 않은 jwt입니다.")
+        }
     }
 
 }

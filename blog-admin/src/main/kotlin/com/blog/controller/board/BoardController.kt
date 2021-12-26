@@ -5,6 +5,7 @@ import com.blog.config.argument.MemberId
 import com.blog.config.auth.Member
 import com.blog.dto.board.*
 import com.blog.service.board.BoardService
+import io.swagger.annotations.ApiOperation
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
@@ -12,6 +13,7 @@ import javax.validation.Valid
 class BoardController(
     private val boardService: BoardService
 ) {
+    @ApiOperation(value = "게시글 작성", notes = "게시글 작성")
     @Member
     @PostMapping("/api/v1/board")
     fun createBoard(@RequestBody @Valid request: CreateBoardRequest, @MemberId memberId: Long): ApiResponse<BoardInfoResponse> {
