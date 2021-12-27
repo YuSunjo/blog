@@ -6,7 +6,7 @@ on:
       - develop
       - feat/docker
 env:
-  DOCKER_IMAGE: ghcr.io/YuSunjo/blog
+  DOCKER_IMAGE: ghcr.io/yusunjo/blog
   VERSION: ${{ github.sha }}
 
 jobs:
