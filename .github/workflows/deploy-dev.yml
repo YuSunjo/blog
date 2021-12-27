@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - develop
-      - docker
+      - feat/docker
 env:
   DOCKER_IMAGE: ghcr.io/YuSunjo/blog
   VERSION: ${{ github.sha }}
