@@ -1,6 +1,7 @@
 version: "3"
 services:
-  blog-api:
+  api:
+    container_name: blog_api
     build:
       context: .
       dockerfile: Dockerfile_api
@@ -8,7 +9,8 @@ services:
       - blog-network
     ports:
       - "8080:8080"
-  blog-admin:
+  admin:
+    container_name: blog_admin
     build:
       context: .
       dockerfile: Dockerfile_admin
