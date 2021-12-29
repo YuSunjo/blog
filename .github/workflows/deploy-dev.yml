@@ -1,0 +1,77 @@
+name: velog docker cd
+
+on:
+  push:
+    branches:
+      - develop
+      - feat/docker
+env:
+  DOCKER_IMAGE: ghcr.io/yusunjo/blog
+  VERSION: ${{ github.sha }}
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up docker buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Cache docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ env.VERSION }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+      - name: Login to ghcr
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GIT_TOKEN }}
+      - uses: docker/setup-buildx-action@v1
+        id: api-dockerfile
+      - uses: docker/setup-buildx-action@v1
+        id: admin-dockerfile
+      - name: api dockerfile
+        run: echo ${{ steps.api-dockerfile.outputs.name }}
+      - name: admin dockerfile
+        run: echo ${{ steps.admin-dockerfile.outputs.name }}
+
+      - name: Build and push api-dockerfile
+        uses: docker/build-push-action@v2
+        with:
+          builder: ${{ steps.api-dockerfile.outputs.name }}
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ env.DOCKER_IMAGE }}:${{ env.VERSION }}
+          context: .
+          file: Dockerfile_api
+      - name: Build and push admin-dockerfile
+        uses: docker/build-push-action@v2
+        with:
+          builder: ${{ steps.admin-dockerfile.outputs.name }}
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ env.DOCKER_IMAGE }}:${{ env.VERSION }}
+          context: .
+          file: Dockerfile_admin
+
+  deploy:
+    needs: build
+    name: Deploy
+    runs-on: [self-hosted, label-development]
+    steps:
+      - name: Login to ghcr
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GIT_TOKEN }}
+      - name: Docker run
+        run: |
+          docker ps -a -q --filter "name=blog_api" | grep -q . && docker stop blog_api && docker rm -fv blog_api
+          docker ps -a -q --filter "name=blog_admin" | grep -q . && docker stop blog_admin && docker rm -fv blog_admin
+          docker-compose up -d --build
+
