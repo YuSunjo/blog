@@ -1,5 +1,6 @@
 package com.blog.domain.board
 
+import com.blog.domain.BaseTimeEntity
 import javax.persistence.*
 
 @Entity
@@ -9,7 +10,7 @@ class BoardLike(
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id", nullable = false)
     var board: Board
-) {
+): BaseTimeEntity() {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

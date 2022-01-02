@@ -1,5 +1,6 @@
 package com.blog.domain.board
 
+import com.blog.domain.BaseTimeEntity
 import com.blog.dto.board.BoardHashTagInfoResponse
 import com.blog.dto.board.UpdateBoardRequest
 import com.blog.exception.ConflictException
@@ -18,7 +19,7 @@ class Board(
         var categoryId: Long,
         var memberId: Long = 0L,
 
-) {
+): BaseTimeEntity() {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = 0L

@@ -1,0 +1,17 @@
+###
+POST {{blog_admin}}/api/v1/admin/config
+Authorization: {{ADMIN}}
+Content-Type: application/json
+
+{
+  "backgroundImage": "ggogogo"
+}
+
+###
+PUT {{blog_admin}}/api/v1/admin/config
+Authorization: {{ADMIN}}
+Content-Type: application/json
+
+{
+  "backgroundImage": "ggogogo22"
+}
