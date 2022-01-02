@@ -65,9 +65,9 @@ class CategoryServiceTest(
         val retrieveCategory = categoryService.retrieveCategory()
 
         // then
-        assertThat(retrieveCategory[0].categoryName).isEqualTo(category1.categoryName)
+        assertThat(retrieveCategory[0].categoryName).isEqualTo(category3.categoryName)
         assertThat(retrieveCategory[1].categoryName).isEqualTo(category2.categoryName)
-        assertThat(retrieveCategory[2].categoryName).isEqualTo(category3.categoryName)
+        assertThat(retrieveCategory[2].categoryName).isEqualTo(category1.categoryName)
     }
 
 }
