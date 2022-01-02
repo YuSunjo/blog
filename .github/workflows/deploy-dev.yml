@@ -58,20 +58,20 @@ jobs:
           context: .
           file: Dockerfile_admin
 
-  deploy:
-    needs: build
-    name: Deploy
-    runs-on: [self-hosted, label-development]
-    steps:
-      - name: Login to ghcr
-        uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GIT_TOKEN }}
-      - name: Docker run
-        run: |
-          docker ps -a -q --filter "name=blog_api" | grep -q . && docker stop blog_api && docker rm -fv blog_api
-          docker ps -a -q --filter "name=blog_admin" | grep -q . && docker stop blog_admin && docker rm -fv blog_admin
-          docker-compose up -d --build
+#  deploy:
+#    needs: build
+#    name: Deploy
+#    runs-on: [self-hosted, label-development]
+#    steps:
+#      - name: Login to ghcr
+#        uses: docker/login-action@v1
+#        with:
+#          registry: ghcr.io
+#          username: ${{ github.actor }}
+#          password: ${{ secrets.GIT_TOKEN }}
+#      - name: Docker run
+#        run: |
+#          docker ps -a -q --filter "name=blog_api" | grep -q . && docker stop blog_api && docker rm -fv blog_api
+#          docker ps -a -q --filter "name=blog_admin" | grep -q . && docker stop blog_admin && docker rm -fv blog_admin
+#          docker-compose up -d --build
 
