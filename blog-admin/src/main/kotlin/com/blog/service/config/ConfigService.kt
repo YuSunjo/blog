@@ -20,10 +20,16 @@ class ConfigService(
     fun updateConfig(request: CreateAndUpdateConfigRequest): Config {
         val config = configRepository.findById(1L)
             .orElseThrow {
-                throw NotFoundException("존재하지 않는 설정입니다.");
+                throw NotFoundException("존재하지 않는 설정입니다.")
             }
         config.update(request.backgroundImage)
         return config
+    }
+
+    @Transactional
+    fun getConfig(): Config? {
+        return configRepository.findById(1L)
+            .orElse(null)
     }
 
 }

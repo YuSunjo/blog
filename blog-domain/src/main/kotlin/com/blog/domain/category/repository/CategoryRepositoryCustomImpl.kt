@@ -17,6 +17,7 @@ class CategoryRepositoryCustomImpl(
 
     override fun findCategory(): List<Category> {
         return queryFactory.selectFrom(category)
+            .orderBy(category.id.desc())
                 .fetch()
     }
 }

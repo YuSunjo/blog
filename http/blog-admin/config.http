@@ -15,3 +15,7 @@ Content-Type: application/json
 {
   "backgroundImage": "ggogogo22"
 }
+
+###
+GET {{blog_admin}}/api/v1/admin/config
+Authorization: {{ADMIN}}
