@@ -16,7 +16,7 @@ public class UploadController {
     private final UploadService uploadService;
 
     @ApiOperation(value = "업로드", notes = "이미지 파일 업로드")
-    @PostMapping("/image/upload")
+    @PostMapping("api/v1/admin/image/upload")
     public ApiResponse<String> imageUpload(@RequestPart MultipartFile file) {
         return ApiResponse.Companion.success(uploadService.imageUpload(file));
     }
