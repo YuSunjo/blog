@@ -17,13 +17,13 @@ class CommentController(
 
     @Member
     @PostMapping("api/v1/admin/comment")
-    fun createComment(@Valid request: CreateCommentRequest, @MemberId memberId: Long): ApiResponse<CommentInfoResponse> {
+    fun createComment(@RequestBody @Valid request: CreateCommentRequest, @MemberId memberId: Long): ApiResponse<CommentInfoResponse> {
         return ApiResponse.success(commentService.createComment(request, memberId))
     }
 
     @Member
     @PutMapping("api/v1/admin/comment")
-    fun updateComment(@Valid request: UpdateCommentRequest, @MemberId memberId: Long): ApiResponse<CommentInfoResponse> {
+    fun updateComment(@RequestBody @Valid request: UpdateCommentRequest, @MemberId memberId: Long): ApiResponse<CommentInfoResponse> {
         return ApiResponse.success(commentService.updateComment(request, memberId))
     }
 
