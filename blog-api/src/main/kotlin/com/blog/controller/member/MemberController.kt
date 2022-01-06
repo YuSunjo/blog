@@ -6,7 +6,7 @@ import com.blog.config.auth.Member
 import com.blog.dto.member.CreateMemberRequest
 import com.blog.dto.member.LoginMemberRequest
 import com.blog.dto.member.MemberInfoResponse
-import com.blog.service.MemberService
+import com.blog.service.member.MemberService
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody

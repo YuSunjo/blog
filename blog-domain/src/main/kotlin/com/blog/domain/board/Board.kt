@@ -18,6 +18,8 @@ class Board(
         var boardThumbnailUrl: String?,
         var categoryId: Long,
         var memberId: Long = 0L,
+        var commentCount: Int = 0,
+        var likeCount: Int = 0,
 
 ): BaseTimeEntity() {
     @Id
@@ -72,6 +74,10 @@ class Board(
         return this.boardHashTagList.stream().map {
             BoardHashTagInfoResponse.of(it)
         }.collect(Collectors.toList())
+    }
+
+    fun incrementLikeCount() {
+        this.likeCount++
     }
 
 }

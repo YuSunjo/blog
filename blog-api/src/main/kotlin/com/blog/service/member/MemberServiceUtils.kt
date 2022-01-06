@@ -1,4 +1,4 @@
-package com.blog.service
+package com.blog.service.member
 
 import com.blog.domain.member.repository.MemberRepository
 import com.blog.exception.ValidationException

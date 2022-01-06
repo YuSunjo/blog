@@ -1,4 +1,4 @@
-package com.blog.service
+package com.blog.service.board
 
 import com.blog.domain.board.repository.BoardRepository
 import com.blog.dto.board.BoardInfoListResponse

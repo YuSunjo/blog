@@ -6,7 +6,7 @@ import com.blog.config.auth.Member
 import com.blog.dto.board.BoardIdRequest
 import com.blog.dto.board.BoardInfoListResponse
 import com.blog.dto.board.RetrieveBoardRequest
-import com.blog.service.BoardService
+import com.blog.service.board.BoardService
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 

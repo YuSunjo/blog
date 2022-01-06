@@ -1,0 +1,30 @@
+###
+POST {{blog_admin}}/api/v1/admin/comment
+Content-Type: application/json
+Authorization: {{ADMIN}}
+
+{
+  "content": "댓글 ㅎㅇ",
+  "boardId": 1
+}
+
+###
+POST {{blog_admin}}/api/v1/admin/comment
+Content-Type: application/json
+Authorization: {{ADMIN}}
+
+{
+  "content": "댓글 ㅎㅇ",
+  "boardId": 1,
+  "parentCommentId": 1
+}
+
+###
+PUT {{blog_admin}}/api/v1/admin/comment
+Content-Type: application/json
+Authorization: {{ADMIN}}
+
+{
+  "commentId": 1,
+  "content": "댓글 ㅎㅇ"
+}
