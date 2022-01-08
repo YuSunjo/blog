@@ -9,11 +9,16 @@ class Member(
         var email: String,
 
         var password: String,
+
         var memberImage: String?,
 
         @Column(nullable = false)
         @Enumerated(EnumType.STRING)
         var provider: Provider,
+
+        @Enumerated(EnumType.STRING)
+        @Column(nullable = false)
+        var role: Role,
 
 ): BaseTimeEntity() {
     @Id

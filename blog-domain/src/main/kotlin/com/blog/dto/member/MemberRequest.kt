@@ -2,6 +2,7 @@ package com.blog.dto.member
 
 import com.blog.domain.member.Member
 import com.blog.domain.member.Provider
+import com.blog.domain.member.Role
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotBlank
 
@@ -19,7 +20,7 @@ data class CreateMemberRequest(
     }
 
     fun toEntity(encodedPassword: String): Member {
-        return Member(email, encodedPassword, memberImage, provider)
+        return Member(email, encodedPassword, memberImage, provider, Role.ADMIN)
     }
 }
 
@@ -32,6 +33,6 @@ data class LoginMemberRequest(
     var provider: Provider = Provider.LOCAL
 
     constructor(email: String, password: String, provider: Provider): this(email, password) {
-        this.provider = provider;
+        this.provider = provider
     }
 }

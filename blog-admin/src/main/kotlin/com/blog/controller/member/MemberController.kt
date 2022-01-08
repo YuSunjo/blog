@@ -3,9 +3,9 @@ package com.blog.controller.member
 import com.blog.ApiResponse
 import com.blog.config.argument.MemberId
 import com.blog.config.auth.Member
-import com.blog.dto.adminMember.AdminInfoResponse
 import com.blog.dto.adminMember.CreateMemberRequest
 import com.blog.dto.adminMember.LoginMemberRequest
+import com.blog.dto.member.MemberInfoResponse
 import com.blog.service.member.MemberService
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -31,7 +31,7 @@ class MemberController(
 
     @Member
     @GetMapping("/api/v1/admin/member")
-    fun getMyInfo(@MemberId memberId: Long): ApiResponse<AdminInfoResponse> {
+    fun getMyInfo(@MemberId memberId: Long): ApiResponse<MemberInfoResponse> {
         return ApiResponse.success(memberService.getMyInfo(memberId))
     }
 

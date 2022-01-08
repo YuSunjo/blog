@@ -8,4 +8,6 @@ interface MemberRepositoryCustom {
 
     fun findMemberById(memberId: Long) : Member?
 
+    fun findMemberByIdIsAdmin(memberId: Long): Member?
+
 }
