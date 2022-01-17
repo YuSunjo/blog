@@ -9,6 +9,8 @@ services:
       - blog-network
     ports:
       - "8080:8080"
+    volumes:
+      - ./blog-api/build/libs/blog-api-0.0.1-BLOG.jar:/usr/blog/app/app.jar
   admin:
     container_name: blog_admin
     build:
@@ -18,5 +20,7 @@ services:
       - blog-network
     ports:
       - "9000:9000"
+    volumes:
+      - ./blog-admin/build/libs/blog-admin-0.0.1-BLOG.jar:/usr/blog/app/app.jar
 networks:
   blog-network:
