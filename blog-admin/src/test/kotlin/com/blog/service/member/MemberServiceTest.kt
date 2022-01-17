@@ -45,7 +45,7 @@ internal class MemberServiceTest(
     @Test
     fun loginMember() {
         // given
-        val admin = Member("tnswh2023@naver.com", passwordEncoder.encode("1234"), null, Provider.LOCAL, Role.ADMIN)
+        val admin = Member("tnswh2023@naver.com", passwordEncoder.encode("1234"), null, Provider.LOCAL, Role.ADMIN, "ADMIN")
         memberRepository.save(admin)
         val request = LoginMemberRequest("tnswh2023@naver.com", "1234")
 
@@ -59,7 +59,7 @@ internal class MemberServiceTest(
     @Test
     fun getMyInfo() {
         // given
-        val admin = Member("tnswh2023@naver.com", passwordEncoder.encode("1234"), null, Provider.LOCAL, Role.ADMIN)
+        val admin = Member("tnswh2023@naver.com", passwordEncoder.encode("1234"), null, Provider.LOCAL, Role.ADMIN, "ADMIN")
         memberRepository.save(admin)
 
         // when
