@@ -12,15 +12,18 @@ data class CreateMemberRequest(
     @field:NotBlank
     var password: String,
     var memberImage: String?,
+
+    @field:NotBlank
+    var nickname: String
 ) {
     var provider: Provider = Provider.LOCAL
 
-    constructor(email: String, password: String, memberImage: String?, provider: Provider): this(email, password, memberImage) {
+    constructor(email: String, password: String, memberImage: String?, provider: Provider, nickname: String): this(email, password, memberImage, nickname) {
         this.provider = provider
     }
 
     fun toEntity(encodedPassword: String): Member {
-        return Member(email, encodedPassword, memberImage, provider, Role.ADMIN)
+        return Member(email, encodedPassword, memberImage, provider, Role.ADMIN, nickname)
     }
 }
 

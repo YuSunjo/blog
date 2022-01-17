@@ -20,6 +20,8 @@ class Member(
         @Column(nullable = false)
         var role: Role,
 
+        var nickname: String
+
 ): BaseTimeEntity() {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

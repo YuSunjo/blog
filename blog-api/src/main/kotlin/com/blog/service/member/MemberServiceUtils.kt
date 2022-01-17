@@ -20,6 +20,13 @@ class MemberServiceUtils {
             }
         }
 
+        fun validateNickname(memberRepository: MemberRepository, nickname: String) {
+            val member = memberRepository.findMemberByNickname(nickname)
+            if (member != null) {
+                throw ValidationException("${nickname}은 이미 존재하는 닉네임입니다.")
+            }
+        }
+
     }
 
 }

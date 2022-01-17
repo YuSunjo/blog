@@ -10,10 +10,13 @@ data class CreateMemberRequest(
     var email: String,
 
     @field:NotBlank
-    var password: String
+    var password: String,
+
+    @field:NotBlank
+    var nickname: String = "ADMIN"
 ) {
     fun toEntity(encodedPassword: String): Member {
-        return Member(email, encodedPassword, null, Provider.LOCAL, Role.ADMIN)
+        return Member(email, encodedPassword, null, Provider.LOCAL, Role.ADMIN, nickname)
     }
 
 }

@@ -10,4 +10,6 @@ interface MemberRepositoryCustom {
 
     fun findMemberByIdIsAdmin(memberId: Long): Member?
 
+    fun findMemberByNickname(nickname: String): Member?
+
 }
