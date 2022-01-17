@@ -20,6 +20,7 @@ class MemberService(
     @Transactional
     fun memberSignUp(request: CreateMemberRequest): MemberInfoResponse {
         MemberServiceUtils.validateEmail(memberRepository, request.email)
+        MemberServiceUtils.validateNickname(memberRepository, request.nickname)
         val encodedPassword = passwordEncoder.encode(request.password)
         val member: Member = memberRepository.save(request.toEntity(encodedPassword))
         return MemberInfoResponse.of(member)

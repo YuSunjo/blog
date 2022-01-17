@@ -35,4 +35,12 @@ class MemberRepositoryCustomImpl(
             .fetchOne()
     }
 
+    override fun findMemberByNickname(nickname: String): Member? {
+        return queryFactory.selectFrom(member)
+            .where(
+                member.nickname.eq(nickname)
+            )
+            .fetchOne()
+    }
+
 }
