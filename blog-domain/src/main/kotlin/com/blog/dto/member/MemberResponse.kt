@@ -9,11 +9,12 @@ data class MemberInfoResponse(
     var email: String,
     var memberImage: String?,
     var provider: Provider,
-    var role: Role
+    var role: Role,
+    var nickname: String
 ) {
     companion object {
         fun of(member: Member): MemberInfoResponse {
-            return MemberInfoResponse(member.id, member.email, member.memberImage, member.provider, member.role)
+            return MemberInfoResponse(member.id, member.email, member.memberImage, member.provider, member.role, member.nickname)
         }
     }
 }
