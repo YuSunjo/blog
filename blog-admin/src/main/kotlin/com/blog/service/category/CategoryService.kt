@@ -28,6 +28,7 @@ class CategoryService(
         return CategoryInfoResponse.of(category)
     }
 
+    @Transactional(readOnly = true)
     fun retrieveCategory(): List<CategoryInfoResponse> {
         return categoryRepository.findCategory()
                 .stream().map {
