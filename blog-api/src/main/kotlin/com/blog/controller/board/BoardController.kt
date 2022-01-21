@@ -5,6 +5,7 @@ import com.blog.config.argument.MemberId
 import com.blog.config.auth.Member
 import com.blog.dto.board.BoardIdRequest
 import com.blog.dto.board.BoardInfoListResponse
+import com.blog.dto.board.BoardInfoResponse
 import com.blog.dto.board.RetrieveBoardRequest
 import com.blog.service.board.BoardService
 import org.springframework.web.bind.annotation.*
@@ -16,8 +17,12 @@ class BoardController(
 ) {
     @GetMapping("/api/v1/board/list")
     fun retrieveBoard(@Valid request: RetrieveBoardRequest): ApiResponse<BoardInfoListResponse> {
-        boardService.retrieveBoard(request)
         return ApiResponse.success(boardService.retrieveBoard(request))
+    }
+
+    @GetMapping("/api/v1/board/{boardId}")
+    fun getBoard(@PathVariable boardId: Long): ApiResponse<BoardInfoResponse> {
+        return ApiResponse.success(boardService.getBoard(boardId))
     }
 
     @Member
