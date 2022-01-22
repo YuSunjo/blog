@@ -1,6 +1,7 @@
 package com.blog.dto.board
 
 import com.blog.domain.board.Board
+import com.blog.domain.category.Category
 import javax.validation.constraints.Min
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
@@ -17,8 +18,8 @@ data class CreateBoardRequest(
 
     var hashTagList: MutableList<String>
 ) {
-    fun toEntity(memberId: Long): Board {
-        return Board(title, content, isPrivate, boardThumbnailUrl, categoryId, memberId)
+    fun toEntity(memberId: Long, category: Category): Board {
+        return Board(title, content, isPrivate, boardThumbnailUrl, category, memberId)
     }
 
 }

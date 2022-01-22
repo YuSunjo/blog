@@ -9,14 +9,14 @@ data class BoardInfoResponse(
     var content: String = "",
     var isPrivate: Boolean = false,
     var boardThumbnailUrl: String?,
-    var categoryId: Long,
+    var categoryName: String,
     var memberId: Long = 0L,
     var hashTagList: MutableList<BoardHashTagInfoResponse>
 ) {
     companion object {
         fun of(board: Board): BoardInfoResponse {
             return BoardInfoResponse(board.id, board.title, board.content, board.isPrivate, board.boardThumbnailUrl,
-                board.categoryId, board.memberId, board.getBoardHashTagInfoResponseList())
+                board.category.categoryName, board.memberId, board.getBoardHashTagInfoResponseList())
         }
     }
 }
