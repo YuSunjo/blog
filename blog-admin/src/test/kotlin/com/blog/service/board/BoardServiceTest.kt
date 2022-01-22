@@ -8,14 +8,11 @@ import com.blog.dto.board.CreateBoardRequest
 import com.blog.dto.board.RetrieveBoardRequest
 import com.blog.dto.board.UpdateBoardRequest
 import com.blog.service.TestUtils
-import com.blog.service.category.CategoryService
-import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import java.util.*
 
 @SpringBootTest
 class BoardServiceTest(
@@ -31,6 +28,7 @@ class BoardServiceTest(
     @AfterEach
     fun cleanUp() {
         boardRepository.deleteAll()
+        categoryRepository.deleteAll()
     }
 
     @Test
@@ -38,7 +36,7 @@ class BoardServiceTest(
         // given
         val category = categoryRepository.save(Category("gogo"))
 
-        val hashTagList = Arrays.asList("자바", "코틀린", "살자")
+        val hashTagList = mutableListOf("자바", "코틀린", "살자")
         val request = CreateBoardRequest("title", "content", false, "url", category.id, hashTagList)
 
         // when
@@ -54,7 +52,7 @@ class BoardServiceTest(
     fun updateBoard() {
         // given
         val category = categoryRepository.save(Category("gogo"))
-        val board = Board("title", "content", false, "url", category.id, 1L, 0, 0)
+        val board = Board("title", "content", false, "url", category, 1L, 0, 0)
         boardRepository.save(board)
         val request =
             UpdateBoardRequest(board.id, "updateTitle", "updateContent", false, "updateUrl", category.id)
@@ -72,7 +70,7 @@ class BoardServiceTest(
     fun getBoard() {
         // given
         val category = categoryRepository.save(Category("gogo"))
-        val board = Board("title", "content", false, "url", category.id, 1L, 0, 0)
+        val board = Board("title", "content", false, "url", category, 1L, 0, 0)
         boardRepository.save(board)
 
         // when
@@ -88,9 +86,9 @@ class BoardServiceTest(
     fun retrieveBoard() {
         // given
         val category = categoryRepository.save(Category("gogo"))
-        val board1 = Board("title1", "content1", false, "url1", category.id, 1L, 0, 0)
-        val board2 = Board("title2", "content2", false, "url2", category.id, 1L, 0, 0)
-        val board3 = Board("title3", "content3", false, "url3", category.id, 1L, 0, 0)
+        val board1 = Board("title1", "content1", false, "url1", category, 1L, 0, 0)
+        val board2 = Board("title2", "content2", false, "url2", category, 1L, 0, 0)
+        val board3 = Board("title3", "content3", false, "url3", category, 1L, 0, 0)
 
         boardRepository.saveAll(listOf(board1, board2, board3))
         val request = RetrieveBoardRequest(1, 3, null, "id")

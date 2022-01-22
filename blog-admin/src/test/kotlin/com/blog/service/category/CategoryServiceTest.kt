@@ -9,7 +9,6 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import java.util.*
 
 @SpringBootTest
 class CategoryServiceTest(
@@ -59,7 +58,7 @@ class CategoryServiceTest(
         val category1 = Category("코틀린1")
         val category2 = Category("코틀린2")
         val category3 = Category("코틀린3")
-        categoryRepository.saveAll(Arrays.asList(category1, category2, category3))
+        categoryRepository.saveAll(listOf(category1, category2, category3))
 
         // when
         val retrieveCategory = categoryService.retrieveCategory()
