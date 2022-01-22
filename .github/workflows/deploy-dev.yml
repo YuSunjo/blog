@@ -41,22 +41,22 @@ jobs:
       - name: admin dockerfile
         run: echo ${{ steps.admin-dockerfile.outputs.name }}
 
-      - name: Build and push api-dockerfile
-        uses: docker/build-push-action@v2
-        with:
-          builder: ${{ steps.api-dockerfile.outputs.name }}
-          push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ env.DOCKER_IMAGE }}:${{ env.VERSION }}
-          context: .
-          file: Dockerfile_api
-      - name: Build and push admin-dockerfile
-        uses: docker/build-push-action@v2
-        with:
-          builder: ${{ steps.admin-dockerfile.outputs.name }}
-          push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ env.DOCKER_IMAGE }}:${{ env.VERSION }}
-          context: .
-          file: Dockerfile_admin
+#      - name: Build and push api-dockerfile
+#        uses: docker/build-push-action@v2
+#        with:
+#          builder: ${{ steps.api-dockerfile.outputs.name }}
+#          push: ${{ github.event_name != 'pull_request' }}
+#          tags: ${{ env.DOCKER_IMAGE }}:${{ env.VERSION }}
+#          context: .
+#          file: Dockerfile_api
+#      - name: Build and push admin-dockerfile
+#        uses: docker/build-push-action@v2
+#        with:
+#          builder: ${{ steps.admin-dockerfile.outputs.name }}
+#          push: ${{ github.event_name != 'pull_request' }}
+#          tags: ${{ env.DOCKER_IMAGE }}:${{ env.VERSION }}
+#          context: .
+#          file: Dockerfile_admin
 
 #  deploy:
 #    needs: build
