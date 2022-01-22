@@ -43,4 +43,12 @@ class MemberRepositoryCustomImpl(
             .fetchOne()
     }
 
+    override fun findAllByIds(commentMemberIds: List<Long>): List<Member> {
+        return queryFactory.selectFrom(member)
+            .where(
+                member.id.`in`(commentMemberIds)
+            )
+            .fetch()
+    }
+
 }

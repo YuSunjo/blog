@@ -9,12 +9,12 @@ import com.blog.exception.NotFoundException
 import java.util.*
 import java.util.stream.Collectors
 import javax.persistence.*
-import kotlin.collections.ArrayList
 
 @Entity
 class Board(
         var title: String = "",
 
+        @Column(columnDefinition = "TEXT")
         var content: String = "",
 
         var isPrivate: Boolean = false,

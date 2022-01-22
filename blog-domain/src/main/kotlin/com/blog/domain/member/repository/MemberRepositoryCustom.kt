@@ -12,4 +12,6 @@ interface MemberRepositoryCustom {
 
     fun findMemberByNickname(nickname: String): Member?
 
+    fun findAllByIds(commentMemberIds: List<Long>): List<Member>
+
 }

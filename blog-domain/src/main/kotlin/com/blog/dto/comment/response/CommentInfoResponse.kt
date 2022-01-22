@@ -1,7 +1,9 @@
 package com.blog.dto.comment.response
 
 import com.blog.domain.comment.Comment
+import com.blog.domain.member.Member
 import com.blog.dto.member.MemberInfoResponse
+import com.blog.exception.NotFoundException
 import java.util.stream.Collectors
 
 data class CommentInfoResponse(
@@ -12,12 +14,13 @@ data class CommentInfoResponse(
 
     ) {
     companion object {
-        fun of(comment: Comment, memberInfoResponse: MemberInfoResponse?): CommentInfoResponse {
+        fun of(comment: Comment, memberMap: Map<Long, Member>): CommentInfoResponse {
             val boardChildCommentList = comment.childComments.stream()
                 .map {
-                    of(it, null)
+                    of(it, memberMap)
                 }.collect(Collectors.toList())
-            val commentInfoResponse = CommentInfoResponse(comment.id, comment.content, memberInfoResponse)
+            val member: Member = memberMap[comment.memberId] ?: throw NotFoundException("존재하지 않는 멤버입니다.")
+            val commentInfoResponse = CommentInfoResponse(comment.id, comment.content, MemberInfoResponse.of(member))
             commentInfoResponse.childCommentList.addAll(boardChildCommentList)
             return commentInfoResponse
         }
