@@ -51,11 +51,12 @@ class BoardServiceTest(
     @Test
     fun updateBoard() {
         // given
+        val hashTagList = mutableListOf("자바", "코틀린", "살자")
         val category = categoryRepository.save(Category("gogo"))
         val board = Board("title", "content", false, "url", category, 1L, 0, 0)
         boardRepository.save(board)
         val request =
-            UpdateBoardRequest(board.id, "updateTitle", "updateContent", false, "updateUrl", category.id)
+            UpdateBoardRequest(board.id, "updateTitle", "updateContent", false, "updateUrl", category.id, hashTagList)
 
         // when
         boardService.updateBoard(request, 1L)

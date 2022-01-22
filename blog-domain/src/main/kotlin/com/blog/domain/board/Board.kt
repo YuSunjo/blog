@@ -80,6 +80,10 @@ class Board(
         this.boardHashTagList.addAll(boardHashTagList)
     }
 
+    fun deleteHashTag(hashTagList: List<BoardHashTag>) {
+        this.boardHashTagList.removeAll(hashTagList)
+    }
+
     fun getBoardHashTagInfoResponseList(): MutableList<BoardHashTagInfoResponse> {
         return this.boardHashTagList.stream().map {
             BoardHashTagInfoResponse.of(it)

@@ -1,6 +1,7 @@
 package com.blog.service.board
 
 import com.blog.domain.board.Board
+import com.blog.domain.board.repository.BoardHashTagRepository
 import com.blog.domain.board.repository.BoardRepository
 import com.blog.domain.category.repository.CategoryRepository
 import com.blog.dto.board.*
@@ -17,6 +18,7 @@ import java.util.stream.Collectors
 class BoardService(
     private val boardRepository: BoardRepository,
     private val categoryRepository: CategoryRepository,
+    private val boardHashTagRepository: BoardHashTagRepository
 ) {
 
     @Transactional
@@ -34,7 +36,10 @@ class BoardService(
             ?: throw NotFoundException("존재하지 않는 게시글 ${request.id} 입니다."))
         val category = (categoryRepository.findCategoryById(request.categoryId)
             ?: throw NotFoundException("존재하지 않는 카테고리 ${request.categoryId} 입니다."))
+        val hashTagList = boardHashTagRepository.findHashTagByBoard(board)
         board.updateBoard(request, category)
+        board.deleteHashTag(hashTagList)
+        board.addHashTag(request.hashTagList, memberId)
         return BoardInfoResponse.of(board)
     }
 

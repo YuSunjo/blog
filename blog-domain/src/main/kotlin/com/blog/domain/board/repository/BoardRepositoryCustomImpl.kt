@@ -2,16 +2,11 @@ package com.blog.domain.board.repository
 
 import com.blog.domain.board.Board
 import com.blog.domain.board.QBoard.board
-import com.querydsl.core.types.Order
-import com.querydsl.core.types.OrderSpecifier
 import com.querydsl.core.types.dsl.BooleanExpression
-import com.querydsl.core.types.dsl.PathBuilder
-import com.querydsl.jpa.impl.JPAQuery
 import com.querydsl.jpa.impl.JPAQueryFactory
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageImpl
 import org.springframework.data.domain.Pageable
-import org.springframework.data.domain.Sort
 
 class BoardRepositoryCustomImpl(
     private val queryFactory: JPAQueryFactory

@@ -35,6 +35,7 @@ data class UpdateBoardRequest(
     var boardThumbnailUrl: String?,
     @NotNull
     var categoryId: Long,
+    var hashTagList: MutableList<String>
 )
 
 data class RetrieveBoardRequest(
