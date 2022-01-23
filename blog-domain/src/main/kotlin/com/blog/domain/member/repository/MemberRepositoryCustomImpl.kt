@@ -9,10 +9,11 @@ class MemberRepositoryCustomImpl(
     private val queryFactory: JPAQueryFactory
 ): MemberRepositoryCustom{
 
-    override fun findMemberByEmail(email: String): Member? {
+    override fun findMemberByEmailAndRole(email: String, role: Role): Member? {
         return queryFactory.selectFrom(member)
             .where(
-                member.email.eq(email)
+                member.email.eq(email),
+                member.role.eq(role)
             )
             .fetchOne()
     }

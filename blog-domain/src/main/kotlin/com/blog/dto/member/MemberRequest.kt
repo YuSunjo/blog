@@ -23,7 +23,7 @@ data class CreateMemberRequest(
     }
 
     fun toEntity(encodedPassword: String): Member {
-        return Member(email, encodedPassword, memberImage, provider, Role.ADMIN, nickname)
+        return Member(email, encodedPassword, memberImage, provider, Role.USER, nickname)
     }
 }
 

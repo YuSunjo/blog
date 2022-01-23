@@ -40,6 +40,7 @@ internal class MemberServiceTest(
         // then
         assertThat(memberList).hasSize(1)
         assertThat(memberList[0].email).isEqualTo(request.email)
+        assertThat(memberList[0].role).isEqualTo(Role.ADMIN)
     }
 
     @Test

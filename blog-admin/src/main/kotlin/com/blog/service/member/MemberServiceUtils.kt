@@ -1,5 +1,6 @@
 package com.blog.service.member
 
+import com.blog.domain.member.Role
 import com.blog.domain.member.repository.MemberRepository
 import com.blog.exception.ValidationException
 import org.springframework.security.crypto.password.PasswordEncoder
@@ -13,8 +14,8 @@ class MemberServiceUtils {
             }
         }
 
-        fun validateEmail(memberRepository: MemberRepository, email: String) {
-            val validateEmail = memberRepository.findMemberByEmail(email)
+        fun validateEmailAndRole(memberRepository: MemberRepository, email: String, role: Role) {
+            val validateEmail = memberRepository.findMemberByEmailAndRole(email, role)
             if (validateEmail != null) {
                 throw ValidationException("${email}은 이미 존재하는 이메일입니다.")
             }

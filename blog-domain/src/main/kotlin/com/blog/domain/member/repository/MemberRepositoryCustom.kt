@@ -1,10 +1,11 @@
 package com.blog.domain.member.repository
 
 import com.blog.domain.member.Member
+import com.blog.domain.member.Role
 
 interface MemberRepositoryCustom {
 
-    fun findMemberByEmail(email: String): Member?
+    fun findMemberByEmailAndRole(email: String, role: Role): Member?
 
     fun findMemberById(memberId: Long) : Member?
 
