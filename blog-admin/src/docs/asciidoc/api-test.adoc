@@ -1,0 +1,21 @@
+= RESTFUL blog API Guide
+blog;
+:doctype: blog
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+:operation-curl-request-title: Example request
+:operation-http-response-title: Example response
+
+
+[[resources_notes]]
+== Test
+TEST API 입니다.
+
+[[resources_create_series]]
+=== Create Series
+
+Request HTTP Example
+include::{snippets}/test/http-request.adoc[]

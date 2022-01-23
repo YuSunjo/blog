@@ -9,7 +9,7 @@ interface MemberRepositoryCustom {
 
     fun findMemberById(memberId: Long) : Member?
 
-    fun findMemberByIdIsAdmin(memberId: Long): Member?
+    fun findMemberByIdAndRole(memberId: Long, role: Role): Member?
 
     fun findMemberByNickname(nickname: String): Member?
 

@@ -14,7 +14,7 @@ import javax.validation.Valid
 class CommentController(
     private val commentService: CommentService
 ) {
-    // api 에서는 get 만
+
     @Member
     @PostMapping("api/v1/admin/comment")
     fun createComment(@RequestBody @Valid request: CreateCommentRequest, @MemberId memberId: Long): ApiResponse<String> {

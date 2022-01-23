@@ -27,7 +27,7 @@ class MemberRepositoryCustomImpl(
     }
 
     // 어드민한테만 쓰이는 쿼리
-    override fun findMemberByIdIsAdmin(memberId: Long): Member? {
+    override fun findMemberByIdAndRole(memberId: Long, role: Role): Member? {
         return queryFactory.selectFrom(member)
             .where(
                 member.id.eq(memberId),

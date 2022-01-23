@@ -23,8 +23,6 @@ class CommentService(
     fun createComment(request: CreateCommentRequest, memberId: Long) {
         val board = (boardRepository.findBoardById(request.boardId)
             ?: throw NotFoundException("존재하지 않는 게시글 ${request.boardId} 입니다."))
-        (memberRepository.findMemberByIdIsAdmin(memberId)
-            ?: throw NotFoundException("존재하지 않는 멤버 $memberId 입니다."))
         if (request.parentCommentId != null) {
             val boardComment = (commentRepository.findCommentById(request.parentCommentId!!)
                 ?: throw NotFoundException("존재하지 않는 부모 댓글 ${request.parentCommentId} 입니다."))
@@ -39,8 +37,6 @@ class CommentService(
     fun updateComment(request: UpdateCommentRequest, memberId: Long) {
         val comment = (commentRepository.findCommentById(request.commentId)
             ?: throw NotFoundException("존재하지 않는 댓글 ${request.commentId} 입니다."))
-        (memberRepository.findMemberByIdIsAdmin(memberId)
-            ?: throw NotFoundException("존재하지 않는 멤버 $memberId 입니다."))
         comment.updateContent(request.content)
     }
 
@@ -48,10 +44,7 @@ class CommentService(
     fun retrieveComment(boardId: Long, memberId: Long): List<CommentInfoResponse> {
         (boardRepository.findBoardById(boardId)
             ?: throw NotFoundException("존재하지 않는 게시글 $boardId 입니다."))
-        (memberRepository.findMemberByIdIsAdmin(memberId)
-            ?: throw NotFoundException("존재하지 않는 멤버 $memberId 입니다."))
         val boardCommentList = commentRepository.findCommentByBoardId(boardId)
-//        val map: Map<Long, Comment> = boardCommentList.associateBy { it.memberId }
         val commentMemberIds = boardCommentList.stream().map { it.memberId }.collect(Collectors.toList())
         val memberMap: Map<Long, Member> = memberRepository.findAllByIds(commentMemberIds).associateBy { it.id }
         return boardCommentList.stream().map {

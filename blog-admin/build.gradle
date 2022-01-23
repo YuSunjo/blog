@@ -1,3 +1,8 @@
+plugins {
+    id "org.asciidoctor.jvm.convert" version "3.3.2"
+    id "org.sonarqube" version "3.3"
+}
+
 dependencies {
     implementation project(':blog-domain')
     implementation project(':blog-common')
@@ -5,4 +10,42 @@ dependencies {
     implementation 'io.jsonwebtoken:jjwt:0.9.1'
     implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-aws', version: '2.2.1.RELEASE'
     implementation group: 'commons-io', name: 'commons-io', version: '2.6'
+
+    // rest docs
+    testImplementation group: 'org.springframework.restdocs', name: 'spring-restdocs-mockmvc', version: '2.0.5.RELEASE'
+}
+
+ext {
+    snippetsDir = file('build/generated-snippets')
+}
+
+asciidoctor {
+    dependsOn test
+    attributes 'snippets': snippetsDir
+    inputs.dir snippetsDir
+}
+
+//asciidoctor.doFirst {
+//    //asciidoctor 실행전 기존에 생성된 API 문서 삭제
+//    delete file('src/main/resources/static/docs')
+//}
+
+
+task copyDocument(type: Copy) {
+    dependsOn asciidoctor
+    from file("build/docs/asciidoc")
+    // resources/static/docs 로 복사하여 서버가 돌아가고 있을때 /docs/index.html 로 접속하면 볼수 있음
+    into file("src/main/resources/static/docs")
+}
+
+build {
+    dependsOn copyDocument
+}
+
+bootJar {
+    dependsOn asciidoctor
+    copy {
+        from "${asciidoctor.outputDir}"
+        into 'src/main/resources/static/docs'
+    }
 }

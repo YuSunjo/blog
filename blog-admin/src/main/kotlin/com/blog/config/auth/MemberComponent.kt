@@ -1,6 +1,7 @@
 package com.blog.config.auth
 
 import com.blog.config.jwt.JwtTokenProvider
+import com.blog.domain.member.Role
 import com.blog.domain.member.repository.MemberRepository
 import com.blog.exception.NotFoundException
 import com.blog.exception.ValidationException
@@ -22,7 +23,7 @@ class MemberComponent(
 
         val memberId = jwtTokenProvider.getSubject(header)
         if (memberId != null) {
-            memberRepository.findMemberByIdIsAdmin(memberId.toLong())
+            memberRepository.findMemberByIdAndRole(memberId.toLong(), Role.ADMIN)
                 ?: throw NotFoundException("존재하지 않는 멤버 아이디 $memberId 입니다")
             request.setAttribute("memberId", memberId.toLong())
         }
