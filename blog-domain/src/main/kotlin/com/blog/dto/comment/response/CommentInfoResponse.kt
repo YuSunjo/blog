@@ -2,6 +2,8 @@ package com.blog.dto.comment.response
 
 import com.blog.domain.comment.Comment
 import com.blog.domain.member.Member
+import com.blog.domain.member.Provider
+import com.blog.domain.member.Role
 import com.blog.dto.member.MemberInfoResponse
 import com.blog.exception.NotFoundException
 import java.util.stream.Collectors
@@ -19,7 +21,7 @@ data class CommentInfoResponse(
                 .map {
                     of(it, memberMap)
                 }.collect(Collectors.toList())
-            val member: Member = memberMap[comment.memberId] ?: throw NotFoundException("존재하지 않는 멤버입니다.")
+            val member: Member? = memberMap[comment.memberId]
             val commentInfoResponse = CommentInfoResponse(comment.id, comment.content, MemberInfoResponse.of(member))
             commentInfoResponse.childCommentList.addAll(boardChildCommentList)
             return commentInfoResponse

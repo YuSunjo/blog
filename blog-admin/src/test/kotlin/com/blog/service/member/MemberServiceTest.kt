@@ -69,8 +69,8 @@ internal class MemberServiceTest(
         // then
         val adminList = memberRepository.findAll()
         assertThat(adminList).hasSize(1)
-        assertThat(response.id).isEqualTo(adminList[0].id)
-        assertThat(response.email).isEqualTo(adminList[0].email)
+        assertThat(response?.id).isEqualTo(adminList[0].id)
+        assertThat(response?.email).isEqualTo(adminList[0].email)
     }
 
 }

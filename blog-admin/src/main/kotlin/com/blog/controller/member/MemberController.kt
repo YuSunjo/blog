@@ -31,7 +31,7 @@ class MemberController(
 
     @Member
     @GetMapping("/api/v1/admin/member")
-    fun getMyInfo(@MemberId memberId: Long): ApiResponse<MemberInfoResponse> {
+    fun getMyInfo(@MemberId memberId: Long): ApiResponse<MemberInfoResponse?> {
         return ApiResponse.success(memberService.getMyInfo(memberId))
     }
 

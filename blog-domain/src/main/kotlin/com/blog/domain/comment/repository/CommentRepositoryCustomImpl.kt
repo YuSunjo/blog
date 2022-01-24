@@ -19,10 +19,11 @@ class CommentRepositoryCustomImpl(
     }
 
     override fun findCommentByBoardId(boardId: Long): List<Comment> {
-        return queryFactory.selectFrom(comment)
+        return queryFactory.selectFrom(comment).distinct()
             .leftJoin(comment.childComments, QComment("child")).fetchJoin()
             .where(
-                comment.boardId.eq(boardId)
+                comment.boardId.eq(boardId),
+                comment.parentComment.isNull
             )
             .fetch()
     }

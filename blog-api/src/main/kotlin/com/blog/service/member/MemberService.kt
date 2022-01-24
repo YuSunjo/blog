@@ -19,7 +19,7 @@ class MemberService(
     private val jwtTokenProvider: JwtTokenProvider
 ) {
     @Transactional
-    fun memberSignUp(request: CreateMemberRequest): MemberInfoResponse {
+    fun memberSignUp(request: CreateMemberRequest): MemberInfoResponse? {
         MemberServiceUtils.validateEmailAndRole(memberRepository, request.email, Role.USER)
         MemberServiceUtils.validateNickname(memberRepository, request.nickname)
         val encodedPassword = passwordEncoder.encode(request.password)
@@ -36,7 +36,7 @@ class MemberService(
     }
 
     @Transactional
-    fun getMember(memberId: Long): MemberInfoResponse {
+    fun getMember(memberId: Long): MemberInfoResponse? {
         val member = (memberRepository.findMemberById(memberId)
             ?: throw NotFoundException("존재하지 않는 멤버 ${memberId} 입니다."))
         return MemberInfoResponse.of(member)

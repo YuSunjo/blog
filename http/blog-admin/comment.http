@@ -28,3 +28,8 @@ Authorization: {{ADMIN}}
   "commentId": 1,
   "content": "댓글 ㅎㅇ"
 }
+
+###
+GET {{blog_admin}}/api/v1/admin/comment/1
+Content-Type: application/json
+Authorization: {{ADMIN}}

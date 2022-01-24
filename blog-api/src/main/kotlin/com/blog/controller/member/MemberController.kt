@@ -18,7 +18,7 @@ class MemberController(
         private val memberService: MemberService
 ) {
     @PostMapping("/api/v1/member")
-    fun memberSignUp(@RequestBody @Valid request: CreateMemberRequest): ApiResponse<MemberInfoResponse> {
+    fun memberSignUp(@RequestBody @Valid request: CreateMemberRequest): ApiResponse<MemberInfoResponse?> {
         return ApiResponse.success(memberService.memberSignUp(request))
     }
 
@@ -29,7 +29,7 @@ class MemberController(
 
     @Member
     @GetMapping("/api/v1/member")
-    fun getMyInfo(@MemberId memberId: Long): ApiResponse<MemberInfoResponse> {
+    fun getMyInfo(@MemberId memberId: Long): ApiResponse<MemberInfoResponse?> {
         return ApiResponse.success(memberService.getMember(memberId))
     }
 }

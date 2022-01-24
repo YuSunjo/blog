@@ -13,7 +13,10 @@ data class MemberInfoResponse(
     var nickname: String
 ) {
     companion object {
-        fun of(member: Member): MemberInfoResponse {
+        fun of(member: Member?): MemberInfoResponse? {
+            if (member == null) {
+                return null
+            }
             return MemberInfoResponse(member.id, member.email, member.memberImage, member.provider, member.role, member.nickname)
         }
     }
