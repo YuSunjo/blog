@@ -213,4 +213,32 @@ class CommentServiceTest(
         assertThat(response[1].memberInfoResponse?.id).isEqualTo(member2.id)
     }
 
+    @DisplayName("존재하지 않는 멤버의 댓글일 경우 memberInfoResponse 가 null 이다.")
+    @Test
+    fun retrieveComment3() {
+        // given
+        val category = Category("java")
+        categoryRepository.save(category)
+        val board = Board("title", "content", false, null, category, 1L, 0, 0)
+        boardRepository.save(board)
+        val comment1 = Comment(board.id, 2L, "댓글입니다~", null)
+        val comment11 = Comment(board.id, 1L, "대댓글입니다.", comment1, 1)
+        val comment12 = Comment(board.id, 2L, "대댓글2입니다.", comment1, 1)
+        val comment2 = Comment(board.id, 2L, "댓글입니다2~", null)
+        val comment21 = Comment(board.id, 1L, "대댓글입니다.", comment2, 1)
+        commentRepository.saveAll(listOf(comment1, comment11, comment12, comment2, comment21))
+
+        // when
+        val response = commentService.retrieveComment(board.id, 1L)
+
+        // then
+        assertThat(response).hasSize(2)
+        assertThat(response[0].commentId).isEqualTo(comment1.id)
+        assertThat(response[0].childCommentList).hasSize(2)
+        assertThat(response[0].memberInfoResponse?.id).isNull()
+        assertThat(response[1].commentId).isEqualTo(comment2.id)
+        assertThat(response[1].childCommentList).hasSize(1)
+        assertThat(response[1].memberInfoResponse?.id).isNull()
+    }
+
 }
