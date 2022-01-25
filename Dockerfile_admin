@@ -6,7 +6,7 @@ RUN chmod +x gradlew
 RUN ./gradlew clean bootJar
 
 FROM adoptopenjdk/openjdk11
-ENV APP_HOME=/usr/app
+ENV APP_HOME=/usr/blog/app
 COPY --from=BUILD  $APP_HOME/blog-admin/build/libs/blog-admin-0.0.1-BLOG.jar $APP_HOME/app.jar
 EXPOSE 9000
 ENTRYPOINT ["java", "-jar", "/usr/blog/app/app.jar", "--spring.profiles.active=local"]
