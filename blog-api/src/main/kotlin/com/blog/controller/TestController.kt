@@ -11,4 +11,9 @@ class TestController {
         return "pong"
     }
 
+    @GetMapping("/")
+    fun start(): String {
+        return "hello world"
+    }
+
 }
