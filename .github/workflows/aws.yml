@@ -88,6 +88,6 @@ jobs:
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
-        service: blog-admin-ecs-service2
+        service: blog-admin-ecs-service
         cluster: blog-admin-cluster
         wait-for-service-stability: true
