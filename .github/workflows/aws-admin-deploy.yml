@@ -89,4 +89,12 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           source: "./blog-admin/build/libs/blog-admin-0.0.1-BLOG.jar"
           target: "~/blog/jar"
-          script: ./blog.jar.sh
+      - name: ssh
+        uses: appleboy/ssh-action@master
+        with:
+          host: 115.71.238.146
+          username: root
+          password: ${{ secrets.SERVER_PASSWORD }}
+          port: 22
+          script: |
+            ./blog.jar.sh
