@@ -87,6 +87,7 @@ jobs:
           host: 115.71.238.146
           username: root
           password: ${{ secrets.SERVER_PASSWORD }}
+          port: 22
           source: "./blog-admin/build/libs/blog-admin-0.0.1-BLOG.jar"
           target: "~/blog/jar"
       - name: ssh
