@@ -31,7 +31,7 @@ class MemberRepositoryCustomImpl(
         return queryFactory.selectFrom(member)
             .where(
                 member.id.eq(memberId),
-                member.role.eq(Role.ADMIN)
+                member.role.eq(role)
             )
             .fetchOne()
     }

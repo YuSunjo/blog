@@ -38,7 +38,7 @@ class MemberService(
     @Transactional
     fun getMember(memberId: Long): MemberInfoResponse? {
         val member = (memberRepository.findMemberById(memberId)
-            ?: throw NotFoundException("존재하지 않는 멤버 ${memberId} 입니다."))
+            ?: throw NotFoundException("존재하지 않는 멤버 $memberId 입니다."))
         return MemberInfoResponse.of(member)
     }
 
