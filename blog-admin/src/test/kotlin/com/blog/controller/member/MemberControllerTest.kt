@@ -9,6 +9,7 @@ import com.blog.domain.member.repository.MemberRepository
 import com.blog.dto.member.CreateMemberRequest
 import com.blog.dto.member.LoginMemberRequest
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs
@@ -41,6 +42,12 @@ class MemberControllerTest(
     @Autowired
     private val jwtTokenProvider: JwtTokenProvider,
 ) {
+
+    @AfterEach
+    fun clean() {
+        memberRepository.deleteAll()
+    }
+
     @Test
     fun createMember() {
         // given
