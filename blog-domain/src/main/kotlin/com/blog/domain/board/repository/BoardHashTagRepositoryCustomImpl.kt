@@ -2,7 +2,7 @@ package com.blog.domain.board.repository
 
 import com.blog.domain.board.Board
 import com.blog.domain.board.BoardHashTag
-import com.blog.domain.board.QBoardHashTag
+import com.blog.domain.board.QBoardHashTag.*
 import com.querydsl.jpa.impl.JPAQueryFactory
 import lombok.RequiredArgsConstructor
 
@@ -13,11 +13,17 @@ class BoardHashTagRepositoryCustomImpl(
  {
 
      override fun findHashTagByBoard(board: Board): List<BoardHashTag> {
-         return queryFactory.selectFrom(QBoardHashTag.boardHashTag)
+         return queryFactory.selectFrom(boardHashTag)
              .where(
-                 QBoardHashTag.boardHashTag.board.eq(board)
+                 boardHashTag.board.eq(board)
              )
              .fetch()
      }
 
-}
+     override fun findDistinctHashTag(): List<String> {
+         return queryFactory.select(boardHashTag.hashTag).distinct()
+             .from(boardHashTag)
+             .fetch()
+     }
+
+ }

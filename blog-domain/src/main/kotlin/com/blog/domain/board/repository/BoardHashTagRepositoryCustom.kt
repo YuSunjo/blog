@@ -7,4 +7,6 @@ interface BoardHashTagRepositoryCustom {
 
     fun findHashTagByBoard(board: Board): List<BoardHashTag>
 
+    fun findDistinctHashTag(): List<String>
+
 }

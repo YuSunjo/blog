@@ -3,10 +3,7 @@ package com.blog.controller.board
 import com.blog.ApiResponse
 import com.blog.config.argument.MemberId
 import com.blog.config.auth.Member
-import com.blog.dto.board.BoardIdRequest
-import com.blog.dto.board.BoardInfoListResponse
-import com.blog.dto.board.BoardInfoResponse
-import com.blog.dto.board.RetrieveBoardRequest
+import com.blog.dto.board.*
 import com.blog.service.board.BoardService
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
@@ -37,6 +34,11 @@ class BoardController(
     fun boardUnlike(@Valid @RequestBody request: BoardIdRequest, @MemberId memberId: Long): ApiResponse<String> {
         boardService.boardUnLike(request.boardId, memberId)
         return ApiResponse.OK
+    }
+
+    @GetMapping("/api/v1/hashTag")
+    fun retrieveHashTag(): ApiResponse<List<String>> {
+        return ApiResponse.success(boardService.retrieveHashTag())
     }
 
 }

@@ -1,5 +1,6 @@
 package com.blog.service.board
 
+import com.blog.domain.board.repository.BoardHashTagRepository
 import com.blog.domain.board.repository.BoardRepository
 import com.blog.dto.board.BoardInfoListResponse
 import com.blog.dto.board.BoardInfoResponse
@@ -14,7 +15,8 @@ import java.util.stream.Collectors
 
 @Service
 class BoardService(
-    private val boardRepository: BoardRepository
+    private val boardRepository: BoardRepository,
+    private val boardHashTagRepository: BoardHashTagRepository
 ) {
     @Transactional
     fun retrieveBoard(request: RetrieveBoardRequest): BoardInfoListResponse {
@@ -46,6 +48,11 @@ class BoardService(
         val board = (boardRepository.findBoardById(boardId)
             ?: throw NotFoundException("존재하지 않는 게시글 $boardId 입니다."))
         return BoardInfoResponse.of(board)
+    }
+
+    @Transactional
+    fun retrieveHashTag(): List<String> {
+        return boardHashTagRepository.findDistinctHashTag()
     }
 
 }

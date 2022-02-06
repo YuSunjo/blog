@@ -18,3 +18,7 @@ Authorization: {{MEMBER}}
 {
   "boardId": 1
 }
+
+### 해쉬태그 리스트 (중복 제외)
+GET {{blog_api}}/api/v1/hashTag
+Content-Type: application/json
