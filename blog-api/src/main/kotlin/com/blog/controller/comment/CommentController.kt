@@ -16,21 +16,21 @@ class CommentController(
 ) {
 
     @Member
-    @PostMapping("api/v1/admin/comment")
+    @PostMapping("api/v1/comment")
     fun createComment(@RequestBody @Valid request: CreateCommentRequest, @MemberId memberId: Long): ApiResponse<String> {
         commentService.createComment(request, memberId)
         return ApiResponse.OK
     }
 
     @Member
-    @PutMapping("api/v1/admin/comment")
+    @PutMapping("api/v1/comment")
     fun updateComment(@RequestBody @Valid request: UpdateCommentRequest, @MemberId memberId: Long): ApiResponse<String> {
         commentService.updateComment(request, memberId)
         return ApiResponse.OK
     }
 
     @Member
-    @GetMapping("api/v1/admin/comment/{boardId}")
+    @GetMapping("api/v1/comment/{boardId}")
     fun retrieveComment(@PathVariable boardId: Long, @MemberId memberId: Long): ApiResponse<List<CommentInfoResponse>> {
         return ApiResponse.success(commentService.retrieveComment(boardId, memberId))
     }
