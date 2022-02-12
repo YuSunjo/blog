@@ -8,6 +8,7 @@ spring:
       - aws.yml
       - auth.yml
       - aws-key.yml
+      - sentry.yml
 
 logging:
   level:

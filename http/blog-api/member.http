@@ -4,7 +4,8 @@ Content-Type: application/json
 {
   "email": "tnswh2023@naver.com",
   "password": "1234",
-  "memberImage": "https://naver.com"
+  "memberImage": "https://naver.com",
+  "nickname": "abcd"
 }
 
 ### login
