@@ -30,6 +30,7 @@ subprojects {
     apply plugin: "org.jetbrains.kotlin.plugin.spring"
     apply plugin: "org.jetbrains.kotlin.jvm"
     apply plugin: "org.jetbrains.kotlin.kapt"
+    apply plugin: "jacoco"
 
     group = 'com.blog'
     version = '0.0.1-BLOG'
@@ -124,10 +125,6 @@ def testProjects = [
 ]
 
 configure(testProjects) {
-    apply {
-        plugin('jacoco')
-    }
-
     jacoco {
         toolVersion = '0.8.5'
     }
