@@ -19,6 +19,18 @@ buildscript {
     }
 }
 
+plugins {
+    id "org.sonarqube" version "3.3"
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "YuSunjo_blog"
+        property "sonar.organization", "petitionsonar"
+        property "sonar.host.url", "https://sonarcloud.io"
+    }
+}
+
 subprojects {
     apply plugin: 'java'
     apply plugin: 'org.springframework.boot'
@@ -30,7 +42,6 @@ subprojects {
     apply plugin: "org.jetbrains.kotlin.plugin.spring"
     apply plugin: "org.jetbrains.kotlin.jvm"
     apply plugin: "org.jetbrains.kotlin.kapt"
-    apply plugin: "jacoco"
 
     group = 'com.blog'
     version = '0.0.1-BLOG'
@@ -123,24 +134,3 @@ def testProjects = [
         project(':blog-api'),
         project(':blog-admin'),
 ]
-
-configure(testProjects) {
-    jacoco {
-        toolVersion = '0.8.5'
-    }
-
-    jacocoTestReport {
-        executionData(fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec"))
-        reports {
-            html.enabled true
-            xml.enabled true
-            csv.enabled false
-
-            xml.destination file("$buildDir/jacoco/jacoco.xml")
-        }
-        testProjects.forEach {
-            sourceSets(it.sourceSets["main"] as SourceSet)
-        }
-    }
-
-}
