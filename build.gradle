@@ -21,6 +21,7 @@ buildscript {
 
 plugins {
     id "org.sonarqube" version "3.3"
+    id "jacoco"
 }
 
 sonarqube {
@@ -42,6 +43,7 @@ subprojects {
     apply plugin: "org.jetbrains.kotlin.plugin.spring"
     apply plugin: "org.jetbrains.kotlin.jvm"
     apply plugin: "org.jetbrains.kotlin.kapt"
+    apply plugin: "jacoco"
 
     group = 'com.blog'
     version = '0.0.1-BLOG'
@@ -99,38 +101,42 @@ subprojects {
     tasks.test {
         // Use the built-in JUnit support of Gradle.
         useJUnitPlatform()
+        finalizedBy jacocoTestReport
     }
 }
 
 project(':blog-admin') {
     bootJar.enabled = true
-    apply plugin: 'org.springframework.boot'
-    apply plugin: 'io.spring.dependency-management'
 }
 
 project(':blog-api') {
     bootJar.enabled = true
-    apply plugin: 'org.springframework.boot'
-    apply plugin: 'io.spring.dependency-management'
 }
 
 project(':blog-domain') {
     bootJar.enabled = false
     jar.enabled = true
-
-    apply plugin: 'org.springframework.boot'
-    apply plugin: 'io.spring.dependency-management'
 }
 
 project(':blog-common') {
     bootJar.enabled = false
     jar.enabled = true
-
-    apply plugin: 'org.springframework.boot'
-    apply plugin: 'io.spring.dependency-management'
 }
 
-def testProjects = [
-        project(':blog-api'),
-        project(':blog-admin'),
-]
+jacoco {
+    toolVersion = "0.8.7"
+}
+
+task testCoverage(type: JacocoReport, group: 'verification', description: 'Report Test Coverage') {
+    executionData(fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec"))
+
+    subprojects.forEach {
+        sourceSets(it.sourceSets.main as SourceSet)
+    }
+
+    reports {
+        html.enabled true
+        xml.enabled true
+        csv.enabled false
+    }
+}
