@@ -1,8 +1,0 @@
-cloud:
-  aws:
-    s3:
-      bucket: potato-velog-sunjo
-    region:
-      static: ap-northeast-2
-    stack:
-      auto: false

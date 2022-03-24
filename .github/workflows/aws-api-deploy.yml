@@ -81,8 +81,7 @@ name: Deploy blog-api
 on:
   push:
     branches:
-      - master
-      - develop
+      - deploy
 
 jobs:
   build:
@@ -94,47 +93,3 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-
-      - name: Create aws-key.yml file
-        env:
-          CLOUD_AWS_CREDENTIALS_ACCESS_KEY: ${{ secrets.CLOUD_AWS_CREDENTIALS_ACCESS_KEY }}
-          CLOUD_AWS_CREDENTIALS_SECRET_KEY: ${{ secrets.CLOUD_AWS_CREDENTIALS_SECRET_KEY }}
-          RESOURCE_FILE: blog-admin/src/main/resources/aws-key.yml
-        run: |
-          touch $RESOURCE_FILE
-          echo -e "cloud.aws.credentials.access_key: $CLOUD_AWS_CREDENTIALS_ACCESS_KEY \
-                cloud.aws.credentials.secret_key: $CLOUD_AWS_CREDENTIALS_SECRET_KEY" >> $RESOURCE_FILE
-
-      - name: Create aws-key.yml file
-        env:
-          CLOUD_AWS_CREDENTIALS_ACCESS_KEY: ${{ secrets.CLOUD_AWS_CREDENTIALS_ACCESS_KEY }}
-          CLOUD_AWS_CREDENTIALS_SECRET_KEY: ${{ secrets.CLOUD_AWS_CREDENTIALS_SECRET_KEY }}
-          RESOURCE_FILE: blog-api/src/main/resources/aws-key.yml
-        run: |
-          touch $RESOURCE_FILE
-          echo -e "cloud.aws.credentials.access_key: $CLOUD_AWS_CREDENTIALS_ACCESS_KEY \
-                cloud.aws.credentials.secret_key: $CLOUD_AWS_CREDENTIALS_SECRET_KEY" >> $RESOURCE_FILE
-
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-      - name: clean bootJar
-        run: ./gradlew clean bootJar
-
-      - name: copy file
-        uses: appleboy/scp-action@master
-        with:
-          host: 115.71.238.146
-          username: root
-          password: ${{ secrets.SERVER_PASSWORD }}
-          port: 22
-          source: "./blog-api/build/libs/blog-api-0.0.1-BLOG.jar, ./deploy/jar.sh"
-          target: "~/blog/jar"
-      - name: ssh
-        uses: appleboy/ssh-action@master
-        with:
-          host: 115.71.238.146
-          username: root
-          password: ${{ secrets.SERVER_PASSWORD }}
-          port: 22
-          script: |
-            ./blog.jar.sh

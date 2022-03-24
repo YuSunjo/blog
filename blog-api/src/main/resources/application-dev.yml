@@ -3,10 +3,9 @@ spring:
     activate:
       on-profile: dev
   datasource:
-    url: jdbc:mariadb://velog.cqa7rhjwuoqr.ap-northeast-2.rds.amazonaws.com/blog_dev
-    driver-class-name: org.mariadb.jdbc.Driver
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    hikari:
+      jdbc-url: jdbc:mariadb://velog.cqa7rhjwuoqr.ap-northeast-2.rds.amazonaws.com/blog_dev
+      driver-class-name: org.mariadb.jdbc.Driver
   jpa:
     database-platform: org.hibernate.dialect.MariaDB103Dialect
     hibernate:

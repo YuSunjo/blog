@@ -5,3 +5,6 @@ out
 
 **/docs/*
 aws-key.yml
+application-aws.**
+application-db.**
+application-rds.**

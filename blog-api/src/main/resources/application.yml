@@ -1,15 +1,30 @@
 server:
   port: 8080
-spring:
-  config:
-    activate:
-      on-profile: local, dev
-    import:
-      - aws.yml
-      - auth.yml
-      - aws-key.yml
-      - sentry.yml
 
 logging:
   level:
     root: INFO
+
+cloud:
+  aws:
+    s3:
+      bucket: potato-velog-sunjo
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
+
+---
+spring:
+  profiles:
+    active: local, dev
+    include:
+      - aws
+      - sentry
+
+---
+spring:
+  profiles:
+    active: dev
+    include:
+      - rds

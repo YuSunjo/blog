@@ -1,0 +1,66 @@
+name: Deploy blog-admin
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+
+env:
+  API_RESOURCE_FILE: blog-api/src/main/resources
+  ADMIN_RESOURCE_FILE: blog-admin/src/main/resources
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - name: Create application-aws.properties
+        env:
+          CLOUD_AWS_CREDENTIALS_ACCESS_KEY: ${{ secrets.CLOUD_AWS_CREDENTIALS_ACCESS_KEY }}
+          CLOUD_AWS_CREDENTIALS_SECRET_KEY: ${{ secrets.CLOUD_AWS_CREDENTIALS_SECRET_KEY }}
+          RESOURCE_FILE: blog-admin/src/main/resources/aws-key.yml
+        run: |
+          echo -e "cloud.aws.credentials.accessKey=$CLOUD_AWS_CREDENTIALS_ACCESS_KEY\ncloud.aws.credentials.secretKey=$CLOUD_AWS_CREDENTIALS_SECRET_KEY" > $API_RESOURCE_FILE/application-aws.properties
+          echo -e "cloud.aws.credentials.accessKey=$CLOUD_AWS_CREDENTIALS_ACCESS_KEY\ncloud.aws.credentials.secretKey=$CLOUD_AWS_CREDENTIALS_SECRET_KEY" > $ADMIN_RESOURCE_FILE/application-aws.properties
+
+      - name: Create rds.yml file
+        env:
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        run: |
+          echo -e "spring.datasource.hikari.username=$DB_USERNAME\nspring.datasource.hikari.password=$DB_PASSWORD" > $API_RESOURCE_FILE/application-rds.properties
+          echo -e "spring.datasource.hikari.username=$DB_USERNAME\nspring.datasource.hikari.password=$DB_PASSWORD" > $ADMIN_RESOURCE_FILE/application-rds.properties
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      - name: clean bootJar
+        run: ./gradlew clean bootJar
+
+      - name: copy file
+        uses: appleboy/scp-action@master
+        with:
+          host: 115.71.238.146
+          username: root
+          password: ${{ secrets.SERVER_PASSWORD }}
+          port: 22
+          source: "./blog-admin/build/libs/blog-admin-0.0.1-BLOG.jar,./blog-api/build/libs/blog-api-0.0.1-BLOG.jar"
+          target: "~/blog/jar"
+          strip_components: 1
+
+      - name: copy file
+        uses: appleboy/scp-action@master
+        with:
+          host: 115.71.238.146
+          username: root
+          password: ${{ secrets.SERVER_PASSWORD }}
+          port: 22
+          source: "deploy/jar.sh"
+          target: "~/deploy"
+          strip_components: 1
