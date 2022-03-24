@@ -82,7 +82,7 @@ jobs:
           RESOURCE_FILE: blog-admin/src/main/resources/aws-key.yml
         run: |
           touch $RESOURCE_FILE
-          echo "cloud.aws.credentials.access_key: $CLOUD_AWS_CREDENTIALS_ACCESS_KEY \
+          echo -e "cloud.aws.credentials.access_key: $CLOUD_AWS_CREDENTIALS_ACCESS_KEY \
                 cloud.aws.credentials.secret_key: $CLOUD_AWS_CREDENTIALS_SECRET_KEY" >> $RESOURCE_FILE
 
       - name: Create aws-key.yml file
@@ -92,7 +92,7 @@ jobs:
           RESOURCE_FILE: blog-api/src/main/resources/aws-key.yml
         run: |
           touch $RESOURCE_FILE
-          echo "cloud.aws.credentials.access_key: $CLOUD_AWS_CREDENTIALS_ACCESS_KEY \
+          echo -e "cloud.aws.credentials.access_key: $CLOUD_AWS_CREDENTIALS_ACCESS_KEY \
                 cloud.aws.credentials.secret_key: $CLOUD_AWS_CREDENTIALS_SECRET_KEY" >> $RESOURCE_FILE
 
       - name: Grant execute permission for gradlew

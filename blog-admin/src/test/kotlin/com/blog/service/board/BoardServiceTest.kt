@@ -13,6 +13,7 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import java.util.*
 
 @SpringBootTest
 class BoardServiceTest(
@@ -88,8 +89,11 @@ class BoardServiceTest(
         // given
         val category = categoryRepository.save(Category("gogo"))
         val board1 = Board("title1", "content1", false, "url1", category, 1L, 0, 0)
+        board1.addHashTag(Arrays.asList("1", "2"), 1)
         val board2 = Board("title2", "content2", false, "url2", category, 1L, 0, 0)
+        board2.addHashTag(Arrays.asList("1", "2"), 1)
         val board3 = Board("title3", "content3", false, "url3", category, 1L, 0, 0)
+        board3.addHashTag(Arrays.asList("1", "2"), 1)
 
         boardRepository.saveAll(listOf(board1, board2, board3))
         val request = RetrieveBoardRequest(1, 3, null, "id")
