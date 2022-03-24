@@ -9,6 +9,8 @@ on:
 env:
   DOCKER_IMAGE: ghcr.io/yusunjo/blog
   VERSION: ${{ github.sha }}
+  API_RESOURCE_FILE: blog-api/src/main/resources
+  ADMIN_RESOURCE_FILE: blog-admin/src/main/resources
 
 jobs:
   build:
