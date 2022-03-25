@@ -1,26 +1,20 @@
 package com.blog.dto.auth
 
-data class KakaoAccessTokenResponse(
-    val accessToken: String,
-    val tokenType: String,
-    val refreshToken: String,
-    val expiresIn: Int,
-    val scope: String,
-    val refreshTokenExpiresIn: Int
+import com.fasterxml.jackson.databind.PropertyNamingStrategies
+import com.fasterxml.jackson.databind.annotation.JsonNaming
+
+data class GoogleMemberInfoResponse(
+    val sub: String,
+    val email: String,
+    val picture: String,
+    val name: String,
+    val locale: String
 )
 
-
-data class KaKaoUserInfoResponse(
-    val kakaoAccount: KakaoUserInfoAccount
-)
-
-
-data class KakaoUserInfoAccount(
-    val kakaoProfile: KakaoProfile,
-    val email: String
-)
-
-data class KakaoProfile(
-    val nickname: String,
-    val profileImageUrl: String
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy::class)
+data class GoogleAccessTokenResponse(
+    val accessToken: String?,
+    val refreshToken: String?,
+    val expiresIn: String?,
+    val idToken: String?,
 )

@@ -47,8 +47,8 @@ jobs:
         run: |
           docker build -t $DOCKER_IMAGE/admin:$VERSION -f Dockerfile_admin .
           docker build -t $DOCKER_IMAGE/api:$VERSION -f Dockerfile_api .
-          docker tag $DOCKER_IMAGE/admin:$VERSION $DOCKER_IMAGE:latest
-          docker tag $DOCKER_IMAGE/api:$VERSION $DOCKER_IMAGE:latest
+          docker tag $DOCKER_IMAGE/admin:$VERSION $DOCKER_IMAGE/admin:latest
+          docker tag $DOCKER_IMAGE/api:$VERSION $DOCKER_IMAGE/api:latest
           docker push $DOCKER_IMAGE/admin:$VERSION
           docker push $DOCKER_IMAGE/admin:latest
           docker push $DOCKER_IMAGE/api:$VERSION

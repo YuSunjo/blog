@@ -13,14 +13,14 @@ import org.springframework.security.crypto.password.PasswordEncoder
 @EnableWebSecurity
 class SecurityConfig : WebSecurityConfigurerAdapter() {
     @Bean
-    open fun passwordEncoder(): PasswordEncoder {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    fun passwordEncoder(): PasswordEncoder {
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder()
     }
 
     override fun configure(web: WebSecurity) {
         web.ignoring()
             .antMatchers("/h2-console/**")
-            .antMatchers("/swagger-ui.html")
+            .antMatchers("/swagger-ui/**")
     }
 
     override fun configure(http: HttpSecurity) {

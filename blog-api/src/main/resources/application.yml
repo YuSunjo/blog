@@ -1,6 +1,11 @@
 server:
   port: 8080
 
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+
 logging:
   level:
     root: INFO
@@ -21,6 +26,7 @@ spring:
     include:
       - aws
       - sentry
+      - google
 
 ---
 spring:

@@ -1,0 +1,8 @@
+###
+POST {{blog_api}}/auth/google
+Content-Type: application/json
+
+{
+  "code": "4/0AX4XfWhlZhpgXDhhQeQN_j1IEbTBOvgX_n9_SROlaRnHXTIJliyGJyE2dPHvs8X71_BeYA",
+  "redirectUri": "http://localhost:8080/login/oauth2/code/google"
+}

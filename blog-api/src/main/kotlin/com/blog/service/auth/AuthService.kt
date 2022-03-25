@@ -1,19 +1,25 @@
 package com.blog.service.auth
 
+import com.blog.config.jwt.JwtTokenProvider
+import com.blog.domain.member.Member
+import com.blog.domain.member.Provider
+import com.blog.domain.member.Role
+import com.blog.domain.member.repository.MemberRepository
 import com.blog.dto.auth.AuthRequest
-import com.blog.dto.auth.KaKaoUserInfoResponse
-import com.blog.exception.NotFoundException
+import com.blog.dto.auth.GoogleMemberInfoResponse
 import org.springframework.stereotype.Service
 
 @Service
 class AuthService(
-    private val kakaoApiCaller: AuthApiCaller
+    private val googleClient: GoogleClient,
+    private val jwtTokenProvider: JwtTokenProvider,
+    private val memberRepository: MemberRepository
 ) {
-    fun kakaoAuthentication(request: AuthRequest): KaKaoUserInfoResponse {
-        val kakaoAccessTokenResponse = (kakaoApiCaller.tokenAuthentication(request)
-            ?: throw NotFoundException("accessToken을 가지고 오지 못했습니다."))
-        return kakaoApiCaller.getUserInfo(kakaoAccessTokenResponse.accessToken)
-            ?: throw NotFoundException("user 정보를 가지고 오지 못헀습니다")
+    fun googleAuthentication(request: AuthRequest): String {
+        val googleMemberInfoResponse: GoogleMemberInfoResponse = googleClient.googleAuth(request.code, request.redirectUri)
+        val member: Member = memberRepository.findMemberByEmailAndRole(googleMemberInfoResponse.email, Role.USER)
+            ?: memberRepository.save(Member.newMember(googleMemberInfoResponse, Provider.GOOGLE))
+        return jwtTokenProvider.createToken(member.id.toString())
     }
 
 }

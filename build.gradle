@@ -1,7 +1,7 @@
 buildscript {
     ext {
         kotlinVersion = '1.5.21'
-        springBootVersion = '2.5.3'
+        springBootVersion = '2.6.2'
         querydslPluginVersion ='1.0.10'
     }
     repositories {
@@ -60,6 +60,12 @@ subprojects {
         }
     }
 
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:2021.0.0"
+        }
+    }
+
     dependencies {
         implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
         implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -90,12 +96,15 @@ subprojects {
         annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
         // swagger
-        implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
-        implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+        implementation 'io.springfox:springfox-boot-starter:3.0.0'
+        implementation 'io.springfox:springfox-swagger-ui:3.0.0'
 
         // sentry
         implementation 'io.sentry:sentry-spring-boot-starter:5.6.1'
         implementation 'io.sentry:sentry-logback:5.6.1'
+
+        implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+        implementation group: 'io.github.openfeign', name: 'feign-gson', version: '11.0'
     }
 
     tasks.test {

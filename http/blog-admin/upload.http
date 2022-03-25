@@ -3,7 +3,7 @@ POST {{blog_admin}}/image/upload
 Content-Type: multipart/form-data; boundary=WebAppBoundary
 
 --WebAppBoundary
-Content-Disposition: form-data; name="file"; filename="1.png"
+Content-Disposition: form-data; name="upload"; filename="1.png"
 
 < /Users/yusunjo/Desktop/1.png
 --WebAppBoundary--

@@ -10,10 +10,8 @@ import springfox.documentation.service.*
 import springfox.documentation.spi.DocumentationType
 import springfox.documentation.spi.service.contexts.SecurityContext
 import springfox.documentation.spring.web.plugins.Docket
-import springfox.documentation.swagger2.annotations.EnableSwagger2
 
 @Configuration
-@EnableSwagger2
 class SwaggerConfig {
     @Bean
     fun restApi(): Docket {
@@ -52,4 +50,5 @@ class SwaggerConfig {
         authorizationScopes[0] = authorizationScope
         return listOf(SecurityReference("JWT_AUTH", authorizationScopes))
     }
+
 }
