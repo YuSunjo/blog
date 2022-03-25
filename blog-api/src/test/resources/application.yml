@@ -35,9 +35,9 @@ spring:
 
 google:
   auth:
-    client-id: a
-    client-secret: a
-    grant-type: a
-    base-url: a
-    token-url: a
-    profile-url: a
+    client_id: a
+    client_secret: a
+    grant_type: a
+    base_url: a
+    token_url: a
+    profile_url: a

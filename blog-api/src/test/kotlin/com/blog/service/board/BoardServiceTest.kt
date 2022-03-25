@@ -27,6 +27,7 @@ class BoardServiceTest(
     fun clean() {
         boardRepository.deleteAll()
         boardHashTagRepository.deleteAll()
+        categoryRepository.deleteAll()
     }
 
     @Test
