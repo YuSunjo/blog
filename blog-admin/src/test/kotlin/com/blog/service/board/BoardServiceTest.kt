@@ -96,7 +96,7 @@ class BoardServiceTest(
         board3.addHashTag(Arrays.asList("1", "2"), 1)
 
         boardRepository.saveAll(listOf(board1, board2, board3))
-        val request = RetrieveBoardRequest(1, 3, null, "id")
+        val request = RetrieveBoardRequest(1, 3, null, null)
 
         // when
         val response = boardService.retrieveBoard(request)
