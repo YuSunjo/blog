@@ -52,7 +52,7 @@ jobs:
           port: 22
           source: "blog-admin/build/libs/blog-admin-0.0.1-BLOG.jar,blog-api/build/libs/blog-api-0.0.1-BLOG.jar"
           target: "~/blog/jar"
-          strip_components: 1
+          strip_components: 3
 
       - name: copy file
         uses: appleboy/scp-action@master

@@ -13,7 +13,7 @@ else
   sleep 5
 fi
 echo "> 배포 시작"
-nohup java -jar ~/blog/jar/blog-admin/$JAR_PWD/blog-admin-0.0.1-BLOG.jar --spring.profiles.active=dev > /logs/blog_admin.log 2>&1 &
+nohup java -jar ~/blog/jar/blog-admin-0.0.1-BLOG.jar --spring.profiles.active=dev > /logs/blog_admin.log 2>&1 &
 
 CURRENT_PID_API=$(pgrep -f blog-api-0.0.1-BLOG.jar)
 echo CURRENT_PID
@@ -27,4 +27,4 @@ else
   sleep 5
 fi
 echo "> 배포 시작"
-nohup java -jar ~/blog/jar/blog-api/$JAR_PWD/blog-api-0.0.1-BLOG.jar --spring.profiles.active=dev > /logs/blog_api.log 2>&1 &
+nohup java -jar ~/blog/jar/blog-api-0.0.1-BLOG.jar --spring.profiles.active=dev > /logs/blog_api.log 2>&1 &
