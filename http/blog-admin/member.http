@@ -7,7 +7,7 @@ Content-Type: application/json
 }
 
 ###
-POST {{blog_admin}}/api/v1/admin/member/login
+POST {{dev_admin}}/api/v1/admin/member/login
 Content-Type: application/json
 
 {
@@ -20,5 +20,5 @@ client.log(client.global.get('ADMIN'));
  %}
 
 ###
-GET {{blog_admin}}/api/v1/admin/member
+GET {{dev_admin}}/api/v1/admin/member
 Authorization: {{ADMIN}}

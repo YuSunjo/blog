@@ -36,6 +36,17 @@ jobs:
           echo -e "spring.datasource.hikari.username=$DB_USERNAME\nspring.datasource.hikari.password=$DB_PASSWORD" > $API_RESOURCE_FILE/application-rds.properties
           echo -e "spring.datasource.hikari.username=$DB_USERNAME\nspring.datasource.hikari.password=$DB_PASSWORD" > $ADMIN_RESOURCE_FILE/application-rds.properties
 
+      - name: Create application-google.properties file
+        env:
+          CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+          GRANT_TYPE: authorization_code
+          BASE_URL: https://www.googleapis.com
+          TOKEN_URL: /oauth2/v4/token
+          PROFILE_URL: /oauth2/v3/userinfo
+        run: |
+          - echo -e "google.auth.client_id=$CLIENT_ID\ngoogle.auth.client_secret=$CLIENT_SECRET\ngoogle.auth.grant_type=$GRANT_TYPE\ngoogle.auth.base_url=$BASE_URL\ngoogle.auth.token_url=$TOKEN_URL\ngoogle.auth.profile_url=$PROFILE_URL" > $API_RESOURCE_FILE/application-google.properties
+
       - name: Login to ghcr
         uses: docker/login-action@v1
         with:
