@@ -47,7 +47,7 @@ jobs:
           TOKEN_URL: /oauth2/v4/token
           PROFILE_URL: /oauth2/v3/userinfo
         run: |
-          - echo -e "google.auth.client_id=$CLIENT_ID\ngoogle.auth.client_secret=$CLIENT_SECRET\ngoogle.auth.grant_type=$GRANT_TYPE\ngoogle.auth.base_url=$BASE_URL\ngoogle.auth.token_url=$TOKEN_URL\ngoogle.auth.profile_url=$PROFILE_URL" > $API_RESOURCE_FILE/application-google.properties
+          echo -e "google.auth.client_id=$CLIENT_ID\ngoogle.auth.client_secret=$CLIENT_SECRET\ngoogle.auth.grant_type=$GRANT_TYPE\ngoogle.auth.base_url=$BASE_URL\ngoogle.auth.token_url=$TOKEN_URL\ngoogle.auth.profile_url=$PROFILE_URL" > $API_RESOURCE_FILE/application-google.properties
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
