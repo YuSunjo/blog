@@ -44,7 +44,7 @@ data class RetrieveBoardRequest(
     @field:Min(1)
     var size: Int,
     var search: String?,
-    var sort: String?
+    var category: String?,
 )
 
 data class BoardIdRequest(

@@ -1,3 +1,4 @@
+# 게시글 생성
 POST {{blog_admin}}/api/v1/board
 Content-Type: application/json
 Authorization: {{ADMIN}}
@@ -32,5 +33,5 @@ Content-Type: application/json
 Authorization: {{ADMIN}}
 
 ### 리스트
-GET {{blog_admin}}/api/v1/board/list?page=1&size=1
+GET {{blog_admin}}/api/v1/board/list?page=1&size=1&search=t&category=코코틀린
 Authorization: {{ADMIN}}

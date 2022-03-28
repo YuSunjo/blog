@@ -20,10 +20,11 @@ class BoardRepositoryCustomImpl(
             .fetchOne()
     }
 
-    override fun findBySearchingPagination(pageable: Pageable, search: String?): Page<Board> {
+    override fun findBySearchingPagination(pageable: Pageable, search: String?, category: String?): Page<Board> {
         val results = queryFactory.selectFrom(board)
             .where(
                 eqTitle(search),
+                eqCategory(category),
             )
             .offset(pageable.offset)
             .limit(pageable.pageSize.toLong())
@@ -40,6 +41,13 @@ class BoardRepositoryCustomImpl(
             return null
         }
         return board.title.contains(search)
+    }
+
+    private fun eqCategory(category: String?): BooleanExpression? {
+        if (category == null) {
+            return null
+        }
+        return board.category.categoryName.eq(category)
     }
 
 }

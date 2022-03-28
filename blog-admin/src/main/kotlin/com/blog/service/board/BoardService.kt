@@ -52,9 +52,8 @@ class BoardService(
 
     @Transactional(readOnly = true)
     fun retrieveBoard(request: RetrieveBoardRequest): BoardInfoListResponse {
-        val sort = request.sort ?: "id"
-        val pageable: Pageable = PageRequest.of(request.page - 1, request.size, Sort.by(DESC, sort))
-        val boardPagination = boardRepository.findBySearchingPagination(pageable, request.search)
+        val pageable: Pageable = PageRequest.of(request.page - 1, request.size)
+        val boardPagination = boardRepository.findBySearchingPagination(pageable, request.search, request.category)
         val boardList = boardPagination.stream().map {
             BoardInfoResponse.of(it)
         }.collect(Collectors.toList())
