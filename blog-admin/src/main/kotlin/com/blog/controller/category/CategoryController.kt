@@ -25,7 +25,6 @@ class CategoryController(
         return ApiResponse.success(categoryService.updateCategory(request))
     }
 
-    @Member
     @GetMapping("/api/v1/admin/category/list")
     fun retrieveCategory(): ApiResponse<List<CategoryInfoResponse>> {
         return ApiResponse.success(categoryService.retrieveCategory())

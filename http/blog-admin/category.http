@@ -19,4 +19,3 @@ Authorization: {{ADMIN}}
 ###
 GET {{blog_admin}}/api/v1/admin/category/list
 Content-Type: application/json
-Authorization: {{ADMIN}}
