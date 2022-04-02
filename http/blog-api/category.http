@@ -1,0 +1,3 @@
+###
+GET {{blog_api}}/api/v1/category/list
+Content-Type: application/json
