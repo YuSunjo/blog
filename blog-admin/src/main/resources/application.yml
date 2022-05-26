@@ -1,10 +1,17 @@
 server:
   port: 9000
+  shutdown: graceful
 
 spring:
   mvc:
     pathmatch:
       matching-strategy: ANT_PATH_MATCHER
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 20MB
+  jpa:
+    open-in-view: false
 
 logging:
   level:

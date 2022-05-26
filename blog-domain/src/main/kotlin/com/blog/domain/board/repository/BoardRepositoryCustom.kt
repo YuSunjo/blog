@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 
 interface BoardRepositoryCustom {
+
     fun findBoardById(id: Long): Board?
 
     fun findBySearchingPagination(pageable: Pageable, search: String?, category: String?): Page<Board>
