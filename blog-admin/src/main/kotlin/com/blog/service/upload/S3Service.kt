@@ -12,11 +12,11 @@ class S3Service(
     private val amazonS3Client: AmazonS3Client,
     private val s3Component: S3Component
 ) {
-    fun uploadFile(inputStream: InputStream?, objectMetadata: ObjectMetadata?, fileName: String?): String {
+    fun uploadFile(inputStream: InputStream?, objectMetadata: ObjectMetadata?, fileName: String?): String? {
         amazonS3Client.putObject(PutObjectRequest(s3Component.bucket, fileName, inputStream, objectMetadata)
             .withCannedAcl(CannedAccessControlList.PublicRead))
-        return amazonS3Client.getResourceUrl(s3Component.bucket, fileName)
+        val resourceUrl = amazonS3Client.getResourceUrl(s3Component.bucket, fileName)
+        return UploadUtils.replaceS3ToCloudFront(resourceUrl, s3Component.bucket, s3Component.cloudFrontUrl)
     }
-
 
 }

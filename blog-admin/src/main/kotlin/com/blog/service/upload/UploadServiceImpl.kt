@@ -12,7 +12,7 @@ class UploadServiceImpl(
     private val s3Service: S3Service
 ) : UploadService {
 
-    override fun imageUpload(file: MultipartFile): String {
+    override fun imageUpload(file: MultipartFile): String? {
         UploadUtils.validateFileType(file.originalFilename)
         val fileName: String = UploadUtils.createFileNameAndDirectory(file.originalFilename)
         val objectMetadata = ObjectMetadata()

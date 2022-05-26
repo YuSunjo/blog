@@ -12,7 +12,7 @@ class UploadController(
     private val uploadService: UploadService
 ) {
     @PostMapping("/image/upload")
-    fun imageUpload(@RequestPart upload: MultipartFile): ApiResponse<String> {
+    fun imageUpload(@RequestPart upload: MultipartFile): ApiResponse<String?> {
         return ApiResponse.success(uploadService.imageUpload(upload))
     }
 }

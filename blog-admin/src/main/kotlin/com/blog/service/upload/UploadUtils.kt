@@ -9,7 +9,7 @@ class UploadUtils {
 
     companion object {
         fun validateFileType(originalFilename: String?) {
-            val typeList = Arrays.asList("jpg", "png", "jpeg")
+            val typeList = listOf("jpg", "png", "jpeg")
             val type: String = FilenameUtils.getExtension(originalFilename)
             if (!typeList.contains(type)) {
                 throw ValidationException("${type}는 허용되지 않는 파일형식입니다.")
@@ -20,11 +20,17 @@ class UploadUtils {
             return "$uploadFolder/"
         }
 
-        fun createFileNameAndDirectory(originalFilename: String): String {
+        fun createFileNameAndDirectory(originalFilename: String?): String {
             val now = SimpleDateFormat("yyyyMMddHmsS").format(Date())
             val folder = createFolder(UploadFolder.USER)
             return folder + now + originalFilename
         }
+
+        fun replaceS3ToCloudFront(resourceUrl: String?, bucket: String, cloudFrontUrl: String): String? {
+            val s3Url = String.format("https://%s.s3.ap-northeast-2.amazonaws.com", bucket)
+            return resourceUrl?.replace(s3Url, cloudFrontUrl)
+        }
+
     }
 
 
