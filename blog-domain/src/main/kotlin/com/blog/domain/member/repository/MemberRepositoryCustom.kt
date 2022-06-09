@@ -6,7 +6,7 @@ import com.blog.domain.member.Role
 
 interface MemberRepositoryCustom {
 
-    fun findMemberByEmailAndRole(email: String, role: Role): Member?
+    fun findMemberByEmailAndRole(email: String, role: Role, provider: Provider): Member?
 
     fun findMemberById(memberId: Long) : Member?
 

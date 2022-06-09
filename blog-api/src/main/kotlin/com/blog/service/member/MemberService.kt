@@ -2,6 +2,7 @@ package com.blog.service.member
 
 import com.blog.config.jwt.JwtTokenProvider
 import com.blog.domain.member.Member
+import com.blog.domain.member.Provider
 import com.blog.domain.member.Role
 import com.blog.domain.member.repository.MemberRepository
 import com.blog.dto.member.CreateMemberRequest
@@ -29,7 +30,7 @@ class MemberService(
 
     @Transactional
     fun memberLogin(request: LoginMemberRequest): String {
-        val member = (memberRepository.findMemberByEmailAndRole(request.email, Role.USER)
+        val member = (memberRepository.findMemberByEmailAndRole(request.email, Role.USER, Provider.LOCAL)
             ?: throw NotFoundException("존재하지 않는 멤버 ${request.email}입니다."))
         MemberServiceUtils.validatePassword(passwordEncoder, member.password, request.password)
         return jwtTokenProvider.createToken(member.id.toString())

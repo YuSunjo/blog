@@ -81,7 +81,7 @@ class MemberControllerTest(
     fun loginMember() {
         // given
         val encodedPassword = passwordEncoder.encode("1111")
-        val member = Member("tnswh2023@naver.com", encodedPassword, null, Provider.LOCAL, Role.ADMIN, "nickname")
+        val member = Member("tnswh2023@naver.com", encodedPassword, null, Provider.LOCAL, Role.ADMIN, "nickname", null)
         memberRepository.save(member)
 
         val request = LoginMemberRequest("tnswh2023@naver.com", "1111", Provider.LOCAL)
@@ -113,7 +113,7 @@ class MemberControllerTest(
         // given
         val email = "tnswh2023@naver.com"
         val encodedPassword = passwordEncoder.encode("1111")
-        val member = Member(email, encodedPassword, null, Provider.LOCAL, Role.ADMIN, "nickname")
+        val member = Member(email, encodedPassword, null, Provider.LOCAL, Role.ADMIN, "nickname", null)
         memberRepository.save(member)
 
         val token: String = jwtTokenProvider.createToken(member.id.toString())

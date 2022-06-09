@@ -1,5 +1,6 @@
 package com.blog.service.member
 
+import com.blog.domain.member.Provider
 import com.blog.domain.member.Role
 import com.blog.domain.member.repository.MemberRepository
 import com.blog.exception.ValidationException
@@ -9,7 +10,7 @@ class MemberServiceUtils {
 
     companion object {
         fun validateEmailAndRole(memberRepository: MemberRepository, email: String, role: Role) {
-            val validateEmail = memberRepository.findMemberByEmailAndRole(email, role)
+            val validateEmail = memberRepository.findMemberByEmailAndRole(email, role, Provider.LOCAL)
             if (validateEmail != null) {
                 throw ValidationException("${email}은 이미 존재하는 이메일입니다.")
             }

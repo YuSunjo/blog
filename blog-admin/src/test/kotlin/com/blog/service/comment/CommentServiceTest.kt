@@ -20,7 +20,6 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import java.util.*
 
 @SpringBootTest
 class CommentServiceTest(
@@ -99,7 +98,7 @@ class CommentServiceTest(
         boardRepository.save(board)
         val comment1 = Comment(board.id, 2L, "댓글입니다~", null)
         val comment2 = Comment(board.id, 2L, "대댓글입니다.", comment1, 1)
-        commentRepository.saveAll(Arrays.asList(comment1, comment2))
+        commentRepository.saveAll(listOf(comment1, comment2))
 
         val request = CreateCommentRequest("댓글입니다~", board.id, comment2.id)
 
@@ -141,7 +140,7 @@ class CommentServiceTest(
         boardRepository.save(board)
         val comment1 = Comment(board.id, 2L, "댓글입니다~", null)
         val comment2 = Comment(board.id, 2L, "대댓글입니다.", comment1, 1)
-        commentRepository.saveAll(Arrays.asList(comment1, comment2))
+        commentRepository.saveAll(listOf(comment1, comment2))
 
         val request = UpdateCommentRequest("댓글 수정입니다.", comment2.id)
 
@@ -158,16 +157,16 @@ class CommentServiceTest(
     @Test
     fun retrieveComment() {
         // given
-        val member1 = Member("tnswh2023@naver.com", "password", null, Provider.LOCAL, Role.USER, "nickname1")
-        val member2 = Member("tnswh2022@naver.com", "password", null, Provider.LOCAL, Role.USER, "nickname2")
-        memberRepository.saveAll(Arrays.asList(member1, member2))
+        val member1 = Member("tnswh2023@naver.com", "password", null, Provider.LOCAL, Role.USER, "nickname1", null)
+        val member2 = Member("tnswh2022@naver.com", "password", null, Provider.LOCAL, Role.USER, "nickname2", null)
+        memberRepository.saveAll(listOf(member1, member2))
         val category = Category("java")
         categoryRepository.save(category)
         val board = Board("title", "content", false, null, category, 1L, 0, 0)
         boardRepository.save(board)
         val comment1 = Comment(board.id, member2.id, "댓글입니다~", null)
         val comment2 = Comment(board.id, member2.id, "댓글입니다2~", null)
-        commentRepository.saveAll(Arrays.asList(comment1, comment2))
+        commentRepository.saveAll(listOf(comment1, comment2))
 
         // when
         val response = commentService.retrieveComment(board.id, 1L)
@@ -186,9 +185,9 @@ class CommentServiceTest(
     @Test
     fun retrieveComment2() {
         // given
-        val member1 = Member("tnswh2023@naver.com", "password", null, Provider.LOCAL, Role.USER, "nickname1")
-        val member2 = Member("tnswh2022@naver.com", "password", null, Provider.LOCAL, Role.USER, "nickname2")
-        memberRepository.saveAll(Arrays.asList(member1, member2))
+        val member1 = Member("tnswh2023@naver.com", "password", null, Provider.LOCAL, Role.USER, "nickname1", null)
+        val member2 = Member("tnswh2022@naver.com", "password", null, Provider.LOCAL, Role.USER, "nickname2", null)
+        memberRepository.saveAll(listOf(member1, member2))
         val category = Category("java")
         categoryRepository.save(category)
         val board = Board("title", "content", false, null, category, 1L, 0, 0)

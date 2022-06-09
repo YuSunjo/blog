@@ -41,3 +41,9 @@ google:
     base_url: a
     token_url: a
     profile_url: a
+facebook:
+  auth:
+    client_id: a
+    client_secret: a
+    base_url: a
+    profile_url: a
