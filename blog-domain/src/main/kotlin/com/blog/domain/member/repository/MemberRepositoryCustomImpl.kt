@@ -54,14 +54,13 @@ class MemberRepositoryCustomImpl(
             .fetch()
     }
 
-    override fun findBySocialIdAndProvider(accessToken: String, provider: Provider): Member? {
-//        return queryFactory.selectFrom(member)
-//            .where(
-//                member.socialId.eq(accessToken),
-//                member.provider.eq(provider)
-//            )
-//            .fetchOne()
-        return null
+    override fun findBySocialIdAndProvider(socialId: String, provider: Provider): Member? {
+        return queryFactory.selectFrom(member)
+            .where(
+                member.socialId.eq(socialId),
+                member.provider.eq(provider)
+            )
+            .fetchOne()
     }
 
 }

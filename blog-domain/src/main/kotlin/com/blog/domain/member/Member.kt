@@ -36,6 +36,14 @@ class Member(
             return Member(email, null, null, provider, Role.USER, uuIdName, socialId)
         }
 
+        fun testGoogleInstance(socialId: String): Member {
+            return Member(null, null, null, Provider.GOOGLE, Role.USER, "name", socialId)
+        }
+
+        fun testFacebookInstance(socialId: String): Member {
+            return Member(null, null, null, Provider.FACEBOOK, Role.USER, "name", socialId)
+        }
+
     }
 
 }

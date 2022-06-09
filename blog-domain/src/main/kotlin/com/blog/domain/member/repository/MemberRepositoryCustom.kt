@@ -16,6 +16,6 @@ interface MemberRepositoryCustom {
 
     fun findAllByIds(commentMemberIds: List<Long>): List<Member>
 
-    fun findBySocialIdAndProvider(accessToken: String, provider: Provider): Member?
+    fun findBySocialIdAndProvider(socialId: String, provider: Provider): Member?
 
 }
