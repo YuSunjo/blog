@@ -8,18 +8,15 @@ import com.blog.domain.category.repository.CategoryRepository
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.context.TestConstructor
 
+@TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
 @SpringBootTest
 class BoardServiceTest(
-    @Autowired
     private val boardRepository: BoardRepository,
-    @Autowired
     private val boardHashTagRepository: BoardHashTagRepository,
-    @Autowired
     private val categoryRepository: CategoryRepository,
-    @Autowired
     private val boardService: BoardService
 ) {
 

@@ -47,6 +47,15 @@ jobs:
         run: |
           echo -e "google.auth.client_id=$CLIENT_ID\ngoogle.auth.client_secret=$CLIENT_SECRET\ngoogle.auth.grant_type=$GRANT_TYPE\ngoogle.auth.base_url=$BASE_URL\ngoogle.auth.token_url=$TOKEN_URL\ngoogle.auth.profile_url=$PROFILE_URL" > $API_RESOURCE_FILE/application-google.properties
 
+      - name: Create application-fb.properties file
+        env:
+          FB_CLIENT_ID: ${{ secrets.FB_CLIENT_ID }}
+          FB_CLIENT_SECRET: ${{ secrets.FB_CLIENT_SECRET }}
+          FB_BASE_URL: https://graph.facebook.com
+          FB_PROFILE_URL: /v13.0/me
+        run: |
+          echo -e "facebook.auth.client_id=$FB_CLIENT_ID\nfacebook.auth.client_secret=$FB_CLIENT_SECRET\nfacebook.auth.base_url=$FB_BASE_URL\nfacebook.auth.profile_url=$FB_PROFILE_URL" > $API_RESOURCE_FILE/application-fb.properties
+
       - name: Login to ghcr
         uses: docker/login-action@v1
         with:

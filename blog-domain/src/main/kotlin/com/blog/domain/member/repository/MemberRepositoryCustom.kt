@@ -1,6 +1,7 @@
 package com.blog.domain.member.repository
 
 import com.blog.domain.member.Member
+import com.blog.domain.member.Provider
 import com.blog.domain.member.Role
 
 interface MemberRepositoryCustom {
@@ -14,5 +15,7 @@ interface MemberRepositoryCustom {
     fun findMemberByNickname(nickname: String): Member?
 
     fun findAllByIds(commentMemberIds: List<Long>): List<Member>
+
+    fun findBySocialIdAndProvider(accessToken: String, provider: Provider): Member?
 
 }

@@ -1,8 +1,23 @@
-###
-POST {{blog_api}}/auth/google
+### Google만 email, name 추가
+POST {{blog_api}}/api/v1/auth
 Content-Type: application/json
 
 {
-  "code": "4/0AX4XfWhlZhpgXDhhQeQN_j1IEbTBOvgX_n9_SROlaRnHXTIJliyGJyE2dPHvs8X71_BeYA",
-  "redirectUri": "http://localhost:8080/login/oauth2/code/google"
+  "email": "tnswh2023@gmail.com",
+  "name": "유순조",
+  "accessToken": "4/0AX4XfWguyykSI2JXzAFb54eqaZyYDvOemqBilyFxIP3Mgcz6-pVSEoKMpslHjSwN_hxmsg",
+  "provider": "GOOGLE"
+}
+
+### facebook access_token 얻기
+
+GET https://graph.facebook.com/v13.0/oauth/access_token?code=AQAsaWxHndcjXbum0XQ5QnCeBwwXjjP_jvLS3KjQlNOoJnt80HPDpAAq0H3LWAoeL0VbdpP4g-Tuz1Pai3OLeYguxaLHRoIX7-kYJVKFq1vJEHiEm8yJ6GaXHKVLDBBrbaz39JVlrx4gx2KqzLNfplGJvDCMSsW1YfUgz_DZYfuN1B-T_O24-iHTzMFq65C6hXw9M8LHllaIRq04kDNdWgTerxINHrWinUggVr763r8DyncUqUj5OP26x2P6dvczHDhEpm4LQ1mePp-QhoHf07ZSiTbkA7ZZ6uqqKtChqUcODskd7EFsYJ7GSr8v1_mdyLTsOoDYJZHSMtNZmkUUXglBGfbQJ37kMXhq7clKgnQWnvRYtKbMhfyw4Ds6V5k_zJM&client_id=427910128603162&client_secret=7f354e0813062f215a04f9a04b6815f1&redirect_uri=https://api.nalbang.debug.one/api/v1/code
+
+### facebook
+POST {{blog_api}}/api/v1/auth
+Content-Type: application/json
+
+{
+  "accessToken": "EAAGFLpc2EBoBAEx212pnWiPqzjfkfeD02tVcQAxamxPZC2OZCYmIXXSbhUTxcu1w8LGzXt1q7KjkYIl1ZAqsjZBxb99hNeNnSZB2xdLtypaHVMM8i1BX3gWZChsRliCr1vtfstQ2lfZBiWKZBZB6xbGQBuOxqD1W8cXKr4Nmu8bNDXFyHOxJI5UGJ3jplUbNiW05CWGHJ28yTTtI2JC62khDus65bVD0rCav1LRvSheab3QZDZD",
+  "provider": "FACEBOOK"
 }

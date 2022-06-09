@@ -1,6 +1,7 @@
 package com.blog.domain.member.repository
 
 import com.blog.domain.member.Member
+import com.blog.domain.member.Provider
 import com.blog.domain.member.QMember.member
 import com.blog.domain.member.Role
 import com.querydsl.jpa.impl.JPAQueryFactory
@@ -50,6 +51,16 @@ class MemberRepositoryCustomImpl(
                 member.id.`in`(commentMemberIds)
             )
             .fetch()
+    }
+
+    override fun findBySocialIdAndProvider(accessToken: String, provider: Provider): Member? {
+//        return queryFactory.selectFrom(member)
+//            .where(
+//                member.socialId.eq(accessToken),
+//                member.provider.eq(provider)
+//            )
+//            .fetchOne()
+        return null
     }
 
 }

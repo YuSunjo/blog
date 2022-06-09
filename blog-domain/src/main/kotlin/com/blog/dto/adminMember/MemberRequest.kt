@@ -16,7 +16,7 @@ data class CreateMemberRequest(
     var nickname: String = "ADMIN"
 ) {
     fun toEntity(encodedPassword: String): Member {
-        return Member(email, encodedPassword, null, Provider.LOCAL, Role.ADMIN, nickname)
+        return Member(email, encodedPassword, null, Provider.LOCAL, Role.ADMIN, nickname, null)
     }
 
 }

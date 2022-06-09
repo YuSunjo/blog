@@ -42,4 +42,8 @@ class MemberService(
         return MemberInfoResponse.of(member)
     }
 
+    fun authMemberLogin(member: Member): String {
+        return jwtTokenProvider.createToken(member.id.toString())
+    }
+
 }

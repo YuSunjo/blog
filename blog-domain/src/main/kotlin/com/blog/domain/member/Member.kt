@@ -1,15 +1,15 @@
 package com.blog.domain.member
 
 import com.blog.domain.BaseTimeEntity
-import com.blog.dto.auth.GoogleMemberInfoResponse
+import java.util.*
 import javax.persistence.*
 
 @Entity
 class Member(
-        @Column(nullable = false)
-        var email: String,
 
-        var password: String,
+        var email: String?,
+
+        var password: String?,
 
         var memberImage: String?,
 
@@ -21,7 +21,9 @@ class Member(
         @Column(nullable = false)
         var role: Role,
 
-        var nickname: String
+        var nickname: String,
+
+        var socialId: String?
 
 ): BaseTimeEntity() {
     @Id
@@ -29,8 +31,9 @@ class Member(
     var id: Long = 0L
 
     companion object {
-        fun newMember(googleMemberInfoResponse: GoogleMemberInfoResponse, provider: Provider): Member {
-            return Member(googleMemberInfoResponse.email, "0", googleMemberInfoResponse.picture, provider, Role.USER, googleMemberInfoResponse.name)
+        fun newMember(socialId: String, provider: Provider, email: String?, name: String?): Member {
+            val uuIdName = name ?: UUID.randomUUID().toString()
+            return Member(email, null, null, provider, Role.USER, uuIdName, socialId)
         }
 
     }

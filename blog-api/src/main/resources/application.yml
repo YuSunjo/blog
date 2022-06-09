@@ -30,6 +30,7 @@ spring:
       - aws
       - sentry
       - google
+      - fb
 
 ---
 spring:

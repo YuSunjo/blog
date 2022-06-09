@@ -18,3 +18,8 @@ data class GoogleAccessTokenResponse(
     val expiresIn: String?,
     val idToken: String?,
 )
+
+data class FacebookMemberInfoResponse(
+    val id: String,
+    val name: String,
+)

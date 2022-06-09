@@ -6,11 +6,11 @@ import com.blog.domain.member.Role
 
 data class MemberInfoResponse(
     var id: Long,
-    var email: String,
+    var email: String?,
     var memberImage: String?,
     var provider: Provider,
     var role: Role,
-    var nickname: String
+    var nickname: String,
 ) {
     companion object {
         fun of(member: Member?): MemberInfoResponse? {
