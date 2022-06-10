@@ -2,6 +2,7 @@ package com.blog.dto.board
 
 import com.blog.domain.board.Board
 import com.blog.domain.board.BoardHashTag
+import java.time.LocalDateTime
 
 data class BoardInfoResponse(
     var id: Long = 0L,
@@ -12,12 +13,13 @@ data class BoardInfoResponse(
     var categoryName: String,
     var categoryId: Long = 0L,
     var memberId: Long = 0L,
+    var createdDate: LocalDateTime?,
     var hashTagList: MutableList<BoardHashTagInfoResponse>
 ) {
     companion object {
         fun of(board: Board): BoardInfoResponse {
             return BoardInfoResponse(board.id, board.title, board.content, board.isPrivate, board.boardThumbnailUrl,
-                board.category.categoryName, board.category.id, board.memberId, board.getBoardHashTagInfoResponseList())
+                board.category.categoryName, board.category.id, board.memberId, board.createdDate, board.getBoardHashTagInfoResponseList())
         }
     }
 }
