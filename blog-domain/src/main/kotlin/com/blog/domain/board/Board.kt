@@ -55,6 +55,7 @@ class Board(
             .ifPresent {
                 throw ConflictException("이미 존재하는 멤버 $memberId 입니다.")
             }
+        this.likeCount++
         val boardLike = BoardLike.of(memberId, this)
         this.boardLikeList.add(boardLike)
     }
@@ -70,6 +71,7 @@ class Board(
             .orElseThrow {
                 throw NotFoundException("멤버 ${memberId}가 좋아요 한 게시글이 없습니다.")
             }
+        this.likeCount--
         this.boardLikeList.remove(boardLike)
     }
 

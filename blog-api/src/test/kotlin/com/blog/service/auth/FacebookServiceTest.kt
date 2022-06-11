@@ -1,12 +1,10 @@
-package com.blog.service.board
+package com.blog.service.auth
 
 import com.blog.domain.member.Member
 import com.blog.domain.member.Provider
 import com.blog.domain.member.repository.MemberRepository
 import com.blog.dto.auth.AuthRequest
 import com.blog.dto.auth.FacebookMemberInfoResponse
-import com.blog.service.auth.FacebookApiCallerFeignClient
-import com.blog.service.auth.FacebookService
 import com.blog.service.auth.factory.AuthFactoryService
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach

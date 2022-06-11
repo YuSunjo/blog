@@ -1,10 +1,9 @@
-package com.blog.service.board
+package com.blog.service.auth
 
 import com.blog.domain.member.Member
 import com.blog.domain.member.Provider
 import com.blog.domain.member.repository.MemberRepository
 import com.blog.dto.auth.AuthRequest
-import com.blog.service.auth.GoogleService
 import com.blog.service.auth.factory.AuthFactoryService
 import com.blog.service.member.MemberService
 import org.assertj.core.api.Assertions.*
