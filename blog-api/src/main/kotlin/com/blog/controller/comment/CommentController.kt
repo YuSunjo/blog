@@ -29,10 +29,9 @@ class CommentController(
         return ApiResponse.OK
     }
 
-    @Member
     @GetMapping("api/v1/comment/{boardId}")
-    fun retrieveComment(@PathVariable boardId: Long, @MemberId memberId: Long): ApiResponse<List<CommentInfoResponse>> {
-        return ApiResponse.success(commentService.retrieveComment(boardId, memberId))
+    fun retrieveComment(@PathVariable boardId: Long): ApiResponse<List<CommentInfoResponse>> {
+        return ApiResponse.success(commentService.retrieveComment(boardId))
     }
 
 }

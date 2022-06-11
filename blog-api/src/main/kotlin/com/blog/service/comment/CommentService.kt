@@ -24,14 +24,15 @@ class CommentService(
     fun createComment(request: CreateCommentRequest, memberId: Long) {
         val board = (boardRepository.findBoardById(request.boardId)
             ?: throw NotFoundException("존재하지 않는 게시글 ${request.boardId} 입니다."))
-        if (request.parentCommentId != null) {
+        if (request.hasParentComment()) {
             val boardComment = (commentRepository.findCommentById(request.parentCommentId!!)
                 ?: throw NotFoundException("존재하지 않는 부모 댓글 ${request.parentCommentId} 입니다."))
             boardComment.addChildComment(memberId, request.content, request.boardId)
-            board.incrementLikeCount()
+            board.incrementCommentCount()
+            return
         }
         commentRepository.save(Comment.newRootComment(request.boardId, request.content, memberId))
-        board.incrementLikeCount()
+        board.incrementCommentCount()
     }
 
     @Transactional
@@ -42,7 +43,7 @@ class CommentService(
     }
 
     @Transactional
-    fun retrieveComment(boardId: Long, memberId: Long): List<CommentInfoResponse> {
+    fun retrieveComment(boardId: Long): List<CommentInfoResponse> {
         (boardRepository.findBoardById(boardId)
             ?: throw NotFoundException("존재하지 않는 게시글 $boardId 입니다."))
         val boardCommentList = commentRepository.findCommentByBoardId(boardId)

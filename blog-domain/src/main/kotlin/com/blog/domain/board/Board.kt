@@ -92,8 +92,8 @@ class Board(
         }.collect(Collectors.toList())
     }
 
-    fun incrementLikeCount() {
-        this.likeCount++
+    fun incrementCommentCount() {
+        this.commentCount++
     }
 
 }

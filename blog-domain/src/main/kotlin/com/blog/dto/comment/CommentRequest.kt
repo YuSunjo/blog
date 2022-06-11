@@ -11,7 +11,13 @@ data class CreateCommentRequest(
     var boardId: Long,
 
     var parentCommentId: Long?
-)
+) {
+
+    fun hasParentComment(): Boolean {
+        return parentCommentId != null
+    }
+
+}
 
 data class UpdateCommentRequest(
     @field:NotBlank

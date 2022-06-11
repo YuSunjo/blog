@@ -1,0 +1,23 @@
+### 댓글 작성
+POST {{blog_api}}/api/v1/comment
+Content-Type: application/json
+Authorization: {{MEMBER}}
+
+{
+  "boardId": 1,
+  "content": "hello"
+}
+
+### 대댓글 작성
+POST {{blog_api}}/api/v1/comment
+Content-Type: application/json
+Authorization: {{MEMBER}}
+
+{
+  "boardId": 1,
+  "content": "hello",
+  "parentCommentId": 1
+}
+
+### 댓글 불러오기
+GET {{blog_api}}/api/v1/comment/1
