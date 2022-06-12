@@ -24,16 +24,6 @@ plugins {
     id "jacoco"
 }
 
-sonarqube {
-    properties {
-        property "sonar.projectKey", "YuSunjo_blog"
-        property "sonar.organization", "petitionsonar"
-        property "sonar.host.url", "https://sonarcloud.io"
-        property "sonar.java.coveragePlugin", "jacoco"
-        property "sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/testCoverage/testCoverage.xml"
-    }
-}
-
 subprojects {
     apply plugin: 'java'
     apply plugin: 'org.springframework.boot'
@@ -50,7 +40,6 @@ subprojects {
     group = 'com.blog'
     version = '0.0.1-BLOG'
     sourceCompatibility = 11
-
 
     repositories {
         mavenCentral()
@@ -109,8 +98,32 @@ subprojects {
         implementation group: 'io.github.openfeign', name: 'feign-gson', version: '11.0'
     }
 
+    sonarqube {
+        properties {
+            property "sonar.projectKey", "YuSunjo_blog"
+            property "sonar.organization", "petitionsonar"
+            property "sonar.host.url", "https://sonarcloud.io"
+            property "sonar.java.coveragePlugin", "jacoco"
+            property "sonar.coverage.jacoco.xmlReportPaths", "$buildDir/reports/jacoco/test/jacocoTestReport.xml"
+        }
+    }
+
+    jacoco {
+        toolVersion = "0.8.7"
+    }
+
+    jacocoTestReport {
+        reports {
+            html.enabled true
+            xml.enabled true
+            csv.enabled false
+        }
+    }
+
     tasks.test {
-        // Use the built-in JUnit support of Gradle.
+        jacoco {
+            destinationFile = file("$buildDir/jacoco/jacoco.exec")
+        }
         useJUnitPlatform()
         finalizedBy jacocoTestReport
     }
@@ -132,22 +145,4 @@ project(':blog-domain') {
 project(':blog-common') {
     bootJar.enabled = false
     jar.enabled = true
-}
-
-jacoco {
-    toolVersion = "0.8.7"
-}
-
-task jacocoTestReport(type: JacocoReport, group: 'verification', description: 'Report Test Coverage') {
-    executionData(fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec"))
-
-    subprojects.forEach {
-        sourceSets(it.sourceSets.main as SourceSet)
-    }
-
-    reports {
-        html.enabled true
-        xml.enabled true
-        csv.enabled false
-    }
 }
