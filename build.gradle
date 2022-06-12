@@ -30,7 +30,7 @@ sonarqube {
         property "sonar.organization", "petitionsonar"
         property "sonar.host.url", "https://sonarcloud.io"
         property "sonar.java.coveragePlugin", "jacoco"
-        property "sonar.coverage.jacoco.xmlReportPaths", "${buildDir}/reports/jacoco/testCoverage/testCoverage.xml"
+        property "sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/testCoverage/testCoverage.xml"
     }
 }
 
@@ -138,7 +138,7 @@ jacoco {
     toolVersion = "0.8.7"
 }
 
-task testCoverage(type: JacocoReport, group: 'verification', description: 'Report Test Coverage') {
+task jacocoTestReport(type: JacocoReport, group: 'verification', description: 'Report Test Coverage') {
     executionData(fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec"))
 
     subprojects.forEach {
