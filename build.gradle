@@ -29,6 +29,8 @@ sonarqube {
         property "sonar.projectKey", "YuSunjo_blog"
         property "sonar.organization", "petitionsonar"
         property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.java.coveragePlugin", "jacoco"
+        property "sonar.coverage.jacoco.xmlReportPaths", "${buildDir}/reports/jacoco/testCoverage/testCoverage.xml"
     }
 }
 
