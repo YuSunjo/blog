@@ -11,9 +11,4 @@ class TestController {
         return ApiResponse.OK
     }
 
-    @GetMapping("/")
-    fun start(): String {
-        return "hello world"
-    }
-
 }

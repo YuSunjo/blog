@@ -75,3 +75,13 @@ jobs:
           docker push $DOCKER_IMAGE/api:latest
           echo -e "${{ secrets.CR_PAT }}" > deploy/GIT-TOKEN.txt
           cat deploy/GIT-TOKEN.txt
+
+      - name: copy file
+        uses: appleboy/scp-action@master
+        with:
+          host: 115.71.238.146
+          username: root
+          password: ${{ secrets.SERVER_PASSWORD }}
+          port: 22
+          source: "deploy"
+          target: "~/deploy"
