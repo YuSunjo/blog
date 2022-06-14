@@ -83,5 +83,16 @@ jobs:
           username: root
           password: ${{ secrets.SERVER_PASSWORD }}
           port: 22
-          source: "deploy"
+          source: "deploy/GIT-TOKEN.txt deploy/deploy-docker.sh"
           target: "~/deploy"
+
+      - name: ssh
+        uses: appleboy/ssh-action@master
+        with:
+          host: 115.71.238.146
+          username: root
+          password: ${{ secrets.SERVER_PASSWORD }}
+          port: 22
+          script: |
+            chmod +x ~/deploy/deploy-docker.sh
+            ~/deploy/deploy-docker.sh
