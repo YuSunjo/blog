@@ -1,8 +1,9 @@
 buildscript {
     ext {
         kotlinVersion = '1.5.21'
-        springBootVersion = '2.6.2'
+        springBootVersion = '2.7.0'
         querydslPluginVersion ='1.0.10'
+        springCloudVersion = '2021.0.3'
     }
     repositories {
         mavenCentral({
@@ -11,7 +12,7 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath "io.spring.gradle:dependency-management-plugin:1.0.11.RELEASE"
+        classpath("io.spring.gradle:dependency-management-plugin:1.0.11.RELEASE")
         classpath("gradle.plugin.com.ewerk.gradle.plugins:querydsl-plugin:${querydslPluginVersion}")
         classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
         classpath("org.jetbrains.kotlin:kotlin-noarg:${kotlinVersion}")
@@ -53,7 +54,7 @@ subprojects {
 
     dependencyManagement {
         imports {
-            mavenBom "org.springframework.cloud:spring-cloud-dependencies:2021.0.0"
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
         }
     }
 
