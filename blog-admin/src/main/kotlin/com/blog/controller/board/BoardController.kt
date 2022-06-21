@@ -38,4 +38,10 @@ class BoardController(
         return ApiResponse.success(boardService.retrieveBoard(request))
     }
 
+    @Member
+    @GetMapping("/api/v1/hashTag")
+    fun retrieveHashTag(): ApiResponse<List<String>> {
+        return ApiResponse.success(boardService.retrieveHashTag())
+    }
+
 }

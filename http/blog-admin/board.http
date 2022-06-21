@@ -35,3 +35,7 @@ Authorization: {{ADMIN}}
 ### 리스트
 GET {{blog_admin}}/api/v1/board/list?page=1&size=5&hashTagList=생일,기념
 Authorization: {{ADMIN}}
+
+###hashtag
+GET {{blog_admin}}/api/v1/hashTag
+Authorization: {{ADMIN}}

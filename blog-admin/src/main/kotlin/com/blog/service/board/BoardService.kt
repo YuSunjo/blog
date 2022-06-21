@@ -58,4 +58,9 @@ class BoardService(
         return BoardInfoListResponse.of(boardList, boardPagination.totalPages)
     }
 
+    @Transactional(readOnly = true)
+    fun retrieveHashTag(): List<String> {
+        return boardHashTagRepository.findDistinctHashTag()
+    }
+
 }
