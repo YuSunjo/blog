@@ -2,6 +2,7 @@ package com.blog.domain.board.repository
 
 import com.blog.domain.board.Board
 import com.blog.domain.board.QBoard.board
+import com.blog.domain.board.QBoardHashTag.boardHashTag
 import com.querydsl.core.types.dsl.BooleanExpression
 import com.querydsl.jpa.impl.JPAQueryFactory
 import org.springframework.data.domain.Page
@@ -20,11 +21,18 @@ class BoardRepositoryCustomImpl(
             .fetchOne()
     }
 
-    override fun findBySearchingPagination(pageable: Pageable, search: String?, category: String?): Page<Board> {
+    override fun findBySearchingPagination(
+        pageable: Pageable,
+        search: String?,
+        category: String?,
+        hashTagList: List<String>?
+    ): Page<Board> {
         val results = queryFactory.selectFrom(board)
+            .leftJoin(board.boardHashTagList, boardHashTag).fetchJoin()
             .where(
                 eqTitle(search),
                 eqCategory(category),
+                eqHashTagList(hashTagList),
             )
             .offset(pageable.offset)
             .limit(pageable.pageSize.toLong())
@@ -48,6 +56,13 @@ class BoardRepositoryCustomImpl(
             return null
         }
         return board.category.categoryName.eq(category)
+    }
+
+    private fun eqHashTagList(hashTagList: List<String>?): BooleanExpression? {
+        if (hashTagList == null) {
+            return null
+        }
+        return boardHashTag.hashTag.`in`(hashTagList)
     }
 
 }

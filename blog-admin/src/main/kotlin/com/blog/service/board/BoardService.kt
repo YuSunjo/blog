@@ -8,8 +8,6 @@ import com.blog.dto.board.*
 import com.blog.exception.NotFoundException
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Pageable
-import org.springframework.data.domain.Sort
-import org.springframework.data.domain.Sort.Direction.DESC
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.util.stream.Collectors
@@ -53,7 +51,7 @@ class BoardService(
     @Transactional(readOnly = true)
     fun retrieveBoard(request: RetrieveBoardRequest): BoardInfoListResponse {
         val pageable: Pageable = PageRequest.of(request.page - 1, request.size)
-        val boardPagination = boardRepository.findBySearchingPagination(pageable, request.search, request.category)
+        val boardPagination = boardRepository.findBySearchingPagination(pageable, request.search, request.category, request.hashTagList)
         val boardList = boardPagination.stream().map {
             BoardInfoResponse.of(it)
         }.collect(Collectors.toList())

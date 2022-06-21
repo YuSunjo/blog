@@ -1,5 +1,5 @@
 ### 게시글 리스트
-GET {{blog_api}}/api/v1/board/list?size=5&page=1
+GET {{blog_api}}/api/v1/board/list?size=5&page=1&hashTagList=생일,기념
 
 ### 게시글 좋아요
 POST {{blog_api}}/api/v1/board/like

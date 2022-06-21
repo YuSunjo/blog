@@ -45,6 +45,7 @@ data class RetrieveBoardRequest(
     var size: Int,
     var search: String?,
     var category: String?,
+    var hashTagList: List<String>?,
 )
 
 data class BoardIdRequest(
