@@ -26,4 +26,12 @@ class BoardHashTagRepositoryCustomImpl(
              .fetch()
      }
 
+     override fun findByHashTag(hashTag: String?): List<BoardHashTag> {
+         return queryFactory.selectFrom(boardHashTag)
+             .where(
+                 boardHashTag.hashTag.eq(hashTag)
+             )
+             .fetch();
+     }
+
  }

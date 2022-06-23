@@ -1,6 +1,7 @@
 package com.blog.service.board
 
 import com.blog.domain.board.Board
+import com.blog.domain.board.BoardHashTag
 import com.blog.domain.board.repository.BoardHashTagRepository
 import com.blog.domain.board.repository.BoardRepository
 import com.blog.domain.category.repository.CategoryRepository
@@ -51,7 +52,11 @@ class BoardService(
     @Transactional(readOnly = true)
     fun retrieveBoard(request: RetrieveBoardRequest): BoardInfoListResponse {
         val pageable: Pageable = PageRequest.of(request.page - 1, request.size)
-        val boardPagination = boardRepository.findBySearchingPagination(pageable, request.search, request.category, request.hashTagList)
+        var boardHashTagList = emptyList<BoardHashTag>()
+        if (request.hashTag != null) {
+            boardHashTagList = boardHashTagRepository.findByHashTag(request.hashTag)
+        }
+        val boardPagination = boardRepository.findBySearchingPagination(pageable, request.search, request.category, boardHashTagList)
         val boardList = boardPagination.stream().map {
             BoardInfoResponse.of(it)
         }.collect(Collectors.toList())

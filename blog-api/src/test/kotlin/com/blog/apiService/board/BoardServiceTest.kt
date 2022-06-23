@@ -256,7 +256,7 @@ class BoardServiceTest(
         board3.addHashTag(Arrays.asList("1", "2"), 1)
 
         boardRepository.saveAll(listOf(board1, board2, board3))
-        val request = RetrieveBoardRequest(1, 3, null, "gogo", listOf("1"))
+        val request = RetrieveBoardRequest(1, 3, null, "gogo", null)
 
         // when
         val response = boardService.retrieveBoard(request)
@@ -284,7 +284,7 @@ class BoardServiceTest(
         board3.addHashTag(Arrays.asList("생일", "강릉"), 1)
 
         boardRepository.saveAll(listOf(board1, board2, board3))
-        val request = RetrieveBoardRequest(1, 3, "ti", null, listOf("강릉"))
+        val request = RetrieveBoardRequest(1, 3, "ti", null, null)
 
         // when
         val response = boardService.retrieveBoard(request)
@@ -311,7 +311,7 @@ class BoardServiceTest(
         board3.addHashTag(Arrays.asList("생일", "강릉"), 1)
 
         boardRepository.saveAll(listOf(board1, board2, board3))
-        val request = RetrieveBoardRequest(1, 3, "3", null, listOf("강릉"))
+        val request = RetrieveBoardRequest(1, 3, "3", null, "강릉")
 
         // when
         val response = boardService.retrieveBoard(request)

@@ -1,6 +1,7 @@
 package com.blog.domain.board.repository
 
 import com.blog.domain.board.Board
+import com.blog.domain.board.BoardHashTag
 import com.blog.domain.board.QBoard.board
 import com.blog.domain.board.QBoardHashTag.boardHashTag
 import com.querydsl.core.types.dsl.BooleanExpression
@@ -25,26 +26,30 @@ class BoardRepositoryCustomImpl(
         pageable: Pageable,
         search: String?,
         category: String?,
-        hashTagList: List<String>?
+        hashTagList: List<BoardHashTag>
     ): Page<Board> {
-        val results = queryFactory.selectFrom(board)
+        val results = queryFactory.selectFrom(board).distinct()
+            .leftJoin(board.boardHashTagList, boardHashTag)
             .where(
                 eqTitle(search),
                 eqCategory(category),
+                eqHashTagList(hashTagList)
             )
             .offset(pageable.offset)
             .limit(pageable.pageSize.toLong())
             .orderBy(board.id.desc())
             .fetch()
 
-        val total = queryFactory.selectFrom(board)
+        val total = queryFactory.selectFrom(board).distinct()
+            .leftJoin(board.boardHashTagList, boardHashTag)
             .where(
                 eqTitle(search),
                 eqCategory(category),
+                eqHashTagList(hashTagList)
             )
-            .fetch().size
+            .fetch()
 
-        return PageImpl(results, pageable, total.toLong())
+        return PageImpl(results, pageable, total.size.toLong())
     }
 
     private fun eqTitle(search: String?): BooleanExpression? {
@@ -59,6 +64,13 @@ class BoardRepositoryCustomImpl(
             return null
         }
         return board.category.categoryName.eq(category)
+    }
+
+    private fun eqHashTagList(hashTagList: List<BoardHashTag>): BooleanExpression? {
+        if (hashTagList.isEmpty()) {
+            return null
+        }
+        return boardHashTag.`in`(hashTagList)
     }
 
 }

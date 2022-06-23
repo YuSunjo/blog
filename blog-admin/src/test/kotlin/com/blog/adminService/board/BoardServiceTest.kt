@@ -1,5 +1,6 @@
 package com.blog.adminService.board
 
+import com.blog.adminService.TestUtils
 import com.blog.domain.board.Board
 import com.blog.domain.board.repository.BoardRepository
 import com.blog.domain.category.Category
@@ -7,27 +8,24 @@ import com.blog.domain.category.repository.CategoryRepository
 import com.blog.dto.board.CreateBoardRequest
 import com.blog.dto.board.RetrieveBoardRequest
 import com.blog.dto.board.UpdateBoardRequest
-import com.blog.adminService.TestUtils
 import com.blog.service.board.BoardService
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.context.TestConstructor
 import java.util.*
 
+
+@TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
 @SpringBootTest
 class BoardServiceTest(
-    @Autowired
     private val boardService: BoardService,
-
-    @Autowired
     private val boardRepository: BoardRepository,
-
-    @Autowired
     private val categoryRepository: CategoryRepository,
 ) {
+
     @AfterEach
     fun cleanUp() {
         boardRepository.deleteAll()
@@ -128,7 +126,7 @@ class BoardServiceTest(
 
         // when
         val response = boardService.retrieveBoard(request)
-
+        println("response = $response")
         // then
         val boardList = boardRepository.findAll()
         assertThat(boardList).hasSize(3)
@@ -152,7 +150,7 @@ class BoardServiceTest(
         board3.addHashTag(Arrays.asList("생일", "강릉"), 1)
 
         boardRepository.saveAll(listOf(board1, board2, board3))
-        val request = RetrieveBoardRequest(1, 3, "ti", null, listOf("강릉"))
+        val request = RetrieveBoardRequest(1, 3, "ti", null, null)
 
         // when
         val response = boardService.retrieveBoard(request)
@@ -179,7 +177,7 @@ class BoardServiceTest(
         board3.addHashTag(Arrays.asList("생일", "강릉"), 1)
 
         boardRepository.saveAll(listOf(board1, board2, board3))
-        val request = RetrieveBoardRequest(1, 3, "3", null, listOf("강릉"))
+        val request = RetrieveBoardRequest(1, 3, "3", null, "강릉")
 
         // when
         val response = boardService.retrieveBoard(request)
@@ -190,6 +188,33 @@ class BoardServiceTest(
         assertThat(response.boardList).hasSize(1)
         assertThat(response.totalPage).isEqualTo(1)
         TestUtils.assertBoardInfoResponse(response.boardList[0], board3.title, board3.content, board3.boardThumbnailUrl)
+    }
+
+    @DisplayName("hashTag 조건으로 검색")
+    @Test
+    fun retrieveBoard_6() {
+        // given
+        val category = categoryRepository.save(Category("gogo"))
+        val board1 = Board("title1", "content1", false, "url1", category, 1L, 0, 0)
+        board1.addHashTag(Arrays.asList("생일", "기념"), 1)
+        val board2 = Board("title2", "content2", false, "url2", category, 1L, 0, 0)
+        board2.addHashTag(Arrays.asList("강릉"), 1)
+        val board3 = Board("title3", "content3", false, "url3", category, 1L, 0, 0)
+        board3.addHashTag(Arrays.asList("생일", "강릉"), 1)
+
+        boardRepository.saveAll(listOf(board1, board2, board3))
+        val request = RetrieveBoardRequest(1, 3, null, null, "강릉")
+
+        // when
+        val response = boardService.retrieveBoard(request)
+
+        // then
+        val boardList = boardRepository.findAll()
+        assertThat(boardList).hasSize(3)
+        assertThat(response.boardList).hasSize(2)
+        assertThat(response.totalPage).isEqualTo(1)
+        TestUtils.assertBoardInfoResponse(response.boardList[0], board3.title, board3.content, board3.boardThumbnailUrl)
+        TestUtils.assertBoardInfoResponse(response.boardList[1], board2.title, board2.content, board2.boardThumbnailUrl)
     }
 
 }
