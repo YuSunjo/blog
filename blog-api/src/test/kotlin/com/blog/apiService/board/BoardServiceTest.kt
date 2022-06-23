@@ -1,4 +1,4 @@
-package com.blog.service.board
+package com.blog.apiService.board
 
 import com.blog.TestUtils
 import com.blog.domain.board.Board
@@ -10,6 +10,7 @@ import com.blog.domain.category.repository.CategoryRepository
 import com.blog.dto.board.RetrieveBoardRequest
 import com.blog.exception.ConflictException
 import com.blog.exception.NotFoundException
+import com.blog.service.board.BoardService
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.AfterEach
@@ -174,10 +175,72 @@ class BoardServiceTest(
         val boardList = boardRepository.findAll()
         assertThat(boardList).hasSize(3)
         assertThat(response.boardList).hasSize(3)
-        assertThat(response.totalPage).isEqualTo(2)
+        assertThat(response.totalPage).isEqualTo(1)
         TestUtils.assertBoardInfoResponse(response.boardList[0], board3.title, board3.content, board3.boardThumbnailUrl)
         TestUtils.assertBoardInfoResponse(response.boardList[1], board2.title, board2.content, board2.boardThumbnailUrl)
         TestUtils.assertBoardInfoResponse(response.boardList[2], board1.title, board1.content, board1.boardThumbnailUrl)
+    }
+
+    @DisplayName("게시글 리스트 불러오기_2 페이지랑 사이즈 잘 불러오는지")
+    @Test
+    fun retrieveBoard_1() {
+        // given
+        val category = categoryRepository.save(Category("gogo"))
+        val board1 = Board("title1", "content1", false, "url1", category, 1L, 0, 0)
+        board1.addHashTag(Arrays.asList("1", "2"), 1)
+        val board2 = Board("title2", "content2", false, "url2", category, 1L, 0, 0)
+        board2.addHashTag(Arrays.asList("1", "2"), 1)
+        val board3 = Board("title3", "content3", false, "url3", category, 1L, 0, 0)
+        board3.addHashTag(Arrays.asList("1", "2"), 1)
+        val board4 = Board("title4", "content3", false, "url3", category, 1L, 0, 0)
+        board4.addHashTag(Arrays.asList("1", "2"), 1)
+        val board5 = Board("title5", "content3", false, "url3", category, 1L, 0, 0)
+        board5.addHashTag(Arrays.asList("1", "2"), 1)
+
+        boardRepository.saveAll(listOf(board1, board2, board3, board4, board5))
+        val request = RetrieveBoardRequest(1, 2, null, null, null)
+
+        // when
+        val response = boardService.retrieveBoard(request)
+
+        // then
+        val boardList = boardRepository.findAll()
+        assertThat(boardList).hasSize(5)
+        assertThat(response.boardList).hasSize(2)
+        assertThat(response.totalPage).isEqualTo(3)
+        TestUtils.assertBoardInfoResponse(response.boardList[0], board5.title, board5.content, board5.boardThumbnailUrl)
+        TestUtils.assertBoardInfoResponse(response.boardList[1], board4.title, board4.content, board4.boardThumbnailUrl)
+    }
+
+    @DisplayName("게시글 리스트 불러오기 2번째 페이지랑 사이즈 잘 불러오는지")
+    @Test
+    fun retrieveBoard_1_1() {
+        // given
+        val category = categoryRepository.save(Category("gogo"))
+        val board1 = Board("title1", "content1", false, "url1", category, 1L, 0, 0)
+        board1.addHashTag(Arrays.asList("1", "2"), 1)
+        val board2 = Board("title2", "content2", false, "url2", category, 1L, 0, 0)
+        board2.addHashTag(Arrays.asList("1", "2"), 1)
+        val board3 = Board("title3", "content3", false, "url3", category, 1L, 0, 0)
+        board3.addHashTag(Arrays.asList("1", "2"), 1)
+        val board4 = Board("title4", "content3", false, "url3", category, 1L, 0, 0)
+        board3.addHashTag(Arrays.asList("1", "2"), 1)
+        val board5 = Board("title5", "content3", false, "url3", category, 1L, 0, 0)
+        board3.addHashTag(Arrays.asList("1", "2"), 1)
+
+        boardRepository.saveAll(listOf(board1, board2, board3, board4, board5))
+        val request = RetrieveBoardRequest(2, 2, null, null, null)
+
+        // when
+        val response = boardService.retrieveBoard(request)
+
+        // then
+        val boardList = boardRepository.findAll()
+        assertThat(boardList).hasSize(5)
+        assertThat(response.boardList).hasSize(2)
+        assertThat(response.totalPage).isEqualTo(3)
+        TestUtils.assertBoardInfoResponse(response.boardList[0], board3.title, board3.content, board3.boardThumbnailUrl)
+        TestUtils.assertBoardInfoResponse(response.boardList[1], board2.title, board2.content, board2.boardThumbnailUrl)
     }
 
     @DisplayName("category를 통해서 게시글 불러오기")
@@ -208,33 +271,6 @@ class BoardServiceTest(
         TestUtils.assertBoardInfoResponse(response.boardList[2], board1.title, board1.content, board1.boardThumbnailUrl)
     }
 
-    @DisplayName("hashTagList를 통해서 게시글 불러오기")
-    @Test
-    fun retrieveBoard_3() {
-        // given
-        val category = categoryRepository.save(Category("gogo"))
-        val board1 = Board("title1", "content1", false, "url1", category, 1L, 0, 0)
-        board1.addHashTag(Arrays.asList("생일", "기념"), 1)
-        val board2 = Board("title2", "content2", false, "url2", category, 1L, 0, 0)
-        board2.addHashTag(Arrays.asList("강릉"), 1)
-        val board3 = Board("title3", "content3", false, "url3", category, 1L, 0, 0)
-        board3.addHashTag(Arrays.asList("생일", "강릉"), 1)
-
-        boardRepository.saveAll(listOf(board1, board2, board3))
-        val request = RetrieveBoardRequest(1, 3, null, null, listOf("강릉"))
-
-        // when
-        val response = boardService.retrieveBoard(request)
-
-        // then
-        val boardList = boardRepository.findAll()
-        assertThat(boardList).hasSize(3)
-        assertThat(response.boardList).hasSize(2)
-        assertThat(response.totalPage).isEqualTo(1)
-        TestUtils.assertBoardInfoResponse(response.boardList[0], board3.title, board3.content, board3.boardThumbnailUrl)
-        TestUtils.assertBoardInfoResponse(response.boardList[1], board2.title, board2.content, board2.boardThumbnailUrl)
-    }
-
     @DisplayName("title search 조건으로 게시글 불러오기")
     @Test
     fun retrieveBoard_4() {
@@ -256,7 +292,7 @@ class BoardServiceTest(
         // then
         val boardList = boardRepository.findAll()
         assertThat(boardList).hasSize(3)
-        assertThat(response.boardList).hasSize(2)
+        assertThat(response.boardList).hasSize(3)
         assertThat(response.totalPage).isEqualTo(1)
         TestUtils.assertBoardInfoResponse(response.boardList[0], board3.title, board3.content, board3.boardThumbnailUrl)
         TestUtils.assertBoardInfoResponse(response.boardList[1], board2.title, board2.content, board2.boardThumbnailUrl)

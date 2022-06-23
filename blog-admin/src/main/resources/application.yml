@@ -12,6 +12,9 @@ spring:
       max-request-size: 20MB
   jpa:
     open-in-view: false
+    properties:
+      hibernate:
+        default_batch_fetch_size: 1000
 
 logging:
   level:

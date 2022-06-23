@@ -1,4 +1,4 @@
-package com.blog.service.member
+package com.blog.apiService.member
 
 import com.blog.TestUtils
 import com.blog.domain.member.Member
@@ -7,6 +7,7 @@ import com.blog.domain.member.Role
 import com.blog.domain.member.repository.MemberRepository
 import com.blog.dto.member.CreateMemberRequest
 import com.blog.dto.member.LoginMemberRequest
+import com.blog.service.member.MemberService
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.DisplayName

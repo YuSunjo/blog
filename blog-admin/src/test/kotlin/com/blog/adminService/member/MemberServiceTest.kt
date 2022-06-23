@@ -1,5 +1,6 @@
-package com.blog.service.member
+package com.blog.adminService.member
 
+import com.blog.service.member.MemberService
 import com.blog.domain.member.Member
 import com.blog.domain.member.Provider
 import com.blog.domain.member.Role

@@ -28,20 +28,23 @@ class BoardRepositoryCustomImpl(
         hashTagList: List<String>?
     ): Page<Board> {
         val results = queryFactory.selectFrom(board)
-            .leftJoin(board.boardHashTagList, boardHashTag).fetchJoin()
             .where(
                 eqTitle(search),
                 eqCategory(category),
-                eqHashTagList(hashTagList),
             )
             .offset(pageable.offset)
             .limit(pageable.pageSize.toLong())
             .orderBy(board.id.desc())
-            .fetchResults()
+            .fetch()
 
-        val content = results.results
-        val total = results.total
-        return PageImpl(content, pageable, total)
+        val total = queryFactory.selectFrom(board)
+            .where(
+                eqTitle(search),
+                eqCategory(category),
+            )
+            .fetch().size
+
+        return PageImpl(results, pageable, total.toLong())
     }
 
     private fun eqTitle(search: String?): BooleanExpression? {
@@ -56,13 +59,6 @@ class BoardRepositoryCustomImpl(
             return null
         }
         return board.category.categoryName.eq(category)
-    }
-
-    private fun eqHashTagList(hashTagList: List<String>?): BooleanExpression? {
-        if (hashTagList == null) {
-            return null
-        }
-        return boardHashTag.hashTag.`in`(hashTagList)
     }
 
 }

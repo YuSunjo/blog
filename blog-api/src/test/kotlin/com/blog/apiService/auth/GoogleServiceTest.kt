@@ -1,4 +1,4 @@
-package com.blog.service.auth
+package com.blog.apiService.auth
 
 import com.blog.domain.member.Member
 import com.blog.domain.member.Provider
@@ -6,6 +6,7 @@ import com.blog.domain.member.repository.MemberRepository
 import com.blog.dto.auth.AuthRequest
 import com.blog.service.auth.factory.AuthFactoryService
 import com.blog.service.member.MemberService
+import com.blog.service.auth.GoogleService
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach

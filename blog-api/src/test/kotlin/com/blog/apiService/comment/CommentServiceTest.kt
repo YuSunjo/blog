@@ -1,4 +1,4 @@
-package com.blog.service.comment
+package com.blog.apiService.comment
 
 import com.blog.TestUtils
 import com.blog.domain.board.Board
@@ -14,6 +14,7 @@ import com.blog.domain.member.repository.MemberRepository
 import com.blog.dto.comment.CreateCommentRequest
 import com.blog.dto.comment.UpdateCommentRequest
 import com.blog.exception.NotFoundException
+import com.blog.service.comment.CommentService
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.DisplayName

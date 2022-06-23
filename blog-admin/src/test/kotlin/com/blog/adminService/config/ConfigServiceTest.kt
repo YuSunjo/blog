@@ -1,5 +1,6 @@
-package com.blog.service.config
+package com.blog.adminService.config
 
+import com.blog.service.config.ConfigService
 import com.blog.domain.config.Config
 import com.blog.domain.config.repository.ConfigRepository
 import com.blog.dto.config.CreateAndUpdateConfigRequest

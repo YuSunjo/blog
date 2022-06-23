@@ -1,5 +1,6 @@
-package com.blog.service.category
+package com.blog.adminService.category
 
+import com.blog.service.category.CategoryService
 import com.blog.domain.category.Category
 import com.blog.domain.category.repository.CategoryRepository
 import com.blog.dto.category.CreateCategoryRequest

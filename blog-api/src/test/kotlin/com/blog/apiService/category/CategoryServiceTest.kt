@@ -1,7 +1,8 @@
-package com.blog.service.category
+package com.blog.apiService.category
 
 import com.blog.domain.category.Category
 import com.blog.domain.category.repository.CategoryRepository
+import com.blog.service.category.CategoryService
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test

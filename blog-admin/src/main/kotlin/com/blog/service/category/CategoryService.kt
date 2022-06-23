@@ -7,8 +7,6 @@ import com.blog.dto.category.UpdateCategoryRequest
 import com.blog.exception.NotFoundException
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import java.util.*
-import java.util.stream.Collector
 import java.util.stream.Collectors
 
 @Service

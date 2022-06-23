@@ -1,4 +1,4 @@
-package com.blog.service
+package com.blog.adminService
 
 import com.blog.domain.board.Board
 import com.blog.domain.comment.Comment
