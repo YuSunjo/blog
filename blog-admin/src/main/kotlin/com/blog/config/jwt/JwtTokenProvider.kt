@@ -32,5 +32,4 @@ class JwtTokenProvider {
             throw JwtException("올바르지 않은 jwt입니다.")
         }
     }
-
 }

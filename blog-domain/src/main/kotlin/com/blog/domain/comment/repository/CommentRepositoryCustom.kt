@@ -7,5 +7,4 @@ interface CommentRepositoryCustom {
     fun findCommentById(commentId: Long): Comment?
 
     fun findCommentByBoardId(boardId: Long): List<Comment>
-
 }

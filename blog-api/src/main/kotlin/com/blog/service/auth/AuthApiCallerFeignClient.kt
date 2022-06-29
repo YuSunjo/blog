@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestHeader
 @FeignClient(
     name = "googleApiCallerFeignClient",
     url = "\${google.auth.base_url}",
-    configuration = [FeignClientConfig::class])
+    configuration = [FeignClientConfig::class]
+)
 interface AuthApiCallerFeignClient {
 
     @PostMapping("\${google.auth.token_url}")
@@ -22,5 +23,4 @@ interface AuthApiCallerFeignClient {
 
     @GetMapping("\${google.auth.profile_url}")
     fun getGoogleMemberInfo(@RequestHeader(HttpHeaders.AUTHORIZATION) accessToken: String?): GoogleMemberInfoResponse
-
 }

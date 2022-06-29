@@ -27,5 +27,4 @@ open class WebConfig(
     override fun addArgumentResolvers(resolvers: MutableList<HandlerMethodArgumentResolver>) {
         resolvers.add(memberIdArgumentResolver)
     }
-
 }

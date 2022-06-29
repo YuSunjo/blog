@@ -18,7 +18,7 @@ data class CreateMemberRequest(
 ) {
     var provider: Provider = Provider.LOCAL
 
-    constructor(email: String, password: String, memberImage: String?, provider: Provider, nickname: String): this(email, password, memberImage, nickname) {
+    constructor(email: String, password: String, memberImage: String?, provider: Provider, nickname: String) : this(email, password, memberImage, nickname) {
         this.provider = provider
     }
 
@@ -35,7 +35,7 @@ data class LoginMemberRequest(
 ) {
     var provider: Provider = Provider.LOCAL
 
-    constructor(email: String, password: String, provider: Provider): this(email, password) {
+    constructor(email: String, password: String, provider: Provider) : this(email, password) {
         this.provider = provider
     }
 }

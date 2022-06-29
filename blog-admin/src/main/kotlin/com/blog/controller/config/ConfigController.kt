@@ -30,5 +30,4 @@ class ConfigController(
     fun getConfig(): ApiResponse<Config?> {
         return ApiResponse.success(configService.getConfig())
     }
-
 }

@@ -6,5 +6,4 @@ interface CategoryRepositoryCustom {
     fun findCategoryById(id: Long): Category?
 
     fun findCategory(): List<Category>
-
 }

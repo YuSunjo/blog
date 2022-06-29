@@ -2,10 +2,7 @@ package com.blog.dto.comment.response
 
 import com.blog.domain.comment.Comment
 import com.blog.domain.member.Member
-import com.blog.domain.member.Provider
-import com.blog.domain.member.Role
 import com.blog.dto.member.MemberInfoResponse
-import com.blog.exception.NotFoundException
 import java.util.stream.Collectors
 
 data class CommentInfoResponse(
@@ -14,7 +11,7 @@ data class CommentInfoResponse(
     val memberInfoResponse: MemberInfoResponse?,
     val childCommentList: MutableList<CommentInfoResponse> = ArrayList(),
 
-    ) {
+) {
     companion object {
         fun of(comment: Comment, memberMap: Map<Long, Member>): CommentInfoResponse {
             val boardChildCommentList = comment.childComments.stream()

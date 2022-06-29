@@ -6,5 +6,4 @@ import org.springframework.context.annotation.Configuration
 
 @EnableFeignClients(basePackageClasses = [BlogApiApplication::class])
 @Configuration
-class FeignClientConfig {
-}
+class FeignClientConfig

@@ -10,5 +10,4 @@ class S3Component {
     lateinit var bucket: String
 
     lateinit var cloudFrontUrl: String
-
 }

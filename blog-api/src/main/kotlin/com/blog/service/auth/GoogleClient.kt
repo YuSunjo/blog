@@ -28,5 +28,4 @@ class GoogleClient(
         accessToken ?: throw ValidationException("accessToken 이 null입니다...")
         return String.format("Bearer %s", accessToken)
     }
-
 }

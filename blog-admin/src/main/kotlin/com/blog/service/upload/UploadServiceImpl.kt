@@ -25,5 +25,4 @@ class UploadServiceImpl(
             throw ValidationException(String.format("%s 파일을 업로드하는데 오류가 발생했습니다.", file.originalFilename))
         }
     }
-
 }

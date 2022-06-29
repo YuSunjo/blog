@@ -15,8 +15,7 @@ class FacebookService(
 
     override fun findSocialIdAndProvider(request: AuthRequest): Member {
         val facebookMemberInfoResponse = facebookApiCallerFeignClient.getFacebookMemberInfo(request.accessToken, listOf("id", "name"))
-        return memberRepository.findBySocialIdAndProvider(facebookMemberInfoResponse.id , Provider.FACEBOOK)
+        return memberRepository.findBySocialIdAndProvider(facebookMemberInfoResponse.id, Provider.FACEBOOK)
             ?: memberRepository.save(Member.newMember(facebookMemberInfoResponse.id, Provider.FACEBOOK, null, facebookMemberInfoResponse.name))
     }
-
 }

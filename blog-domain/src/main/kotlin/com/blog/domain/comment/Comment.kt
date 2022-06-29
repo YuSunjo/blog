@@ -24,7 +24,7 @@ class Comment(
     @Column(nullable = false)
     var depth: Int = 0,
 
-    ): BaseTimeEntity() {
+) : BaseTimeEntity() {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,5 +51,4 @@ class Comment(
             return Comment(boardId, memberId, content, null, 0)
         }
     }
-
 }

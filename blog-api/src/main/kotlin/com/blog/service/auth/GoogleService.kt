@@ -16,5 +16,4 @@ class GoogleService(
         return memberRepository.findBySocialIdAndProvider(request.accessToken, request.provider)
             ?: memberRepository.save(Member.newMember(request.accessToken, Provider.GOOGLE, request.email, request.name))
     }
-
 }

@@ -33,5 +33,4 @@ class CommentController(
     fun retrieveComment(@PathVariable boardId: Long): ApiResponse<List<CommentInfoResponse>> {
         return ApiResponse.success(commentService.retrieveComment(boardId))
     }
-
 }

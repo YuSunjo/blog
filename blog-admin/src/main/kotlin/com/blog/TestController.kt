@@ -10,5 +10,4 @@ class TestController {
     fun ping(): ApiResponse<String> {
         return ApiResponse.OK
     }
-
 }

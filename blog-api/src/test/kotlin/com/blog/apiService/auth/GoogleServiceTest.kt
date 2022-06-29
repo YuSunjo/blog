@@ -76,6 +76,4 @@ class GoogleServiceTest(
         val memberList = memberRepository.findAll()
         assertThat(memberList).hasSize(1)
     }
-
 }
-

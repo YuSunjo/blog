@@ -31,5 +31,4 @@ class ConfigService(
         return configRepository.findById(1L)
             .orElse(null)
     }
-
 }

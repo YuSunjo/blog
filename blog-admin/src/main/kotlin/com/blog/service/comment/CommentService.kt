@@ -21,11 +21,15 @@ class CommentService(
 ) {
     @Transactional
     fun createComment(request: CreateCommentRequest, memberId: Long) {
-        val board = (boardRepository.findBoardById(request.boardId)
-            ?: throw NotFoundException("존재하지 않는 게시글 ${request.boardId} 입니다."))
+        val board = (
+            boardRepository.findBoardById(request.boardId)
+                ?: throw NotFoundException("존재하지 않는 게시글 ${request.boardId} 입니다.")
+            )
         if (request.parentCommentId != null) {
-            val boardComment = (commentRepository.findCommentById(request.parentCommentId!!)
-                ?: throw NotFoundException("존재하지 않는 부모 댓글 ${request.parentCommentId} 입니다."))
+            val boardComment = (
+                commentRepository.findCommentById(request.parentCommentId!!)
+                    ?: throw NotFoundException("존재하지 않는 부모 댓글 ${request.parentCommentId} 입니다.")
+                )
             boardComment.addChildComment(memberId, request.content, request.boardId)
             board.incrementCommentCount()
             return
@@ -36,15 +40,19 @@ class CommentService(
 
     @Transactional
     fun updateComment(request: UpdateCommentRequest, memberId: Long) {
-        val comment = (commentRepository.findCommentById(request.commentId)
-            ?: throw NotFoundException("존재하지 않는 댓글 ${request.commentId} 입니다."))
+        val comment = (
+            commentRepository.findCommentById(request.commentId)
+                ?: throw NotFoundException("존재하지 않는 댓글 ${request.commentId} 입니다.")
+            )
         comment.updateContent(request.content)
     }
 
     @Transactional
     fun retrieveComment(boardId: Long, memberId: Long): List<CommentInfoResponse> {
-        (boardRepository.findBoardById(boardId)
-            ?: throw NotFoundException("존재하지 않는 게시글 $boardId 입니다."))
+        (
+            boardRepository.findBoardById(boardId)
+                ?: throw NotFoundException("존재하지 않는 게시글 $boardId 입니다.")
+            )
         val boardCommentList = commentRepository.findCommentByBoardId(boardId)
         val commentMemberIds = boardCommentList.stream().map { it.memberId }.collect(Collectors.toList())
         val memberMap: Map<Long, Member> = memberRepository.findAllByIds(commentMemberIds).associateBy { it.id }
@@ -52,5 +60,4 @@ class CommentService(
             CommentInfoResponse.of(it, memberMap)
         }.collect(Collectors.toList())
     }
-
 }

@@ -1,4 +1,3 @@
 package com.blog.domain.config.repository
 
-class ConfigRepositoryCustomImpl: ConfigRepositoryCustom {
-}
+class ConfigRepositoryCustomImpl : ConfigRepositoryCustom

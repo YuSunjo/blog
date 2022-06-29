@@ -18,5 +18,4 @@ class CategoryService(
                 CategoryInfoResponse.of(it)
             }.collect(Collectors.toList())
     }
-
 }

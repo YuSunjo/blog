@@ -17,5 +17,4 @@ class GoogleAuthComponent {
     var baseUrl: String = ""
     var tokenUrl: String = ""
     var profileUrl: String = ""
-
 }

@@ -10,7 +10,7 @@ class BoardLike(
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id", nullable = false)
     var board: Board
-): BaseTimeEntity() {
+) : BaseTimeEntity() {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,5 +25,4 @@ class BoardLike(
             return BoardLike(memberId, board)
         }
     }
-
 }

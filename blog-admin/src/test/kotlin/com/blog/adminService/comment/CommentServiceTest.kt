@@ -212,5 +212,4 @@ class CommentServiceTest(
         assertThat(response[1].childCommentList).hasSize(1)
         assertThat(response[1].memberInfoResponse?.id).isEqualTo(member2.id)
     }
-
 }

@@ -1,7 +1,5 @@
 package com.blog.exception.errorCode
 
-import lombok.Getter
-
 enum class ErrorCode(
     val code: Int,
     val message: String
@@ -11,5 +9,4 @@ enum class ErrorCode(
     JWT_UNAUTHORIZED_EXCEPTION(403, "인증애러입니다."),
     CONFLICT_EXCEPTION(409, "이미 존재합니다."),
     VALIDATION_EXCEPTION(400, "잘못된 입력입니다.")
-
 }

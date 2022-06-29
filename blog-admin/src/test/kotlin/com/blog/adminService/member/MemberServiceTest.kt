@@ -73,5 +73,4 @@ internal class MemberServiceTest(
         assertThat(response?.id).isEqualTo(adminList[0].id)
         assertThat(response?.email).isEqualTo(adminList[0].email)
     }
-
 }

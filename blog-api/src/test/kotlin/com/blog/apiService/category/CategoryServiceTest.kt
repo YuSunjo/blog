@@ -33,5 +33,4 @@ class CategoryServiceTest(
         Assertions.assertThat(retrieveCategory[1].categoryName).isEqualTo(category2.categoryName)
         Assertions.assertThat(retrieveCategory[2].categoryName).isEqualTo(category1.categoryName)
     }
-
 }

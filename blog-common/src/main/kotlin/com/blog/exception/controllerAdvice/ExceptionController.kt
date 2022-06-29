@@ -58,5 +58,4 @@ class ExceptionController {
         Sentry.captureException(e)
         return ErrorResponse.error(ErrorCode.VALIDATION_EXCEPTION, e.localizedMessage)
     }
-
 }

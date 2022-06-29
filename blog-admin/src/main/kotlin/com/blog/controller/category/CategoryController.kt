@@ -11,7 +11,7 @@ import javax.validation.Valid
 
 @RestController
 class CategoryController(
-        private val categoryService: CategoryService
+    private val categoryService: CategoryService
 ) {
     @Member
     @PostMapping("/api/v1/admin/category")
@@ -29,5 +29,4 @@ class CategoryController(
     fun retrieveCategory(): ApiResponse<List<CategoryInfoResponse>> {
         return ApiResponse.success(categoryService.retrieveCategory())
     }
-
 }

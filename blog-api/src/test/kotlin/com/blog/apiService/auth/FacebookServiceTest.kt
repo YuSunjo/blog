@@ -62,7 +62,5 @@ class FacebookServiceTest(
         override fun getFacebookMemberInfo(access_token: String, fields: List<String>): FacebookMemberInfoResponse {
             return FacebookMemberInfoResponse("1234", "tnswh")
         }
-
     }
-
 }

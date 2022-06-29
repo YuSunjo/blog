@@ -34,5 +34,4 @@ class MemberController(
     fun getMyInfo(@MemberId memberId: Long): ApiResponse<MemberInfoResponse?> {
         return ApiResponse.success(memberService.getMyInfo(memberId))
     }
-
 }

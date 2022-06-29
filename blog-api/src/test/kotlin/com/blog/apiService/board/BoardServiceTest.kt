@@ -101,7 +101,7 @@ class BoardServiceTest(
         boardRepository.save(board)
 
         // when & then
-        assertThatThrownBy{boardService.boardLike(board.id, 1L)}.isInstanceOf(ConflictException::class.java)
+        assertThatThrownBy { boardService.boardLike(board.id, 1L) }.isInstanceOf(ConflictException::class.java)
     }
 
     @DisplayName("게시글 좋아요 1개가 있을 경우 취소 눌렀을 때 게시글 좋아요 개수는 0개가 된다.")
@@ -150,7 +150,7 @@ class BoardServiceTest(
         boardRepository.save(board)
 
         // when & then
-        assertThatThrownBy{boardService.boardUnLike(board.id, 1L)}.isInstanceOf(NotFoundException::class.java)
+        assertThatThrownBy { boardService.boardUnLike(board.id, 1L) }.isInstanceOf(NotFoundException::class.java)
     }
 
     @DisplayName("게시글 리스트 불러오기")
@@ -346,9 +346,8 @@ class BoardServiceTest(
     @Test
     fun getBoard_error() {
         // when & then
-        assertThatThrownBy{
+        assertThatThrownBy {
             boardService.getBoard(1L)
         }.isInstanceOf(NotFoundException::class.java)
     }
-
 }

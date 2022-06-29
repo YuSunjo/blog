@@ -69,5 +69,4 @@ class CategoryServiceTest(
         assertThat(retrieveCategory[1].categoryName).isEqualTo(category2.categoryName)
         assertThat(retrieveCategory[2].categoryName).isEqualTo(category1.categoryName)
     }
-
 }

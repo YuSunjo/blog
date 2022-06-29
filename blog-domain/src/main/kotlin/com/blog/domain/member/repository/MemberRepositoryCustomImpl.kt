@@ -8,7 +8,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory
 
 class MemberRepositoryCustomImpl(
     private val queryFactory: JPAQueryFactory
-): MemberRepositoryCustom{
+) : MemberRepositoryCustom {
 
     override fun findMemberByEmailAndRole(email: String, role: Role, provider: Provider): Member? {
         return queryFactory.selectFrom(member)
@@ -62,5 +62,4 @@ class MemberRepositoryCustomImpl(
             )
             .fetchOne()
     }
-
 }

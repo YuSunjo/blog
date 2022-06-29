@@ -5,8 +5,8 @@ import javax.persistence.*
 
 @Entity
 class Category(
-        var categoryName: String = "",
-): BaseTimeEntity() {
+    var categoryName: String = "",
+) : BaseTimeEntity() {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = 0L
@@ -14,5 +14,4 @@ class Category(
     fun update(categoryName: String) {
         this.categoryName = categoryName
     }
-
 }

@@ -93,7 +93,7 @@ class CommentServiceTest(
         val request = CreateCommentRequest("코멘트 입니다.", 1L, null)
 
         // when & then
-        assertThatThrownBy{
+        assertThatThrownBy {
             commentService.createComment(request, 1L)
         }.isInstanceOf(NotFoundException::class.java)
     }
@@ -109,7 +109,7 @@ class CommentServiceTest(
         val request = CreateCommentRequest("코멘트 입니다.", board.id, 1L)
 
         // when & then
-        assertThatThrownBy{
+        assertThatThrownBy {
             commentService.createComment(request, 1L)
         }.isInstanceOf(NotFoundException::class.java)
     }
@@ -158,5 +158,4 @@ class CommentServiceTest(
         assertThat(retrieveComment[0].childCommentList).hasSize(1)
         assertThat(retrieveComment[0].childCommentList[0].commentId).isEqualTo(comment1_1.id)
     }
-
 }

@@ -12,7 +12,7 @@ import org.springframework.data.domain.Pageable
 
 class BoardRepositoryCustomImpl(
     private val queryFactory: JPAQueryFactory
-): BoardRepositoryCustom {
+) : BoardRepositoryCustom {
 
     override fun findBoardById(id: Long): Board? {
         return queryFactory.selectFrom(board)
@@ -72,5 +72,4 @@ class BoardRepositoryCustomImpl(
         }
         return boardHashTag.`in`(hashTagList)
     }
-
 }

@@ -9,6 +9,10 @@ interface BoardRepositoryCustom {
 
     fun findBoardById(id: Long): Board?
 
-    fun findBySearchingPagination(pageable: Pageable, search: String?, category: String?, hashTagList: List<BoardHashTag>): Page<Board>
-
+    fun findBySearchingPagination(
+        pageable: Pageable,
+        search: String?,
+        category: String?,
+        hashTagList: List<BoardHashTag>
+    ): Page<Board>
 }

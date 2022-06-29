@@ -12,26 +12,26 @@ import javax.persistence.*
 
 @Entity
 class Board(
-        var title: String = "",
+    var title: String = "",
 
-        @Column(columnDefinition = "TEXT")
-        var content: String = "",
+    @Column(columnDefinition = "TEXT")
+    var content: String = "",
 
-        var isPrivate: Boolean = false,
+    var isPrivate: Boolean = false,
 
-        var boardThumbnailUrl: String?,
+    var boardThumbnailUrl: String?,
 
-        @ManyToOne(fetch = FetchType.LAZY)
-        @JoinColumn(name = "category_id", nullable = false)
-        var category: Category,
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", nullable = false)
+    var category: Category,
 
-        var memberId: Long = 0L,
+    var memberId: Long = 0L,
 
-        var commentCount: Int = 0,
+    var commentCount: Int = 0,
 
-        var likeCount: Int = 0,
+    var likeCount: Int = 0,
 
-): BaseTimeEntity() {
+) : BaseTimeEntity() {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = 0L
@@ -95,5 +95,4 @@ class Board(
     fun incrementCommentCount() {
         this.commentCount++
     }
-
 }

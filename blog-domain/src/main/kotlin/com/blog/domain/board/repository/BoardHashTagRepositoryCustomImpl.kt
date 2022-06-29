@@ -9,29 +9,27 @@ import lombok.RequiredArgsConstructor
 @RequiredArgsConstructor
 class BoardHashTagRepositoryCustomImpl(
     private val queryFactory: JPAQueryFactory
-): BoardHashTagRepositoryCustom
- {
+) : BoardHashTagRepositoryCustom {
 
-     override fun findHashTagByBoard(board: Board): List<BoardHashTag> {
-         return queryFactory.selectFrom(boardHashTag)
-             .where(
-                 boardHashTag.board.eq(board)
-             )
-             .fetch()
-     }
+    override fun findHashTagByBoard(board: Board): List<BoardHashTag> {
+        return queryFactory.selectFrom(boardHashTag)
+            .where(
+                boardHashTag.board.eq(board)
+            )
+            .fetch()
+    }
 
-     override fun findDistinctHashTag(): List<String> {
-         return queryFactory.select(boardHashTag.hashTag).distinct()
-             .from(boardHashTag)
-             .fetch()
-     }
+    override fun findDistinctHashTag(): List<String> {
+        return queryFactory.select(boardHashTag.hashTag).distinct()
+            .from(boardHashTag)
+            .fetch()
+    }
 
-     override fun findByHashTag(hashTag: String?): List<BoardHashTag> {
-         return queryFactory.selectFrom(boardHashTag)
-             .where(
-                 boardHashTag.hashTag.eq(hashTag)
-             )
-             .fetch();
-     }
-
- }
+    override fun findByHashTag(hashTag: String?): List<BoardHashTag> {
+        return queryFactory.selectFrom(boardHashTag)
+            .where(
+                boardHashTag.hashTag.eq(hashTag)
+            )
+            .fetch()
+    }
+}

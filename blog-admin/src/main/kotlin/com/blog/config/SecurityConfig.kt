@@ -28,5 +28,4 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
             .csrf().disable()
             .formLogin().disable()
     }
-
 }

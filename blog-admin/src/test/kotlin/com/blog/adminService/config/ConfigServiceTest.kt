@@ -76,5 +76,4 @@ class ConfigServiceTest(
         // then
         assertThat(response?.backgroundImage).isNull()
     }
-
 }

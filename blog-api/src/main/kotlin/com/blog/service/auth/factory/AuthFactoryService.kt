@@ -6,5 +6,4 @@ import com.blog.dto.auth.AuthRequest
 interface AuthFactoryService {
 
     fun findSocialIdAndProvider(request: AuthRequest): Member
-
 }

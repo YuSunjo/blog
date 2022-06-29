@@ -1,4 +1,3 @@
 package com.blog.domain.board.repository
 
-class BoardLikeRepositoryCustomImpl : BoardLikeRepositoryCustom {
-}
+class BoardLikeRepositoryCustomImpl : BoardLikeRepositoryCustom

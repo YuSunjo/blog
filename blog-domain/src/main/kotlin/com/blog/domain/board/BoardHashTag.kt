@@ -16,7 +16,7 @@ class BoardHashTag(
     @JoinColumn(name = "board_id", nullable = false)
     var board: Board
 
-): BaseTimeEntity() {
+) : BaseTimeEntity() {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = 0L

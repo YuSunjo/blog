@@ -43,5 +43,4 @@ class BoardController(
     fun retrieveHashTag(): ApiResponse<List<String>> {
         return ApiResponse.success(boardService.retrieveHashTag())
     }
-
 }

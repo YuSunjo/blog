@@ -34,22 +34,28 @@ class BoardService(
 
     @Transactional
     fun boardLike(boardId: Long, memberId: Long) {
-        val board = (boardRepository.findBoardById(boardId)
-            ?: throw NotFoundException("존재하지 않는 게시글 $boardId 입니다."))
+        val board = (
+            boardRepository.findBoardById(boardId)
+                ?: throw NotFoundException("존재하지 않는 게시글 $boardId 입니다.")
+            )
         board.boardAddLike(memberId)
     }
 
     @Transactional
     fun boardUnLike(boardId: Long, memberId: Long) {
-        val board = (boardRepository.findBoardById(boardId)
-            ?: throw NotFoundException("존재하지 않는 게시글 $boardId 입니다."))
+        val board = (
+            boardRepository.findBoardById(boardId)
+                ?: throw NotFoundException("존재하지 않는 게시글 $boardId 입니다.")
+            )
         board.boardUnLike(memberId)
     }
 
     @Transactional
     fun getBoard(boardId: Long): BoardInfoResponse {
-        val board = (boardRepository.findBoardById(boardId)
-            ?: throw NotFoundException("존재하지 않는 게시글 $boardId 입니다."))
+        val board = (
+            boardRepository.findBoardById(boardId)
+                ?: throw NotFoundException("존재하지 않는 게시글 $boardId 입니다.")
+            )
         return BoardInfoResponse.of(board)
     }
 
@@ -57,5 +63,4 @@ class BoardService(
     fun retrieveHashTag(): List<String> {
         return boardHashTagRepository.findDistinctHashTag()
     }
-
 }

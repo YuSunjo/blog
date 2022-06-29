@@ -58,23 +58,27 @@ class MemberControllerTest(
             post("/api/v1/admin/member/signup")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(request))
-                .accept(MediaType.APPLICATION_JSON))
+                .accept(MediaType.APPLICATION_JSON)
+        )
             .andDo(print())
-            .andDo(document("member/create",
-                ApiDocumentUtils.documentRequest,
-                ApiDocumentUtils.documentResponse,
-                requestFields(
-                    fieldWithPath("email").description("email"),
-                    fieldWithPath("password").description("password"),
-                    fieldWithPath("nickname").description("nickname"),
-                    fieldWithPath("memberImage").description("memberImage"),
-                    fieldWithPath("provider").description("provider")
-                ),
-                responseFields(
-                    fieldWithPath("data").description("ok"),
-                    fieldWithPath("code").description("code")
+            .andDo(
+                document(
+                    "member/create",
+                    ApiDocumentUtils.documentRequest,
+                    ApiDocumentUtils.documentResponse,
+                    requestFields(
+                        fieldWithPath("email").description("email"),
+                        fieldWithPath("password").description("password"),
+                        fieldWithPath("nickname").description("nickname"),
+                        fieldWithPath("memberImage").description("memberImage"),
+                        fieldWithPath("provider").description("provider")
+                    ),
+                    responseFields(
+                        fieldWithPath("data").description("ok"),
+                        fieldWithPath("code").description("code")
+                    )
                 )
-            ))
+            )
     }
 
     @Test
@@ -91,21 +95,25 @@ class MemberControllerTest(
             post("/api/v1/admin/member/login")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(request))
-                .accept(MediaType.APPLICATION_JSON))
+                .accept(MediaType.APPLICATION_JSON)
+        )
             .andDo(print())
-            .andDo(document("member/login",
-                ApiDocumentUtils.documentRequest,
-                ApiDocumentUtils.documentResponse,
-                requestFields(
-                    fieldWithPath("email").description("email"),
-                    fieldWithPath("password").description("password"),
-                    fieldWithPath("provider").description("provider")
-                ),
-                responseFields(
-                    fieldWithPath("data").description("ok"),
-                    fieldWithPath("code").description("code")
+            .andDo(
+                document(
+                    "member/login",
+                    ApiDocumentUtils.documentRequest,
+                    ApiDocumentUtils.documentResponse,
+                    requestFields(
+                        fieldWithPath("email").description("email"),
+                        fieldWithPath("password").description("password"),
+                        fieldWithPath("provider").description("provider")
+                    ),
+                    responseFields(
+                        fieldWithPath("data").description("ok"),
+                        fieldWithPath("code").description("code")
+                    )
                 )
-            ))
+            )
     }
 
     @Test
@@ -123,21 +131,24 @@ class MemberControllerTest(
             get("/api/v1/admin/member")
                 .header("Authorization", token)
                 .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
+                .accept(MediaType.APPLICATION_JSON)
+        )
             .andDo(print())
-            .andDo(document("member/getMember",
-                ApiDocumentUtils.documentRequest,
-                ApiDocumentUtils.documentResponse,
-                responseFields(
-                    fieldWithPath("data.id").description("id"),
-                    fieldWithPath("data.email").description("email"),
-                    fieldWithPath("data.memberImage").description("memberImage"),
-                    fieldWithPath("data.provider").description("provider"),
-                    fieldWithPath("data.role").description("role"),
-                    fieldWithPath("data.nickname").description("nickname"),
-                    fieldWithPath("code").description("code")
+            .andDo(
+                document(
+                    "member/getMember",
+                    ApiDocumentUtils.documentRequest,
+                    ApiDocumentUtils.documentResponse,
+                    responseFields(
+                        fieldWithPath("data.id").description("id"),
+                        fieldWithPath("data.email").description("email"),
+                        fieldWithPath("data.memberImage").description("memberImage"),
+                        fieldWithPath("data.provider").description("provider"),
+                        fieldWithPath("data.role").description("role"),
+                        fieldWithPath("data.nickname").description("nickname"),
+                        fieldWithPath("code").description("code")
+                    )
                 )
-            ))
+            )
     }
-
 }

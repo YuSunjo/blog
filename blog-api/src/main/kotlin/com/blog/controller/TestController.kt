@@ -10,5 +10,4 @@ class TestController {
     fun pong(): String {
         return "pong"
     }
-
 }

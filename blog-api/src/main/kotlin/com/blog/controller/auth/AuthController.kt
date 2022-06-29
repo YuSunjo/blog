@@ -27,5 +27,4 @@ class AuthController(
         val member = authService.findSocialIdAndProvider(request)
         return ApiResponse.success(memberService.authMemberLogin(member))
     }
-
 }

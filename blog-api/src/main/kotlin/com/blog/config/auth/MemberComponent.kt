@@ -28,5 +28,4 @@ class MemberComponent(
         request.setAttribute("memberId", memberId.toLong())
         return true
     }
-
 }

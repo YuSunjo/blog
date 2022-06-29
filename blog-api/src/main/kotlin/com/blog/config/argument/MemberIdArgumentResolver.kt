@@ -10,7 +10,7 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver
 import org.springframework.web.method.support.ModelAndViewContainer
 
 @Component
-class MemberIdArgumentResolver: HandlerMethodArgumentResolver {
+class MemberIdArgumentResolver : HandlerMethodArgumentResolver {
 
     override fun supportsParameter(parameter: MethodParameter): Boolean {
         val hasAnnotation: Boolean = parameter.getParameterAnnotation(MemberId::class.java) != null
@@ -28,5 +28,4 @@ class MemberIdArgumentResolver: HandlerMethodArgumentResolver {
     ): Any? {
         return webRequest.getAttribute("memberId", 0)
     }
-
 }

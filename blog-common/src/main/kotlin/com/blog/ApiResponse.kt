@@ -1,6 +1,6 @@
 package com.blog
 
-data class ApiResponse<T>(
+data class ApiResponse <T>(
     val data: T?,
     val code: Int,
 ) {
@@ -8,10 +8,8 @@ data class ApiResponse<T>(
 
         val OK = success("ok")
 
-        public fun<T> success(data: T): ApiResponse<T> {
+        public fun <T> success(data: T): ApiResponse <T> {
             return ApiResponse(data, 200)
         }
-
     }
-
 }

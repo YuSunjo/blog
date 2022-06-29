@@ -21,7 +21,6 @@ data class CreateBoardRequest(
     fun toEntity(memberId: Long, category: Category): Board {
         return Board(title, content, isPrivate, boardThumbnailUrl, category, memberId)
     }
-
 }
 
 data class UpdateBoardRequest(

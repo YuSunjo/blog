@@ -11,7 +11,7 @@ import javax.annotation.PostConstruct
 private val authServiceMap: MutableMap<Provider, AuthFactoryService> = EnumMap(Provider::class.java)
 
 @Component
-class AuthFactory (
+class AuthFactory(
     private val googleService: GoogleService,
     private val facebookService: FacebookService,
 ) {
@@ -25,5 +25,4 @@ class AuthFactory (
     fun getAuthService(provider: Provider): AuthFactoryService {
         return authServiceMap[provider] ?: throw NotFoundException("존재하지 않는 authService ($provider) 입니다.")
     }
-
 }

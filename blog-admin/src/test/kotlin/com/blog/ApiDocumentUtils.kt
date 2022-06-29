@@ -10,7 +10,8 @@ object ApiDocumentUtils {
             Preprocessors.modifyUris()
                 .scheme("http")
                 .removePort(),
-            Preprocessors.prettyPrint())
+            Preprocessors.prettyPrint()
+        )
     val documentResponse: OperationResponsePreprocessor
         get() {
             return Preprocessors.preprocessResponse(Preprocessors.prettyPrint())

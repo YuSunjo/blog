@@ -27,5 +27,4 @@ class JwtTokenProvider {
     fun getSubject(token: String?): String? {
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject()
     }
-
 }

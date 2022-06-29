@@ -15,5 +15,4 @@ class CategoryController(
     fun retrieveCategory(): ApiResponse<List<CategoryInfoResponse>> {
         return ApiResponse.success(categoryService.retrieveCategory())
     }
-
 }

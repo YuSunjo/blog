@@ -30,8 +30,5 @@ class UploadUtils {
             val s3Url = String.format("https://%s.s3.ap-northeast-2.amazonaws.com", bucket)
             return resourceUrl?.replace(s3Url, cloudFrontUrl)
         }
-
     }
-
-
 }

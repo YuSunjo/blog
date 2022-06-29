@@ -7,25 +7,25 @@ import javax.persistence.*
 @Entity
 class Member(
 
-        var email: String?,
+    var email: String?,
 
-        var password: String?,
+    var password: String?,
 
-        var memberImage: String?,
+    var memberImage: String?,
 
-        @Column(nullable = false)
-        @Enumerated(EnumType.STRING)
-        var provider: Provider,
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    var provider: Provider,
 
-        @Enumerated(EnumType.STRING)
-        @Column(nullable = false)
-        var role: Role,
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    var role: Role,
 
-        var nickname: String,
+    var nickname: String,
 
-        var socialId: String?
+    var socialId: String?
 
-): BaseTimeEntity() {
+) : BaseTimeEntity() {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = 0L
@@ -43,7 +43,5 @@ class Member(
         fun testFacebookInstance(socialId: String): Member {
             return Member(null, null, null, Provider.FACEBOOK, Role.USER, "name", socialId)
         }
-
     }
-
 }

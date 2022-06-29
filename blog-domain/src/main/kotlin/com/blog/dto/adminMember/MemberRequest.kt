@@ -18,7 +18,6 @@ data class CreateMemberRequest(
     fun toEntity(encodedPassword: String): Member {
         return Member(email, encodedPassword, null, Provider.LOCAL, Role.ADMIN, nickname, null)
     }
-
 }
 
 data class LoginMemberRequest(

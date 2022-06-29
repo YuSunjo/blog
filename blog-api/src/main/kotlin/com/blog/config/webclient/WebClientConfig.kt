@@ -14,10 +14,12 @@ class WebClientConfig {
     @Bean
     fun webClient(): WebClient {
         return WebClient.builder()
-            .clientConnector(ReactorClientHttpConnector(
-                HttpClient.create()
-                    .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 3000)
-                    .doOnConnected { conn -> conn.addHandler(ReadTimeoutHandler(3000, TimeUnit.MILLISECONDS)) }
-            )).build()
+            .clientConnector(
+                ReactorClientHttpConnector(
+                    HttpClient.create()
+                        .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 3000)
+                        .doOnConnected { conn -> conn.addHandler(ReadTimeoutHandler(3000, TimeUnit.MILLISECONDS)) }
+                )
+            ).build()
     }
 }

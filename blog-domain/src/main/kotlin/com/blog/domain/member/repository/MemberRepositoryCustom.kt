@@ -8,7 +8,7 @@ interface MemberRepositoryCustom {
 
     fun findMemberByEmailAndRole(email: String, role: Role, provider: Provider): Member?
 
-    fun findMemberById(memberId: Long) : Member?
+    fun findMemberById(memberId: Long): Member?
 
     fun findMemberByIdAndRole(memberId: Long, role: Role): Member?
 
@@ -17,5 +17,4 @@ interface MemberRepositoryCustom {
     fun findAllByIds(commentMemberIds: List<Long>): List<Member>
 
     fun findBySocialIdAndProvider(socialId: String, provider: Provider): Member?
-
 }

@@ -7,7 +7,7 @@ import javax.persistence.Id
 @Entity
 class Config(
     var backgroundImage: String = ""
-): BaseTimeEntity() {
+) : BaseTimeEntity() {
     @Id
     var id: Long = 1L
 

@@ -10,7 +10,7 @@ import javax.validation.Valid
 
 @RestController
 class BoardController(
-        private val boardService: BoardService
+    private val boardService: BoardService
 ) {
     @GetMapping("/api/v1/board/list")
     fun retrieveBoard(@Valid request: RetrieveBoardRequest): ApiResponse<BoardInfoListResponse> {
@@ -40,5 +40,4 @@ class BoardController(
     fun retrieveHashTag(): ApiResponse<List<String>> {
         return ApiResponse.success(boardService.retrieveHashTag())
     }
-
 }

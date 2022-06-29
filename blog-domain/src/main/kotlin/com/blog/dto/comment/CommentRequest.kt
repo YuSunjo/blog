@@ -16,7 +16,6 @@ data class CreateCommentRequest(
     fun hasParentComment(): Boolean {
         return parentCommentId != null
     }
-
 }
 
 data class UpdateCommentRequest(

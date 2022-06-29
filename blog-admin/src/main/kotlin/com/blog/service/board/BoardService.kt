@@ -22,8 +22,10 @@ class BoardService(
 
     @Transactional
     fun createBoard(request: CreateBoardRequest, memberId: Long): BoardInfoResponse {
-        val category = (categoryRepository.findCategoryById(request.categoryId)
-            ?: throw NotFoundException("존재하지 않는 카테고리 ${request.categoryId} 입니다."))
+        val category = (
+            categoryRepository.findCategoryById(request.categoryId)
+                ?: throw NotFoundException("존재하지 않는 카테고리 ${request.categoryId} 입니다.")
+            )
         val board: Board = boardRepository.save(request.toEntity(memberId, category))
         board.addHashTag(request.hashTagList, memberId)
         return BoardInfoResponse.of(board)
@@ -31,10 +33,14 @@ class BoardService(
 
     @Transactional
     fun updateBoard(request: UpdateBoardRequest, memberId: Long): BoardInfoResponse {
-        val board = (boardRepository.findBoardById(request.id)
-            ?: throw NotFoundException("존재하지 않는 게시글 ${request.id} 입니다."))
-        val category = (categoryRepository.findCategoryById(request.categoryId)
-            ?: throw NotFoundException("존재하지 않는 카테고리 ${request.categoryId} 입니다."))
+        val board = (
+            boardRepository.findBoardById(request.id)
+                ?: throw NotFoundException("존재하지 않는 게시글 ${request.id} 입니다.")
+            )
+        val category = (
+            categoryRepository.findCategoryById(request.categoryId)
+                ?: throw NotFoundException("존재하지 않는 카테고리 ${request.categoryId} 입니다.")
+            )
         val hashTagList = boardHashTagRepository.findHashTagByBoard(board)
         board.updateBoard(request, category)
         board.deleteHashTag(hashTagList)
@@ -44,8 +50,10 @@ class BoardService(
 
     @Transactional(readOnly = true)
     fun getBoard(boardId: Long): BoardInfoResponse {
-        val board = (boardRepository.findBoardById(boardId)
-            ?: throw NotFoundException("존재하지 않는 게시글 $boardId 입니다."))
+        val board = (
+            boardRepository.findBoardById(boardId)
+                ?: throw NotFoundException("존재하지 않는 게시글 $boardId 입니다.")
+            )
         return BoardInfoResponse.of(board)
     }
 
@@ -67,5 +75,4 @@ class BoardService(
     fun retrieveHashTag(): List<String> {
         return boardHashTagRepository.findDistinctHashTag()
     }
-
 }

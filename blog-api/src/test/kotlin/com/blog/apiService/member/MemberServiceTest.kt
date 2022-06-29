@@ -81,5 +81,4 @@ class MemberServiceTest(
         assertThat(memberList).hasSize(1)
         TestUtils.assertMember(member, memberInfoResponse?.email, memberInfoResponse?.nickname, memberInfoResponse?.provider)
     }
-
 }

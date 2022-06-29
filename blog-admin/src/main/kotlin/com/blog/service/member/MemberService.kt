@@ -28,8 +28,10 @@ class MemberService(
 
     @Transactional
     fun adminMemberLogin(request: LoginMemberRequest): String {
-        val member = (memberRepository.findMemberByEmailAndRole(request.email, Role.ADMIN, Provider.LOCAL)
-            ?: throw NotFoundException("존재하지 않는 멤버 ${request.email} 입니다."))
+        val member = (
+            memberRepository.findMemberByEmailAndRole(request.email, Role.ADMIN, Provider.LOCAL)
+                ?: throw NotFoundException("존재하지 않는 멤버 ${request.email} 입니다.")
+            )
         MemberServiceUtils.validatePassword(passwordEncoder, member.password, request.password)
         return jwtTokenProvider.createToken(member.id.toString())
     }
@@ -37,8 +39,7 @@ class MemberService(
     @Transactional
     fun getMyInfo(memberId: Long): MemberInfoResponse? {
         val member: Member = memberRepository.findMemberByIdAndRole(memberId, Role.ADMIN)
-                ?: throw NotFoundException("존재하지 않는 멤버 $memberId 입니다.")
+            ?: throw NotFoundException("존재하지 않는 멤버 $memberId 입니다.")
         return MemberInfoResponse.of(member)
     }
-
 }

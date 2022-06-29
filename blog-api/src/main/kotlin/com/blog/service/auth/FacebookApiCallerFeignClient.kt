@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestParam
 @FeignClient(
     name = "facebookApiCallerFeignClient",
     url = "\${facebook.auth.base_url}",
-    configuration = [FeignClientConfig::class])
+    configuration = [FeignClientConfig::class]
+)
 interface FacebookApiCallerFeignClient {
 
     @GetMapping("\${facebook.auth.profile_url}")
     fun getFacebookMemberInfo(@RequestParam access_token: String, @RequestParam fields: List<String>): FacebookMemberInfoResponse
-
 }
