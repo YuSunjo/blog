@@ -2,8 +2,6 @@ plugins {
     id "org.asciidoctor.jvm.convert" version "3.3.2"
 }
 
-
-
 dependencies {
     implementation project(':blog-domain')
     implementation project(':blog-common')
