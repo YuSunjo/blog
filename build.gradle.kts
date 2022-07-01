@@ -8,7 +8,7 @@ plugins {
     kotlin("plugin.spring") version "1.6.21"
     kotlin("plugin.jpa") version "1.6.21"
     id("com.google.cloud.tools.jib") version "3.2.1"
-//    id("jacoco")
+    id("jacoco")
     id("application")
 //    id("org.jlleitschuh.gradle.ktlint") version "10.2.1"
 }
@@ -25,10 +25,6 @@ extra["querydslPluginVersion"] = "1.0.10"
 extra["kotestVersion"] = "5.1.0"
 extra["mockkVersion"] = "1.11.0"
 
-// jacoco {
-//    toolVersion = "0.8.7"
-// }
-
 application {
     mainClass.set("com.blog.BlogAdminApplication.kt")
     mainClass.set("com.blog.BlogApiApplication.kt")
@@ -43,6 +39,7 @@ subprojects {
         plugin("io.spring.dependency-management")
         plugin("org.jetbrains.kotlin.plugin.spring") // allOpen처리를 위해 모든 프로젝트에 kotlin-spring플러그인 적용
         plugin("application")
+        plugin("jacoco")
     }
 
     group = "com.blog"
@@ -134,22 +131,27 @@ subprojects {
         }
     }
 
-//    tasks.jacocoTestReport {
-//        reports {
-//            html.isEnabled = true
-//            xml.isEnabled = true
-//            csv.isEnabled = false
-//        }
-//    }
-
     tasks.withType<Test> {
         useJUnitPlatform()
     }
 
-//    tasks.test {
-//        extensions.configure(JacocoTaskExtension::class) {
-//            destinationFile = file("$buildDir/jacoco/jacoco.exec")
-//        }
-//        finalizedBy("jacocoTestReport")
-//    }
+    jacoco {
+        toolVersion = "0.8.7"
+    }
+
+    tasks.test {
+        extensions.configure(JacocoTaskExtension::class) {
+            destinationFile = layout.buildDirectory.file("jacoco/jacoco.exec").get().asFile
+        }
+        finalizedBy("jacocoTestReport")
+    }
+
+    tasks.jacocoTestReport {
+        reports {
+            xml.required.set(true)
+            csv.required.set(false)
+            html.required.set(true)
+        }
+    }
+
 }
