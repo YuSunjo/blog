@@ -1,5 +1,5 @@
 ### file upload
-POST {{blog_admin}}/image/upload
+POST {{blog_admin}}/image/upload?imageType=BOARD_THUMBNAIL
 Content-Type: multipart/form-data; boundary=WebAppBoundary
 
 --WebAppBoundary

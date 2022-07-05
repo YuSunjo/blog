@@ -1,5 +1,6 @@
 package com.blog.service.upload
 
+import com.blog.dto.upload.ImageType
 import com.blog.exception.ValidationException
 import org.apache.commons.io.FilenameUtils
 import java.text.SimpleDateFormat
@@ -16,13 +17,13 @@ class UploadUtils {
             }
         }
 
-        private fun createFolder(uploadFolder: UploadFolder): String {
-            return "$uploadFolder/"
+        private fun createFolder(imageType: ImageType): String {
+            return "$imageType/"
         }
 
-        fun createFileNameAndDirectory(originalFilename: String?): String {
+        fun createFileNameAndDirectory(originalFilename: String?, imageType: ImageType): String {
             val now = SimpleDateFormat("yyyyMMddHmsS").format(Date())
-            val folder = createFolder(UploadFolder.USER)
+            val folder = createFolder(imageType)
             return folder + now + originalFilename
         }
 
