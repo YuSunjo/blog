@@ -116,6 +116,10 @@ subprojects {
 
         // mockk
         testImplementation("io.mockk:mockk:1.11.0")
+
+        // upload
+        implementation("commons-io:commons-io:2.11.0")
+        implementation("commons-fileupload:commons-fileupload:1.4")
     }
 
     configure<JavaPluginExtension> {

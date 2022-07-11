@@ -10,17 +10,15 @@ import com.blog.dto.adminMember.LoginMemberRequest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.test.context.TestConstructor
 
+@TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
 @SpringBootTest
 internal class MemberServiceTest(
-    @Autowired
     private val memberRepository: MemberRepository,
-    @Autowired
     private val adminMemberService: MemberService,
-    @Autowired
     private val passwordEncoder: PasswordEncoder
 ) {
 

@@ -6,4 +6,5 @@ import org.springframework.web.multipart.MultipartFile
 interface UploadService {
 
     fun imageUpload(file: MultipartFile, imageType: ImageType): String?
+
 }
