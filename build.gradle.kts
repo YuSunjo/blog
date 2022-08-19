@@ -24,6 +24,7 @@ extra["springCloudVersion"] = "2021.0.3"
 extra["querydslPluginVersion"] = "1.0.10"
 extra["kotestVersion"] = "5.1.0"
 extra["mockkVersion"] = "1.11.0"
+extra["springBootAdminVersion"] = "2.7.3"
 
 application {
     mainClass.set("com.blog.BlogAdminApplication.kt")
@@ -52,6 +53,7 @@ subprojects {
     dependencyManagement {
         imports {
             mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
+            mavenBom("de.codecentric:spring-boot-admin-dependencies:${property("springBootAdminVersion")}")
         }
     }
 
@@ -120,6 +122,9 @@ subprojects {
         // upload
         implementation("commons-io:commons-io:2.11.0")
         implementation("commons-fileupload:commons-fileupload:1.4")
+
+        // spring boot admin client
+        implementation("de.codecentric:spring-boot-admin-starter-client")
     }
 
     configure<JavaPluginExtension> {

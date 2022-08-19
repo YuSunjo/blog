@@ -1,8 +1,33 @@
+management:
+  trace:
+    http:
+      enabled: true
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
 server:
   port: 8080
   shutdown: graceful
 
 spring:
+  boot:
+    admin:
+      client:
+        auto-registration: true
+        url: https://api-manage-lovga.site
+        username: tnswh2023
+        password: 1234
+        instance:
+          name: blog
+          metadata:
+            user.name: tnswh2023
+            user.password: 1234
+          service-url: https://api-lovga.site
   mvc:
     pathmatch:
       matching-strategy: ANT_PATH_MATCHER
