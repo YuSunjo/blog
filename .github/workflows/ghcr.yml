@@ -57,7 +57,7 @@ jobs:
           echo -e "facebook.auth.client_id=$FB_CLIENT_ID\nfacebook.auth.client_secret=$FB_CLIENT_SECRET\nfacebook.auth.base_url=$FB_BASE_URL\nfacebook.auth.profile_url=$FB_PROFILE_URL" > $API_RESOURCE_FILE/application-fb.properties
 
       - name: Login to ghcr
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: blog
