@@ -60,7 +60,7 @@ cloud:
 ---
 spring:
   profiles:
-    active: local, dev
+    active: local
     include:
       - aws
       - sentry
@@ -71,3 +71,5 @@ spring:
     active: dev
     include:
       - rds
+      - aws
+      - sentry
