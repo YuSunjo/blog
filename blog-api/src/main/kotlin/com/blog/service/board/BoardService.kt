@@ -11,7 +11,6 @@ import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import java.util.stream.Collectors
 
 @Service
 class BoardService(
@@ -26,9 +25,9 @@ class BoardService(
             boardHashTagList = boardHashTagRepository.findByHashTag(request.hashTag)
         }
         val boardPagination = boardRepository.findBySearchingPagination(pageable, request.search, request.category, boardHashTagList)
-        val boardList = boardPagination.stream().map {
+        val boardList = boardPagination.asSequence().map {
             BoardInfoResponse.of(it)
-        }.collect(Collectors.toList())
+        }.toList()
         return BoardInfoListResponse.of(boardList, boardPagination.totalPages)
     }
 

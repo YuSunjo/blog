@@ -14,8 +14,8 @@ class CategoryService(
     @Transactional(readOnly = true)
     fun retrieveCategory(): List<CategoryInfoResponse> {
         return categoryRepository.findCategory()
-            .stream().map {
+            .asSequence().map {
                 CategoryInfoResponse.of(it)
-            }.collect(Collectors.toList())
+            }.toList()
     }
 }

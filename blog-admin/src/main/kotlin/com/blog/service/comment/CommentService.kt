@@ -56,8 +56,8 @@ class CommentService(
         val boardCommentList = commentRepository.findCommentByBoardId(boardId)
         val commentMemberIds = boardCommentList.stream().map { it.memberId }.collect(Collectors.toList())
         val memberMap: Map<Long, Member> = memberRepository.findAllByIds(commentMemberIds).associateBy { it.id }
-        return boardCommentList.stream().map {
+        return boardCommentList.asSequence().map {
             CommentInfoResponse.of(it, memberMap)
-        }.collect(Collectors.toList())
+        }.toList()
     }
 }

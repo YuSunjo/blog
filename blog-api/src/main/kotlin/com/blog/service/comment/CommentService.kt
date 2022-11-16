@@ -55,10 +55,10 @@ class CommentService(
                 ?: throw NotFoundException("존재하지 않는 게시글 $boardId 입니다.")
             )
         val boardCommentList = commentRepository.findCommentByBoardId(boardId)
-        val commentMemberIds = boardCommentList.stream().map { it.memberId }.collect(Collectors.toList())
+        val commentMemberIds = boardCommentList.asSequence().map { it.memberId }.toList()
         val memberMap: Map<Long, Member> = memberRepository.findAllByIds(commentMemberIds).associateBy { it.id }
-        return boardCommentList.stream().map {
+        return boardCommentList.asSequence().map {
             CommentInfoResponse.of(it, memberMap)
-        }.collect(Collectors.toList())
+        }.toList()
     }
 }

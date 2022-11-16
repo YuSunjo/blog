@@ -7,7 +7,6 @@ import com.blog.dto.category.UpdateCategoryRequest
 import com.blog.exception.NotFoundException
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import java.util.stream.Collectors
 
 @Service
 class CategoryService(
@@ -20,10 +19,8 @@ class CategoryService(
 
     @Transactional
     fun updateCategory(request: UpdateCategoryRequest): CategoryInfoResponse {
-        val category = (
-            categoryRepository.findCategoryById(request.id)
-                ?: throw NotFoundException("존재하지 않는 카테고리 ${request.id} 입니다.")
-            )
+        val category = categoryRepository.findCategoryById(request.id)
+            ?: throw NotFoundException("존재하지 않는 카테고리 ${request.id} 입니다.")
         category.update(request.categoryName)
         return CategoryInfoResponse.of(category)
     }
@@ -31,8 +28,8 @@ class CategoryService(
     @Transactional(readOnly = true)
     fun retrieveCategory(): List<CategoryInfoResponse> {
         return categoryRepository.findCategory()
-            .stream().map {
+            .asSequence().map {
                 CategoryInfoResponse.of(it)
-            }.collect(Collectors.toList())
+            }.toList()
     }
 }

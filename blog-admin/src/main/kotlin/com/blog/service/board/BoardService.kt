@@ -65,9 +65,9 @@ class BoardService(
             boardHashTagList = boardHashTagRepository.findByHashTag(request.hashTag)
         }
         val boardPagination = boardRepository.findBySearchingPagination(pageable, request.search, request.category, boardHashTagList)
-        val boardList = boardPagination.stream().map {
+        val boardList = boardPagination.asSequence().map {
             BoardInfoResponse.of(it)
-        }.collect(Collectors.toList())
+        }.toList()
         return BoardInfoListResponse.of(boardList, boardPagination.totalPages)
     }
 
