@@ -3,8 +3,10 @@ spring:
     activate:
       on-profile: dev
   datasource:
-    url: jdbc:mysql://my8002.gabiadb.com:3306/balldedb
-    driver-class-name: org.mariadb.jdbc.Driver
+    hikari:
+      jdbc-url: jdbc:mysql://my8002.gabiadb.com:3306/balldedb
+      driver-class-name: org.mariadb.jdbc.Driver
+      max-lifetime: 900000
   jpa:
     database-platform: org.hibernate.dialect.MariaDB103Dialect
     hibernate:
