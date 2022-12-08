@@ -4,7 +4,7 @@ spring:
       on-profile: dev
   datasource:
     hikari:
-      jdbc-url: jdbc:mariadb://velog.cqa7rhjwuoqr.ap-northeast-2.rds.amazonaws.com/blog_dev
+      jdbc-url: jdbc:mysql://my8002.gabiadb.com:3306/balldedb
       driver-class-name: org.mariadb.jdbc.Driver
   jpa:
     database-platform: org.hibernate.dialect.MariaDB103Dialect

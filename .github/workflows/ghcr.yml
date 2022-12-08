@@ -1,4 +1,4 @@
-name: velog docker cd
+name: blog docker cd
 
 on:
   push:

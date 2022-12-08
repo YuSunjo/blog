@@ -3,10 +3,8 @@ spring:
     activate:
       on-profile: dev
   datasource:
-    url: jdbc:mysql://my8002.gabiadb.com:3306
+    url: jdbc:mysql://my8002.gabiadb.com:3306/balldedb
     driver-class-name: org.mariadb.jdbc.Driver
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
   jpa:
     database-platform: org.hibernate.dialect.MariaDB103Dialect
     hibernate:
