@@ -11,6 +11,6 @@ spring:
     database-platform: org.hibernate.dialect.MariaDB103Dialect
     hibernate:
       ddl-auto: update
-  data:
-    mongodb:
-      uri: mongodb+srv://tnswh2023:1234@blog-mongo.tjhpryp.mongodb.net/blog_mongo
+#  data:
+#    mongodb:
+#      uri: mongodb+srv://<username>:<password>@blog-mongo.tjhpryp.mongodb.net/blog_mongo

@@ -32,9 +32,10 @@ jobs:
         env:
           DB_USERNAME: ${{ secrets.DB_USERNAME }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          MONGO_URI: ${{ secrets.MONGO_URI }}
         run: |
-          echo -e "spring.datasource.hikari.username=$DB_USERNAME\nspring.datasource.hikari.password=$DB_PASSWORD" > $API_RESOURCE_FILE/application-rds.properties
-          echo -e "spring.datasource.hikari.username=$DB_USERNAME\nspring.datasource.hikari.password=$DB_PASSWORD" > $ADMIN_RESOURCE_FILE/application-rds.properties
+          echo -e "spring.datasource.hikari.username=$DB_USERNAME\nspring.datasource.hikari.password=$DB_PASSWORD\nspring.mongodb.uri=$MONGO_URI" > $API_RESOURCE_FILE/application-rds.properties
+          echo -e "spring.datasource.hikari.username=$DB_USERNAME\nspring.datasource.hikari.password=$DB_PASSWORD\nspring.mongodb.uri=$MONGO_URI" > $ADMIN_RESOURCE_FILE/application-rds.properties
 
       - name: Create application-google.properties file
         env:

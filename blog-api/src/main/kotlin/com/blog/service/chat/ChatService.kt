@@ -2,7 +2,6 @@ package com.blog.service.chat
 
 import com.blog.domain.chat.Chats
 import com.blog.dto.chat.ChatInfoResponse
-import org.springframework.context.annotation.ComponentScan
 import org.springframework.data.domain.Sort
 import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.data.mongodb.core.aggregation.Aggregation.*
