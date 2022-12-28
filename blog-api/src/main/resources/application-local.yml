@@ -8,6 +8,9 @@ spring:
       settings:
         web-allow-others: true
       path: /h2-console
+  data:
+    mongodb:
+      uri: mongodb+srv://tnswh2023:1234@blog-mongo.tjhpryp.mongodb.net/blog_mongo
   jpa:
     hibernate:
       ddl-auto: create

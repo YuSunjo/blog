@@ -41,6 +41,12 @@ spring:
 logging:
   level:
     root: INFO
+    org:
+      springframework: INFO
+      hibernate:
+        type:
+          descriptor:
+            sql: trace
 
 cloud:
   aws:

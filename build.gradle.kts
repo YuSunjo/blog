@@ -125,6 +125,9 @@ subprojects {
 
         // spring boot admin client
         implementation("de.codecentric:spring-boot-admin-starter-client")
+
+        // mongo
+        implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
     }
 
     configure<JavaPluginExtension> {

@@ -1,0 +1,4 @@
+GET {{blog_api}}/api/v1/user/chat
+Content-Type: application/json
+Authorization: {{MEMBER}}
+

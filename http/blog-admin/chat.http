@@ -1,0 +1,4 @@
+GET {{blog_admin}}/api/v1/chat/10
+Content-Type: application/json
+Authorization: {{ADMIN}}
+
