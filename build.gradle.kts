@@ -128,6 +128,9 @@ subprojects {
 
         // mongo
         implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+
+        // gson
+        implementation("com.google.code.gson:gson:2.10.1")
     }
 
     configure<JavaPluginExtension> {
