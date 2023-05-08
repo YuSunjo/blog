@@ -39,3 +39,6 @@ Authorization: {{ADMIN}}
 ###hashtag
 GET {{blog_admin}}/api/v1/hashTag
 Authorization: {{ADMIN}}
+
+###
+GET {{blog_admin}}/api/v1/search

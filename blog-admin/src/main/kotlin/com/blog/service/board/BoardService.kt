@@ -2,6 +2,9 @@ package com.blog.service.board
 
 import com.blog.domain.board.Board
 import com.blog.domain.board.BoardHashTag
+import com.blog.domain.board.elastic.BoardDocument
+import com.blog.domain.board.elastic.BoardSearchRepository
+import com.blog.domain.board.elastic.boardSearchQueryRepository
 import com.blog.domain.board.repository.BoardHashTagRepository
 import com.blog.domain.board.repository.BoardRepository
 import com.blog.domain.category.repository.CategoryRepository
@@ -11,13 +14,14 @@ import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import java.util.stream.Collectors
 
 @Service
 class BoardService(
     private val boardRepository: BoardRepository,
+    private val boardSearchRepository: BoardSearchRepository,
+    private val boardSearchQueryRepository: boardSearchQueryRepository,
     private val categoryRepository: CategoryRepository,
-    private val boardHashTagRepository: BoardHashTagRepository
+    private val boardHashTagRepository: BoardHashTagRepository,
 ) {
 
     @Transactional
@@ -28,6 +32,7 @@ class BoardService(
             )
         val board: Board = boardRepository.save(request.toEntity(memberId, category))
         board.addHashTag(request.hashTagList, memberId)
+        boardSearchRepository.save(request.toDocument(board.id))
         return BoardInfoResponse.of(board)
     }
 
@@ -74,5 +79,9 @@ class BoardService(
     @Transactional(readOnly = true)
     fun retrieveHashTag(): List<String> {
         return boardHashTagRepository.findDistinctHashTag()
+    }
+
+    fun searchAll(): List<BoardDocument> {
+        return boardSearchQueryRepository.boardSearchAll()
     }
 }

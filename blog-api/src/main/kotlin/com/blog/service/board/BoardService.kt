@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class BoardService(
     private val boardRepository: BoardRepository,
-    private val boardHashTagRepository: BoardHashTagRepository
+    private val boardHashTagRepository: BoardHashTagRepository,
 ) {
     @Transactional
     fun retrieveBoard(request: RetrieveBoardRequest): BoardInfoListResponse {

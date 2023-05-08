@@ -63,6 +63,12 @@ cloud:
     stack:
       auto: false
 
+elasticsearch:
+  host: localhost
+  port: 9200
+  indecies:
+    testIndexName: test
+
 ---
 spring:
   profiles:
