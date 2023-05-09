@@ -47,3 +47,9 @@ facebook:
     client_secret: a
     base_url: a
     profile_url: a
+
+elasticsearch:
+  host: localhost
+  port: 9200
+  indecies:
+    testIndexName: test

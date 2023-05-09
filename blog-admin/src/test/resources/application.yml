@@ -32,3 +32,9 @@ spring:
       driver-class-name: org.h2.Driver
       username: sa
       password:
+
+elasticsearch:
+  host: localhost
+  port: 9200
+  indecies:
+    testIndexName: test
