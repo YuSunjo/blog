@@ -3,7 +3,6 @@ package com.blog.controller.board
 import com.blog.ApiResponse
 import com.blog.config.argument.MemberId
 import com.blog.config.auth.Member
-import com.blog.domain.board.elastic.BoardDocument
 import com.blog.dto.board.*
 import com.blog.service.board.BoardService
 import io.swagger.annotations.ApiOperation
@@ -46,7 +45,7 @@ class BoardController(
     }
 
     @GetMapping("api/v1/search")
-    fun searchAll(): ApiResponse<List<BoardDocument>> {
+    fun searchAll(): ApiResponse<String> {
         return ApiResponse.success(boardService.searchAll())
     }
 }

@@ -32,9 +32,3 @@ spring:
       driver-class-name: org.h2.Driver
       username: sa
       password:
-
-elasticsearch:
-  host: https://search-blog-search-6x645wgniksroxemjkwtsurwju.ap-northeast-2.es.amazonaws.com
-  port: 9200
-  indecies:
-    testIndexName: test

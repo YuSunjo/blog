@@ -57,10 +57,6 @@ cloud:
     stack:
       auto: false
 
-elasticsearch:
-  host: https://search-blog-search-6x645wgniksroxemjkwtsurwju.ap-northeast-2.es.amazonaws.com
-  port: 9200
-
 ---
 spring:
   profiles:

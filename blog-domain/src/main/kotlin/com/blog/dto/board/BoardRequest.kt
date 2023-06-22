@@ -1,7 +1,6 @@
 package com.blog.dto.board
 
 import com.blog.domain.board.Board
-import com.blog.domain.board.elastic.BoardDocument
 import com.blog.domain.category.Category
 import javax.validation.constraints.Min
 import javax.validation.constraints.NotBlank
@@ -23,9 +22,6 @@ data class CreateBoardRequest(
         return Board(title, content, isPrivate, boardThumbnailUrl, category, memberId)
     }
 
-    fun toDocument(id: Long): BoardDocument {
-        return BoardDocument(id, title, content)
-    }
 }
 
 data class UpdateBoardRequest(

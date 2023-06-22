@@ -47,9 +47,3 @@ facebook:
     client_secret: a
     base_url: a
     profile_url: a
-
-elasticsearch:
-  host: https://search-blog-search-6x645wgniksroxemjkwtsurwju.ap-northeast-2.es.amazonaws.com
-  port: 9200
-  indecies:
-    testIndexName: test
