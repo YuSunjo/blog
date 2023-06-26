@@ -2,8 +2,8 @@ package com.blog.domain.comment
 
 import com.blog.domain.BaseTimeEntity
 import com.blog.exception.ValidationException
-import javax.persistence.*
-import javax.persistence.FetchType.LAZY
+import jakarta.persistence.*
+import jakarta.persistence.FetchType.LAZY
 
 @Entity
 class Comment(

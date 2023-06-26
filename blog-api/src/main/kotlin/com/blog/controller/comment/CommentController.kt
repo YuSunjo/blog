@@ -8,7 +8,7 @@ import com.blog.dto.comment.UpdateCommentRequest
 import com.blog.dto.comment.response.CommentInfoResponse
 import com.blog.service.comment.CommentService
 import org.springframework.web.bind.annotation.*
-import javax.validation.Valid
+import jakarta.validation.Valid
 
 @RestController
 class CommentController(

@@ -1,7 +1,7 @@
 package com.blog.dto.config
 
 import com.blog.domain.config.Config
-import javax.validation.constraints.NotBlank
+import jakarta.validation.constraints.NotBlank
 
 data class CreateAndUpdateConfigRequest(
     @field:NotBlank

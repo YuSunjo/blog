@@ -1,7 +1,7 @@
 package com.blog.domain.board
 
 import com.blog.domain.BaseTimeEntity
-import javax.persistence.*
+import jakarta.persistence.*
 
 @Entity
 class BoardHashTag(

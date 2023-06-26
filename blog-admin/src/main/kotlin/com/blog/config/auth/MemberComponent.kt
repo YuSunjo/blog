@@ -8,7 +8,7 @@ import com.blog.exception.ValidationException
 import org.springframework.http.HttpHeaders
 import org.springframework.stereotype.Component
 import org.springframework.util.StringUtils
-import javax.servlet.http.HttpServletRequest
+import jakarta.servlet.http.HttpServletRequest
 
 @Component
 class MemberComponent(

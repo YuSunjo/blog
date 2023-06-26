@@ -3,8 +3,8 @@ package com.blog.dto.member
 import com.blog.domain.member.Member
 import com.blog.domain.member.Provider
 import com.blog.domain.member.Role
-import javax.validation.constraints.Email
-import javax.validation.constraints.NotBlank
+import jakarta.validation.constraints.Email
+import jakarta.validation.constraints.NotBlank
 
 data class CreateMemberRequest(
     @field:Email

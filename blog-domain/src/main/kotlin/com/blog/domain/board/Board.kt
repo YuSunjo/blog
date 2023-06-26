@@ -8,7 +8,7 @@ import com.blog.exception.ConflictException
 import com.blog.exception.NotFoundException
 import java.util.*
 import java.util.stream.Collectors
-import javax.persistence.*
+import jakarta.persistence.*
 
 @Entity
 class Board(

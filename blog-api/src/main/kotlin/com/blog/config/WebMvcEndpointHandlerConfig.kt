@@ -44,7 +44,6 @@ class WebMvcEndpointHandlerConfig {
             corsProperties.toCorsConfiguration(),
             EndpointLinksResolver(allEndpoints, basePath),
             shouldRegisterLinksMapping,
-            null
         )
     }
 

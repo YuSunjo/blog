@@ -6,7 +6,7 @@ import com.blog.service.auth.factory.AuthFactory
 import com.blog.service.member.MemberService
 import io.swagger.annotations.ApiOperation
 import org.springframework.web.bind.annotation.*
-import javax.validation.Valid
+import jakarta.validation.Valid
 
 @RestController
 class AuthController(

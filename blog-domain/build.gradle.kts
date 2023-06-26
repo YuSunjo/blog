@@ -9,10 +9,10 @@ plugins {
 }
 
 allOpen {
-    annotation("javax.persistence.Entity")
-    annotation("javax.persistence.Embeddable")
-    annotation("javax.persistence.MappedSuperclass")
-    annotation("javax.persistence.EntityListeners")
+    annotation("jakarta.persistence.Entity")
+    annotation("jakarta.persistence.Embeddable")
+    annotation("jakarta.persistence.MappedSuperclass")
+    annotation("jakarta.persistence.EntityListeners")
     annotation("org.springframework.data.annotation.CreatedDate")
     annotation("org.springframework.data.jpa.domain.support.AuditingEntityListener")
 }
@@ -22,12 +22,21 @@ dependencies {
 
     val kapt by configurations
     api("org.springframework.boot:spring-boot-starter-data-jpa")
-    api("com.querydsl:querydsl-jpa")
-    kapt("com.querydsl:querydsl-apt::jpa")
+    api("com.querydsl:querydsl-jpa:${property("querydslVersion")}:jakarta")
+    kapt("com.querydsl:querydsl-apt:${property("querydslVersion")}:jakarta")
     kapt("org.springframework.boot:spring-boot-configuration-processor")
     implementation("com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.8.0")
 
+    kapt ("jakarta.annotation:jakarta.annotation-api")
+    kapt ("jakarta.persistence:jakarta.persistence-api")
+
     runtimeOnly("com.h2database:h2")
+}
+
+// Kotlin QClass Setting
+kotlin.sourceSets.main {
+    println("kotlin sourceSets builDir:: $buildDir")
+    setBuildDir("$buildDir")
 }
 
 tasks.withType<Jar> {

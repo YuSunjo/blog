@@ -3,7 +3,7 @@ package com.blog.dto.adminMember
 import com.blog.domain.member.Member
 import com.blog.domain.member.Provider
 import com.blog.domain.member.Role
-import javax.validation.constraints.NotBlank
+import jakarta.validation.constraints.NotBlank
 
 data class CreateMemberRequest(
     @field:NotBlank

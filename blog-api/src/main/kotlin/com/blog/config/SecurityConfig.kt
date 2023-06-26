@@ -5,28 +5,38 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.builders.WebSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer
 import org.springframework.security.crypto.factory.PasswordEncoderFactories
 import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.security.web.SecurityFilterChain
 
 @Configuration
 @EnableWebSecurity
-class SecurityConfig : WebSecurityConfigurerAdapter() {
+class SecurityConfig {
     @Bean
     fun passwordEncoder(): PasswordEncoder {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder()
     }
 
-    override fun configure(web: WebSecurity) {
-        web.ignoring()
-            .antMatchers("/h2-console/**")
-            .antMatchers("/swagger-ui/**")
+    @Bean
+    fun webSecurityCustomizer(): WebSecurityCustomizer {
+        return WebSecurityCustomizer { web: WebSecurity ->
+            web.ignoring().requestMatchers("/h2-console/**", "/swagger-ui/**")
+        }
     }
 
-    override fun configure(http: HttpSecurity) {
-
+    @Bean
+    fun filterChain(http: HttpSecurity): SecurityFilterChain {
         http
-            .csrf().disable()
-            .formLogin().disable()
+            .cors { cors ->
+                cors.disable()
+            }
+            .csrf { csrf ->
+                csrf.disable()
+            }
+            .formLogin { formLogin ->
+                formLogin.disable()
+            }
+        return http.build()
     }
 }

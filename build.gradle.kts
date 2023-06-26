@@ -1,13 +1,13 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "2.7.0"
-    id("io.spring.dependency-management") version "1.0.11.RELEASE"
-    kotlin("jvm") version "1.6.21"
-    kotlin("kapt") version "1.6.21"
-    kotlin("plugin.spring") version "1.6.21"
-    kotlin("plugin.jpa") version "1.6.21"
-    id("com.google.cloud.tools.jib") version "3.2.1"
+    id("org.springframework.boot") version "3.1.0"
+    id("io.spring.dependency-management") version "1.1.0"
+    kotlin("jvm") version "1.8.0"
+    kotlin("kapt") version "1.8.0"
+    kotlin("plugin.spring") version "1.8.0"
+    kotlin("plugin.jpa") version "1.8.0"
+    id("com.google.cloud.tools.jib") version "3.3.2"
     id("jacoco")
     id("application")
 //    id("org.jlleitschuh.gradle.ktlint") version "10.2.1"
@@ -18,13 +18,13 @@ repositories {
     maven { url = uri("https://repo.spring.io/milestone") }
 }
 
-java.sourceCompatibility = JavaVersion.VERSION_11
+java.sourceCompatibility = JavaVersion.VERSION_17
 
-extra["springCloudVersion"] = "2021.0.3"
+extra["springCloudVersion"] = "2022.0.3"
 extra["querydslPluginVersion"] = "1.0.10"
 extra["kotestVersion"] = "5.1.0"
 extra["mockkVersion"] = "1.11.0"
-extra["springBootAdminVersion"] = "2.7.3"
+extra["springBootAdminVersion"] = "3.1.0"
 
 application {
     mainClass.set("com.blog.BlogAdminApplication.kt")
@@ -106,7 +106,7 @@ subprojects {
         implementation("io.sentry:sentry-logback:5.6.1")
 
         implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
-        implementation("io.github.openfeign:feign-core:11.0")
+        implementation("io.github.openfeign:feign-core:12.3")
 
         testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
         testImplementation("org.testcontainers:junit-jupiter:1.16.3")
@@ -135,15 +135,15 @@ subprojects {
     }
 
     configure<JavaPluginExtension> {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     tasks.withType<KotlinCompile> {
 //        dependsOn("ktlintCheck")
         kotlinOptions {
             freeCompilerArgs = listOf("-Xjsr305=strict")
-            jvmTarget = JavaVersion.VERSION_11.toString()
+            jvmTarget = JavaVersion.VERSION_17.toString()
         }
     }
 

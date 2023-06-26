@@ -6,7 +6,7 @@ import com.blog.domain.config.Config
 import com.blog.dto.config.CreateAndUpdateConfigRequest
 import com.blog.service.config.ConfigService
 import org.springframework.web.bind.annotation.*
-import javax.validation.Valid
+import jakarta.validation.Valid
 
 @RestController
 class ConfigController(

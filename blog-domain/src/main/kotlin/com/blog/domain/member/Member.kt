@@ -2,7 +2,7 @@ package com.blog.domain.member
 
 import com.blog.domain.BaseTimeEntity
 import java.util.*
-import javax.persistence.*
+import jakarta.persistence.*
 
 @Entity
 class Member(

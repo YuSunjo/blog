@@ -6,7 +6,7 @@ import com.blog.service.auth.FacebookService
 import com.blog.service.auth.GoogleService
 import org.springframework.stereotype.Component
 import java.util.*
-import javax.annotation.PostConstruct
+import jakarta.annotation.PostConstruct
 
 private val authServiceMap: MutableMap<Provider, AuthFactoryService> = EnumMap(Provider::class.java)
 

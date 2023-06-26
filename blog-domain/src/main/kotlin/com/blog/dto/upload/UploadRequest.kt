@@ -1,6 +1,7 @@
 package com.blog.dto.upload
 
-import com.sun.istack.NotNull
+import jakarta.validation.constraints.NotNull
+
 
 data class UploadRequest(
     @NotNull

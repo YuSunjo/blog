@@ -6,7 +6,7 @@ import com.blog.config.auth.Member
 import com.blog.dto.board.*
 import com.blog.service.board.BoardService
 import org.springframework.web.bind.annotation.*
-import javax.validation.Valid
+import jakarta.validation.Valid
 
 @RestController
 class BoardController(

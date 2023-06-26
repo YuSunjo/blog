@@ -1,8 +1,8 @@
 package com.blog.domain.config
 
 import com.blog.domain.BaseTimeEntity
-import javax.persistence.Entity
-import javax.persistence.Id
+import jakarta.persistence.Entity
+import jakarta.persistence.Id
 
 @Entity
 class Config(

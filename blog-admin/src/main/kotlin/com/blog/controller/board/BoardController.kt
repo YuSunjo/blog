@@ -7,7 +7,7 @@ import com.blog.dto.board.*
 import com.blog.service.board.BoardService
 import io.swagger.annotations.ApiOperation
 import org.springframework.web.bind.annotation.*
-import javax.validation.Valid
+import jakarta.validation.Valid
 
 @RestController
 class BoardController(

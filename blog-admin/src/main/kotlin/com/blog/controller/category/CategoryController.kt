@@ -7,7 +7,7 @@ import com.blog.dto.category.CreateCategoryRequest
 import com.blog.dto.category.UpdateCategoryRequest
 import com.blog.service.category.CategoryService
 import org.springframework.web.bind.annotation.*
-import javax.validation.Valid
+import jakarta.validation.Valid
 
 @RestController
 class CategoryController(

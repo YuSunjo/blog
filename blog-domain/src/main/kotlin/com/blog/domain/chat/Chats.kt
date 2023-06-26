@@ -2,7 +2,7 @@ package com.blog.domain.chat
 
 import org.springframework.data.mongodb.core.mapping.Document
 import java.time.LocalDateTime
-import javax.persistence.Id
+import jakarta.persistence.Id
 
 @Document(collection = "chats")
 class Chats(
