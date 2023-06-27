@@ -6,11 +6,10 @@ dependencies {
     implementation project(':blog-domain')
     implementation project(':blog-common')
 
-    implementation 'io.jsonwebtoken:jjwt:0.9.1'
     implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-aws', version: '2.2.1.RELEASE'
 
     // rest docs
-    testImplementation group: 'org.springframework.restdocs', name: 'spring-restdocs-mockmvc', version: '2.0.5.RELEASE'
+    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
 }
 
 ext {

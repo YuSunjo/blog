@@ -1,11 +1,11 @@
-FROM adoptopenjdk/openjdk17 AS BUILD
+FROM openjdk:17-oracle AS BUILD
 ENV APP_HOME=/usr/blog/app
 WORKDIR $APP_HOME
 COPY ./ ./
 RUN chmod +x gradlew
 RUN ./gradlew clean bootJar
 
-FROM adoptopenjdk/openjdk17
+FROM openjdk:17-oracle
 ENV APP_HOME=/usr/blog/app
 COPY --from=BUILD  $APP_HOME/blog-admin/build/libs/blog-admin-0.0.1-BLOG.jar $APP_HOME/app.jar
 EXPOSE 9000

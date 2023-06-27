@@ -120,8 +120,8 @@ subprojects {
         testImplementation("io.mockk:mockk:1.11.0")
 
         // upload
-        implementation("commons-io:commons-io:2.11.0")
-        implementation("commons-fileupload:commons-fileupload:1.4")
+        implementation("commons-io:commons-io:2.13.0")
+        implementation("commons-fileupload:commons-fileupload:1.5")
 
         // spring boot admin client
         implementation("de.codecentric:spring-boot-admin-starter-client")
@@ -132,6 +132,13 @@ subprojects {
         // gson
         implementation("com.google.code.gson:gson:2.10.1")
 
+        // jakarta
+        implementation("jakarta.xml.bind:jakarta.xml.bind-api:4.0.0")
+
+        // jwt
+        implementation("io.jsonwebtoken:jjwt-api:0.11.5")
+        implementation("io.jsonwebtoken:jjwt-impl:0.11.5")
+        implementation("io.jsonwebtoken:jjwt-gson:0.11.5")
     }
 
     configure<JavaPluginExtension> {

@@ -15,9 +15,9 @@ import org.apache.commons.fileupload.disk.DiskFileItem
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
+import org.springframework.mock.web.MockMultipartFile
 import org.springframework.test.context.TestConstructor
 import org.springframework.web.multipart.MultipartFile
-import org.springframework.web.multipart.commons.CommonsMultipartFile
 import org.testcontainers.shaded.org.apache.commons.io.IOUtils
 import java.io.*
 import java.nio.file.Files
@@ -92,7 +92,11 @@ class UploadServiceTest {
         }
 
         //jpa.png -> multipart 변환
-        return CommonsMultipartFile(fileItem)
+        return MockMultipartFile(
+            "originFile",
+            file.name,
+            Files.probeContentType(file.toPath()),
+            fileItem.inputStream)
     }
 
 }
